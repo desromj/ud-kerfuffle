@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
  *
  * Pattern positions and velocities SHOULD be influenced by their parent
  */
-public class Pattern extends Spawnable
+public abstract class Pattern extends Spawnable
 {
     public Pattern(Vector2 position, Vector2 velocity) { super(position, velocity); }
 

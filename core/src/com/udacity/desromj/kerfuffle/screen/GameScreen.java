@@ -7,9 +7,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.desromj.kerfuffle.entity.Player;
+import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
 /**
@@ -23,10 +26,12 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     SpriteBatch batch;
 
     Player player;
+    Array<Spawnable> spawnables;
 
     public GameScreen()
     {
         player = new Player(new Vector2(Constants.WORLD_WIDTH / 2.0f, Constants.WORLD_HEIGHT / 8.0f));
+        spawnables = new DelayedRemovalArray<Spawnable>();
     }
 
 
@@ -44,7 +49,15 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         /*
          Update logic
           */
-        player.update(delta);
+        player.update(delta, this);
+
+        for (int i = 0; i < spawnables.size; i++)
+        {
+            spawnables.get(i).update(delta);
+
+            if (spawnables.get(i).isOffScreen())
+                spawnables.removeIndex(i);
+        }
 
         /*
          Render logic
@@ -57,7 +70,11 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                 Constants.WORLD_WIDTH,
                 Constants.WORLD_HEIGHT
         );
+
         player.render(renderer);
+        for (Spawnable sp: spawnables)
+            sp.render(renderer);
+
         renderer.end();
     }
 
@@ -83,6 +100,14 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         batch.dispose();
     }
 
+
+    /*
+        Utility/Spawning Methods
+     */
+    public void addSpawnable(Spawnable spawnable)
+    {
+        this.spawnables.add(spawnable);
+    }
 
 
     /*
