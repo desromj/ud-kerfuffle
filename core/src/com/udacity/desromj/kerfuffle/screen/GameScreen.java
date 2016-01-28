@@ -50,15 +50,12 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
          Render logic
           */
         renderer.begin(ShapeRenderer.ShapeType.Filled);
+        renderer.setColor(Constants.BACKGROUND_COLOR);
         renderer.rect(
                 0,
                 0,
                 Constants.WORLD_WIDTH,
-                Constants.WORLD_HEIGHT,
-                Constants.BACKGROUND_COLOR,
-                Constants.BACKGROUND_COLOR,
-                Constants.BACKGROUND_COLOR,
-                Constants.BACKGROUND_COLOR
+                Constants.WORLD_HEIGHT
         );
         player.render(renderer);
         renderer.end();

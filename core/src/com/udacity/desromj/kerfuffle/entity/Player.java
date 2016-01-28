@@ -30,13 +30,17 @@ public class Player
         if (Gdx.input.isKeyPressed(Input.Keys.UP)) position.y += magnitude;
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) position.y -= magnitude;
 
-
+        // Constrain the player to the play area
+        if (position.x - Constants.PLAYER_RADIUS <= 0.0f) position.x = Constants.PLAYER_RADIUS;
+        if (position.x + Constants.PLAYER_RADIUS >= Constants.WORLD_WIDTH) position.x = Constants.WORLD_WIDTH - Constants.PLAYER_RADIUS;
+        if (position.y - Constants.PLAYER_RADIUS <= 0.0f) position.y = Constants.PLAYER_RADIUS;
+        if (position.y + Constants.PLAYER_RADIUS >= Constants.WORLD_HEIGHT) position.y = Constants.WORLD_HEIGHT - Constants.PLAYER_RADIUS;
     }
 
     public void render(ShapeRenderer renderer)
     {
         renderer.set(ShapeRenderer.ShapeType.Filled);
         renderer.setColor(Color.RED);
-        renderer.circle(position.x, position.y, 10.0f);
+        renderer.circle(position.x, position.y, Constants.PLAYER_RADIUS);
     }
 }
