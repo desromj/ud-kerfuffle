@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.udacity.desromj.kerfuffle.bullet.PlayerBullet;
+import com.udacity.desromj.kerfuffle.pattern.PlayerBulletPattern;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
@@ -29,11 +30,14 @@ public class Player
 
     float shotDelay, cannotShootFor;
 
+    Pattern shotPattern;
+
     public Player(Vector2 position)
     {
         this.position = new Vector2(position.x, position.y);
         this.shotDelay = 1.0f / Constants.PLAYER_SHOTS_PER_SECOND;
         this.cannotShootFor = 0.0f;
+        // this.shotPattern = new PlayerBulletPattern();
     }
 
     public void shootBullets(GameScreen screen)

@@ -118,6 +118,11 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         this.spawnables.add(spawnable);
     }
 
+    public void addSpawnables(Array<Spawnable> spawnables)
+    {
+        for (Spawnable spawnable: spawnables)
+            this.spawnables.add(spawnable);
+    }
 
     /*
         Input Processing Overrides
