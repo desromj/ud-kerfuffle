@@ -4,17 +4,32 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.udacity.desromj.kerfuffle.bullet.PlayerBullet;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
+import spine.AnimationState;
+import spine.AnimationStateData;
+import spine.Skeleton;
+import spine.SkeletonData;
+import spine.SkeletonJson;
+import spine.SkeletonRenderer;
+import spine.SkeletonRendererDebug;
+
 /**
  * Created by Mike on 2016-01-27.
  */
 public class Player
 {
+    SkeletonRenderer skeletonRenderer;
+    SkeletonRendererDebug skeletonRendererDebug;
+    TextureAtlas atlas;
+    Skeleton skeleton;
+    AnimationState animationState;
+
     Vector2 position;
 
     float shotDelay, cannotShootFor;
@@ -24,6 +39,31 @@ public class Player
         this.position = new Vector2(position.x, position.y);
         this.shotDelay = 1.0f / Constants.PLAYER_SHOTS_PER_SECOND;
         this.cannotShootFor = 0.0f;
+
+
+
+        skeletonRenderer = new SkeletonRenderer();
+        skeletonRenderer.setPremultipliedAlpha(true);       // Alpha blending to reduce outlines
+
+        skeletonRendererDebug = new SkeletonRendererDebug();
+        skeletonRendererDebug.setBoundingBoxes(false);
+        skeletonRendererDebug.setRegionAttachments(false);
+
+        atlas = new TextureAtlas(Gdx.files.internal("bloom.atlas"));
+        SkeletonJson json = new SkeletonJson(atlas);        // load stateless skeleton JSON data
+        json.setScale(0.4f);                                // set skeleton scale from Spine
+
+        // Read the JSON data and create the skeleton
+        SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("skeleton-bloom.json"));
+        skeleton = new Skeleton(skeletonData);
+
+        // init skeleton position
+        skeleton.setPosition(position.x, position.y);
+
+        // init animation
+        AnimationStateData stateData = new AnimationStateData(skeletonData);
+        animationState = new AnimationState(stateData);
+        animationState.setAnimation(0, "idle", true);
     }
 
     public void shootBullets(GameScreen screen)
@@ -82,12 +122,28 @@ public class Player
             this.cannotShootFor -= delta;
             shootBullets(screen);
         }
+
+        /*
+            Update skeleton and animation data
+         */
+
+        skeleton.setPosition(position.x, position.y);
+
     }
 
-    public void render(ShapeRenderer renderer)
+    public void render(SpriteBatch batch)
     {
+        animationState.update(Gdx.graphics.getDeltaTime());
+        animationState.apply(skeleton);
+        skeleton.updateWorldTransform();
+
+        skeletonRenderer.draw(batch, skeleton);
+        // skeletonRendererDebug.draw(skeleton);
+
+        /*
         renderer.set(ShapeRenderer.ShapeType.Filled);
         renderer.setColor(Color.RED);
         renderer.circle(position.x, position.y, Constants.PLAYER_RADIUS);
+        */
     }
 }

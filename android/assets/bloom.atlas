@@ -1,0 +1,174 @@
+
+bloom.png
+size: 1146,461
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+abdomen - 1
+  rotate: true
+  xy: 1107, 91
+  size: 46, 22
+  orig: 46, 22
+  offset: 0, 0
+  index: -1
+abdomen - 2
+  rotate: false
+  xy: 253, 18
+  size: 54, 29
+  orig: 54, 29
+  offset: 0, 0
+  index: -1
+abdomen - 3
+  rotate: true
+  xy: 1053, 29
+  size: 55, 32
+  orig: 55, 32
+  offset: 0, 0
+  index: -1
+abdomen - 4
+  rotate: false
+  xy: 197, 16
+  size: 54, 31
+  orig: 54, 31
+  offset: 0, 0
+  index: -1
+abdomen - 5
+  rotate: false
+  xy: 309, 26
+  size: 42, 21
+  orig: 42, 21
+  offset: 0, 0
+  index: -1
+abdomen - 6
+  rotate: true
+  xy: 1131, 112
+  size: 25, 13
+  orig: 25, 13
+  offset: 0, 0
+  index: -1
+antenna - base
+  rotate: false
+  xy: 1131, 93
+  size: 7, 17
+  orig: 7, 17
+  offset: 0, 0
+  index: -1
+antenna - tip
+  rotate: true
+  xy: 957, 7
+  size: 7, 38
+  orig: 7, 38
+  offset: 0, 0
+  index: -1
+arm - finger
+  rotate: true
+  xy: 287, 5
+  size: 11, 15
+  orig: 11, 15
+  offset: 0, 0
+  index: -1
+arm - forearm
+  rotate: true
+  xy: 135, 2
+  size: 8, 27
+  orig: 8, 27
+  offset: 0, 0
+  index: -1
+arm - thumb
+  rotate: true
+  xy: 164, 2
+  size: 8, 13
+  orig: 8, 13
+  offset: 0, 0
+  index: -1
+arm - upperarm
+  rotate: true
+  xy: 388, 38
+  size: 9, 29
+  orig: 9, 29
+  offset: 0, 0
+  index: -1
+bee
+  rotate: false
+  xy: 135, 12
+  size: 60, 35
+  orig: 60, 35
+  offset: 0, 0
+  index: -1
+bloomIdle
+  rotate: false
+  xy: 2, 49
+  size: 819, 410
+  orig: 819, 410
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 353, 21
+  size: 33, 26
+  orig: 33, 26
+  offset: 0, 0
+  index: -1
+leg - calf
+  rotate: true
+  xy: 1053, 17
+  size: 10, 31
+  orig: 10, 31
+  offset: 0, 0
+  index: -1
+leg - foot
+  rotate: true
+  xy: 253, 2
+  size: 14, 32
+  orig: 14, 32
+  offset: 0, 0
+  index: -1
+leg - thigh
+  rotate: false
+  xy: 1087, 49
+  size: 11, 35
+  orig: 11, 35
+  offset: 0, 0
+  index: -1
+sketch
+  rotate: false
+  xy: 823, 139
+  size: 320, 320
+  orig: 320, 320
+  offset: 0, 0
+  index: -1
+torso
+  rotate: false
+  xy: 1053, 86
+  size: 52, 51
+  orig: 52, 51
+  offset: 0, 0
+  index: -1
+wing - big
+  rotate: false
+  xy: 2, 9
+  size: 131, 38
+  orig: 131, 38
+  offset: 0, 0
+  index: -1
+wing - big blur
+  rotate: false
+  xy: 823, 5
+  size: 132, 132
+  orig: 132, 132
+  offset: 0, 0
+  index: -1
+wing - small
+  rotate: false
+  xy: 957, 16
+  size: 94, 25
+  orig: 94, 25
+  offset: 0, 0
+  index: -1
+wing - small blur
+  rotate: false
+  xy: 957, 43
+  size: 94, 94
+  orig: 94, 94
+  offset: 0, 0
+  index: -1

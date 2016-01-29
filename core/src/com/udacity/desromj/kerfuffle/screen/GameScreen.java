@@ -71,11 +71,18 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                 Constants.WORLD_HEIGHT
         );
 
-        player.render(renderer);
         for (Spawnable sp: spawnables)
             sp.render(renderer);
 
         renderer.end();
+
+        // Sprites
+        batch.getProjectionMatrix().set(viewport.getCamera().combined);
+        batch.begin();
+
+        player.render(batch);
+
+        batch.end();
     }
 
     @Override
