@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.desromj.kerfuffle.entity.Player;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
+import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
 /**
@@ -93,6 +94,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     @Override
     public void show()
     {
+        Assets.instance.init();
         viewport = new FitViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
 
         renderer = new ShapeRenderer();
