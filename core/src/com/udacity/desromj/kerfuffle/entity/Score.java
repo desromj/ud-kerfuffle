@@ -5,12 +5,22 @@ package com.udacity.desromj.kerfuffle.entity;
  */
 public class Score
 {
+    public static final Score instance = new Score();
+
     int score;
     int topScore;
 
-    public Score()
+    private Score()
     {
         this.score = 0;
         this.topScore = 0;
+    }
+
+    public void addPoints(int points)
+    {
+        score += points;
+
+        if (score > topScore)
+            topScore = score;
     }
 }
