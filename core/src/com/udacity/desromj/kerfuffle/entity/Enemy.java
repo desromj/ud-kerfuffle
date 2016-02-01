@@ -7,8 +7,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public abstract class Enemy extends Shooter
 {
-    public Enemy(Vector2 position)
-    {
-        super(position);
-    }
+    public Enemy(Vector2 position) { super(position); }
+
+
 }

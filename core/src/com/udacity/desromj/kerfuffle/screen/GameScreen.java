@@ -3,6 +3,7 @@ package com.udacity.desromj.kerfuffle.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -11,7 +12,9 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.udacity.desromj.kerfuffle.enemy.FlyEnemy;
 import com.udacity.desromj.kerfuffle.entity.Player;
+import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
@@ -21,20 +24,36 @@ import com.udacity.desromj.kerfuffle.utility.Constants;
  */
 public class GameScreen extends ScreenAdapter implements InputProcessor
 {
+    public static final GameScreen instance = new GameScreen();
+
     Viewport viewport;
 
     ShapeRenderer renderer;
     SpriteBatch batch;
 
+    Array<Shooter> shooters;
     Player player;
     Array<Spawnable> spawnables;
 
-    public GameScreen()
+    private GameScreen()
     {
-        player = new Player(new Vector2(Constants.WORLD_WIDTH / 2.0f, Constants.WORLD_HEIGHT / 8.0f));
-        spawnables = new DelayedRemovalArray<Spawnable>();
+        init();
     }
 
+    public void init()
+    {
+        player = new Player(new Vector2(
+                Constants.WORLD_WIDTH / 2.0f,
+                Constants.WORLD_HEIGHT / 8.0f));
+
+        spawnables = new DelayedRemovalArray<Spawnable>();
+        shooters = new DelayedRemovalArray<Shooter>();
+
+        shooters.add(new FlyEnemy(new Vector2(
+                Constants.WORLD_WIDTH / 2.0f,
+                (Constants.WORLD_HEIGHT * 7.0f) / 8.0f
+        )));
+    }
 
 
 
@@ -50,7 +69,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         /*
          Update logic
           */
-        player.update(delta, this);
+        player.update(delta);
 
         for (int i = 0; i < spawnables.size; i++)
         {
@@ -59,6 +78,9 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
             if (spawnables.get(i).isOffScreen())
                 spawnables.removeIndex(i);
         }
+
+        for (Shooter shooter: shooters)
+            shooter.update(delta);
 
         /*
          Render logic
@@ -76,6 +98,10 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
             sp.render(renderer);
 
         renderer.end();
+
+        // TODO: Debug - starts and closes the ShapeRenderer - once graphics exist, move this to spritebatch rendering
+        for (Shooter shooter: shooters)
+            shooter.render(batch);
 
         // Sprites
         batch.getProjectionMatrix().set(viewport.getCamera().combined);
@@ -122,6 +148,19 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     {
         for (Spawnable spawnable: spawnables)
             this.spawnables.add(spawnable);
+    }
+
+    /*
+    Getters and Setters
+     */
+    public Camera getCamera()
+    {
+        return viewport.getCamera();
+    }
+
+    public Vector2 getPlayerPosition()
+    {
+        return new Vector2(player.getPosition().x, player.getPosition().y);
     }
 
     /*

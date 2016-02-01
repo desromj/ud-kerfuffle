@@ -40,7 +40,8 @@ public class Player extends Shooter
         this.health = Constants.PLAYER_HEALTH;
     }
 
-    public void update(float delta, GameScreen screen)
+    @Override
+    public void update(float delta)
     {
         this.cannotShootFor -= delta;
 
@@ -64,7 +65,7 @@ public class Player extends Shooter
             if (cannotShootFor <= 0.0f)
             {
                 cannotShootFor = shotDelay;
-                screen.addSpawnables(this.bulletPattern.spawnChildren());
+                GameScreen.instance.addSpawnables(this.bulletPattern.spawnChildren());
             }
         }
 
@@ -74,6 +75,7 @@ public class Player extends Shooter
         Assets.instance.bloomAssets.skeleton.setPosition(position.x, position.y);
     }
 
+    @Override
     public void render(SpriteBatch batch)
     {
         Assets.instance.bloomAssets.render(batch);

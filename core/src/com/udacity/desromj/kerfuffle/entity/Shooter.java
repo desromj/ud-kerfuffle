@@ -1,6 +1,9 @@
 package com.udacity.desromj.kerfuffle.entity;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.udacity.desromj.kerfuffle.screen.GameScreen;
 
 /**
  * Created by Quiv on 2016-01-31.
@@ -21,13 +24,20 @@ public abstract class Shooter
     }
 
     /**
-     * Each Shooter on load will need stats such as health
+     * Each Shooter on load will need stats such as health. Use setHealth(float) for subclasses
      */
     protected abstract void setHealth();
+    public abstract void update(float delta);
+    public abstract void render(SpriteBatch batch);
 
     public final Vector2 getPosition()
     {
         return this.position;
+    }
+
+    protected final void setHealth(float health)
+    {
+        this.health = health;
     }
 
     public final float getHealth()

@@ -11,11 +11,9 @@ import com.udacity.desromj.kerfuffle.screen.GameScreen;
 
 public class KerfuffleGame extends Game
 {
-	public static final Score SCORE = new Score();
-
 	@Override
 	public void create ()
 	{
-		setScreen(new GameScreen());
+		setScreen(GameScreen.instance);
 	}
 }
