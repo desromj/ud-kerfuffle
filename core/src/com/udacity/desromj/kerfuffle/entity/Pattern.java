@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Array;
  */
 public abstract class Pattern extends Spawnable
 {
-    public Pattern(Vector2 position, Vector2 velocity) { super(position, velocity); }
+    public Pattern(Shooter parent, Vector2 position, Vector2 velocity) { super(parent, position, velocity); }
 
-    public abstract Array<Spawnable> spawnChildren(Vector2 origin);
+    public abstract Array<Spawnable> spawnChildren();
 }

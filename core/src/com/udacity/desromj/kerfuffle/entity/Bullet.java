@@ -10,5 +10,5 @@ import com.badlogic.gdx.math.Vector2;
  */
 public abstract class Bullet extends Spawnable
 {
-    public Bullet(Vector2 position, Vector2 velocity) { super(position, velocity); }
+    public Bullet(Shooter parent, Vector2 position, Vector2 velocity) { super(parent, position, velocity); }
 }

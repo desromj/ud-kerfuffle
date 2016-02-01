@@ -18,18 +18,19 @@ import com.udacity.desromj.kerfuffle.utility.Constants;
  */
 public abstract class Spawnable
 {
-    Spawnable parent;
+    Shooter parent;
     Array<Spawnable> children;
 
     protected Vector2 position, velocity;
 
-    public Spawnable(Vector2 position, Vector2 velocity)
+    public Spawnable(Shooter parent, Vector2 position, Vector2 velocity)
     {
+        this.parent = parent;
         this.position = new Vector2(position.x, position.y);
         this.velocity = new Vector2(velocity.x, velocity.y);
     }
 
-    public final Spawnable getParent()
+    public final Shooter getParent()
     {
         return this.parent;
     }

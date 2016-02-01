@@ -12,37 +12,38 @@ import com.udacity.desromj.kerfuffle.utility.Constants;
 /**
  * Created by Mike on 2016-01-27.
  */
-public class Player
+public class Player extends Shooter
 {
-    Vector2 position;
-
     float shotDelay, cannotShootFor;
 
     Pattern bulletPattern;
 
     public Player(Vector2 position)
     {
-        this.position = new Vector2(position.x, position.y);
+        super(position);
         this.shotDelay = 1.0f / Constants.PLAYER_SHOTS_PER_SECOND;
         this.cannotShootFor = 0.0f;
 
         this.bulletPattern = new PlayerBulletPattern(
+                this,
                 new Vector2(this.position.x, this.position.y),
                 new Vector2(0, 0)
         );
     }
 
-    public void shootBullets(GameScreen screen)
+    /**
+     * Player always dies in 1 hit
+     */
+    @Override
+    protected final void setHealth()
     {
-        if (cannotShootFor <= 0.0f)
-        {
-            cannotShootFor = shotDelay;
-            screen.addSpawnables(this.bulletPattern.spawnChildren(this.position));
-        }
+        this.health = Constants.PLAYER_HEALTH;
     }
 
     public void update(float delta, GameScreen screen)
     {
+        this.cannotShootFor -= delta;
+
         // Keyboard Controls
         float magnitude = ((Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) ? Constants.PLAYER_FOCUS_SPEED : Constants.PLAYER_SPEED) * delta;
 
@@ -60,8 +61,11 @@ public class Player
         // Handle shooting bullets
         if (Gdx.input.isKeyPressed(Input.Keys.Z))
         {
-            this.cannotShootFor -= delta;
-            shootBullets(screen);
+            if (cannotShootFor <= 0.0f)
+            {
+                cannotShootFor = shotDelay;
+                screen.addSpawnables(this.bulletPattern.spawnChildren());
+            }
         }
 
         /*
