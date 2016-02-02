@@ -31,30 +31,31 @@ public class PlayerBulletPattern extends Pattern
 
         Shooter parent = this.getParent();
         Vector2 origin = parent.getPosition();
+        float hitRadius = parent.getHitRadius();
 
         spawns.add(new PlayerBullet(
                 parent,
-                new Vector2(origin.x - Constants.PLAYER_RADIUS * 4, origin.y + Constants.PLAYER_RADIUS),
+                new Vector2(origin.x - hitRadius * 4, origin.y + hitRadius),
                 new Vector2(0.0f, Constants.PLAYER_SHOT_SPEED)));
 
         spawns.add(new PlayerBullet(
                 this.getParent(),
-                new Vector2(origin.x - Constants.PLAYER_RADIUS * 2, origin.y + Constants.PLAYER_RADIUS * 3),
+                new Vector2(origin.x - hitRadius * 2, origin.y + hitRadius * 3),
                 new Vector2(0.0f, Constants.PLAYER_SHOT_SPEED)));
 
         spawns.add(new PlayerBullet(
                 this.getParent(),
-                new Vector2(origin.x, origin.y + Constants.PLAYER_RADIUS * 5),
+                new Vector2(origin.x, origin.y + hitRadius * 5),
                 new Vector2(0.0f, Constants.PLAYER_SHOT_SPEED)));
 
         spawns.add(new PlayerBullet(
                 this.getParent(),
-                new Vector2(origin.x + Constants.PLAYER_RADIUS * 2, origin.y + Constants.PLAYER_RADIUS * 3),
+                new Vector2(origin.x + hitRadius * 2, origin.y + hitRadius * 3),
                 new Vector2(0.0f, Constants.PLAYER_SHOT_SPEED)));
 
         spawns.add(new PlayerBullet(
                 this.getParent(),
-                new Vector2(origin.x + Constants.PLAYER_RADIUS * 4, origin.y + Constants.PLAYER_RADIUS),
+                new Vector2(origin.x + hitRadius * 4, origin.y + hitRadius),
                 new Vector2(0.0f, Constants.PLAYER_SHOT_SPEED)));
 
         return spawns;
