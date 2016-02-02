@@ -10,16 +10,18 @@ import com.badlogic.gdx.math.Vector2;
  */
 public abstract class Bullet extends Spawnable
 {
-    protected float shotRadius;
+    protected float shotRadius, damage;
 
     public Bullet(Shooter parent, Vector2 position, Vector2 velocity)
     {
         super(parent, position, velocity);
         setShotRadius();
+        setDamage();
     }
 
     /** Set radius for hitBoxes for each Bullet */
     protected abstract void setShotRadius();
+    protected abstract void setDamage();
 
     public final boolean isColliding(Shooter shooter)
     {
@@ -30,4 +32,6 @@ public abstract class Bullet extends Spawnable
 
         return false;
     }
+
+    public final float getDamage() { return this.damage; }
 }

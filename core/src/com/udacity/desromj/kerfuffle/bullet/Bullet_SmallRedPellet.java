@@ -19,6 +19,11 @@ public class Bullet_SmallRedPellet extends Bullet
     }
 
     @Override
+    protected void setDamage() {
+        this.damage = Constants.BULLET_SMALL_RED_PELLET_DAMAGE;
+    }
+
+    @Override
     public void render(ShapeRenderer renderer)
     {
         renderer.setColor(Constants.BULLET_SMALL_RED_PELLET_COLOR);

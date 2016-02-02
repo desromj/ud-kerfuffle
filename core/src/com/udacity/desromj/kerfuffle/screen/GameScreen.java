@@ -86,19 +86,9 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
             shooter.update(delta);
 
         /*
-        Check for Collisions with the player
+        Check for Collisions with the player and enemies
          */
-        for (Spawnable spawnable: spawnables)
-        {
-            if (spawnable instanceof Bullet)
-            {
-                if (((Bullet) spawnable).isColliding(player))
-                {
-                    player.init(playerSpawnPoint);
-                    break;
-                }
-            }
-        }
+        handleCollisions();
 
         /*
          Render logic
@@ -128,6 +118,49 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         player.render(batch);
 
         batch.end();
+    }
+
+    /**
+     * Collision logic for game objects
+     */
+    private void handleCollisions()
+    {
+        boolean playerHit = false;
+
+        for (int j = 0; j < spawnables.size; j++)
+        {
+            // Check collision for every bullet
+            if (spawnables.get(j) instanceof Bullet)
+            {
+                Bullet bullet = (Bullet) spawnables.get(j);
+
+                // Check for bullets hitting the player
+                if (!playerHit && bullet.isColliding(player))
+                {
+                    playerHit = true;
+                    player.init(playerSpawnPoint);
+                }
+
+                // Check for player bullets hitting the enemy - ONLY player bullets
+                if (bullet.getParent() == player)
+                {
+                    for (int i = 0; i < shooters.size; i++)
+                    {
+                        if (bullet.isColliding(shooters.get(i)))
+                        {
+                            // Reduce the shooter's health when hit, and remove it if dead
+                            shooters.get(i).reduceHealth(bullet);
+
+                            if (shooters.get(i).isDead())
+                                shooters.removeIndex(i);
+
+                            // Remove the bullet when it hits an enemy
+                            spawnables.removeIndex(j);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @Override

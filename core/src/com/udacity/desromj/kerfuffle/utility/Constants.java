@@ -20,7 +20,9 @@ public class Constants
     public static final float PLAYER_SHOTS_PER_SECOND = 12.0f;
     public static final Color PLAYER_SHOT_COLOR = Color.YELLOW;
     public static final float PLAYER_SHOT_RADIUS = 4.0f;
+    public static final float PLAYER_SHOT_SEPARATION = 12.0f;
     public static final float PLAYER_SHOT_SPEED = 1200.0f;
+    public static final float PLAYER_SHOT_DAMAGE = 2.0f;
 
     public static final Color BACKGROUND_COLOR = Color.BLUE;
 
@@ -36,6 +38,7 @@ public class Constants
 
     public static final Color BULLET_SMALL_RED_PELLET_COLOR = Color.RED;
     public static final float BULLET_SMALL_RED_PELLET_RADIUS = 5.0f;
+    public static final float BULLET_SMALL_RED_PELLET_DAMAGE = 2.0f;
 
     private Constants() {}
 }

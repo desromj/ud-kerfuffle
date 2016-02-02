@@ -44,4 +44,9 @@ public abstract class Shooter
     {
         return this.health <= 0.0f;
     }
+
+    public final void reduceHealth(Bullet hitBy)
+    {
+        this.health -= hitBy.getDamage();
+    }
 }

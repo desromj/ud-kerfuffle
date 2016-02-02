@@ -19,6 +19,11 @@ public class PlayerBullet extends Bullet
     }
 
     @Override
+    protected void setDamage() {
+        this.damage = Constants.PLAYER_SHOT_DAMAGE;
+    }
+
+    @Override
     public void render(ShapeRenderer renderer)
     {
         renderer.setColor(Constants.PLAYER_SHOT_COLOR);
