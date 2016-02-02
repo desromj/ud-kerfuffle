@@ -21,8 +21,7 @@ public class FlyBulletPattern extends Pattern
     @Override
     public void render(ShapeRenderer renderer)
     {
-        renderer.setColor(Constants.BULLET_SMALL_RED_PELLET_COLOR);
-        renderer.circle(this.position.x, this.position.y, Constants.BULLET_SMALL_RED_PELLET_RADIUS);
+
     }
 
     @Override

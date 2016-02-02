@@ -12,7 +12,11 @@ public abstract class Bullet extends Spawnable
 {
     protected float shotRadius;
 
-    public Bullet(Shooter parent, Vector2 position, Vector2 velocity) { super(parent, position, velocity); }
+    public Bullet(Shooter parent, Vector2 position, Vector2 velocity)
+    {
+        super(parent, position, velocity);
+        setShotRadius();
+    }
 
     /** Set radius for hitBoxes for each Bullet */
     protected abstract void setShotRadius();

@@ -21,6 +21,8 @@ public abstract class Shooter
     public Shooter(float xPos, float yPos)
     {
         this.position = new Vector2(xPos, yPos);
+        this.setHealth();
+        this.setHitRadius();
     }
 
     /**
