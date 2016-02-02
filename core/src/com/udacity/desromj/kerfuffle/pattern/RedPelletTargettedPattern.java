@@ -14,9 +14,9 @@ import com.udacity.desromj.kerfuffle.utility.Constants;
 /**
  * Created by Quiv on 2016-01-31.
  */
-public class RedPelletDirectPattern extends Pattern
+public class RedPelletTargettedPattern extends Pattern
 {
-    public RedPelletDirectPattern(Shooter parent, Vector2 position, Vector2 velocity) { super(parent, position, velocity); }
+    public RedPelletTargettedPattern(Shooter parent, Vector2 position, Vector2 velocity) { super(parent, position, velocity); }
 
     @Override
     public void render(ShapeRenderer renderer)

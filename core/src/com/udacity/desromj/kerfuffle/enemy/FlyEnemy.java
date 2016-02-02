@@ -5,7 +5,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.udacity.desromj.kerfuffle.entity.Enemy;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
-import com.udacity.desromj.kerfuffle.pattern.RedPelletDirectPattern;
+import com.udacity.desromj.kerfuffle.pattern.RedPelletCircleTargettedPattern;
+import com.udacity.desromj.kerfuffle.pattern.RedPelletTargettedPattern;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
@@ -29,10 +30,13 @@ public class FlyEnemy extends Enemy
         this.shotDelay = 1.0f / Constants.ENEMY_FLY_SHOTS_PER_SECOND;
         cannotShootFor = 0.0f;
 
-        this.bulletPattern = new RedPelletDirectPattern(
+        this.bulletPattern = new RedPelletCircleTargettedPattern(
                 this,
                 new Vector2(this.getPosition().x, this.getPosition().y),
-                new Vector2(0, 0)
+                new Vector2(0, 0),
+                25,                     // Bullets per circle
+                20.0f,                  // Radius for spawning
+                250.0f                  // shot speed
         );
     }
 
