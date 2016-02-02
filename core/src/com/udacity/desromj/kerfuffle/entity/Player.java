@@ -22,13 +22,19 @@ public class Player extends Shooter
     {
         super(position);
         this.shotDelay = 1.0f / Constants.PLAYER_SHOTS_PER_SECOND;
-        this.cannotShootFor = 0.0f;
-
         this.bulletPattern = new PlayerBulletPattern(
                 this,
                 new Vector2(this.position.x, this.position.y),
                 new Vector2(0, 0)
         );
+
+        init(position);
+    }
+
+    public void init(Vector2 spawnPoint)
+    {
+        this.position = new Vector2(spawnPoint.x, spawnPoint.y);
+        this.cannotShootFor = 0.0f;
     }
 
     /**

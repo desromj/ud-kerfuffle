@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.desromj.kerfuffle.enemy.FlyEnemy;
+import com.udacity.desromj.kerfuffle.entity.Bullet;
 import com.udacity.desromj.kerfuffle.entity.Player;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
@@ -35,6 +36,10 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     Player player;
     Array<Spawnable> spawnables;
 
+    private Vector2 playerSpawnPoint = new Vector2(
+        Constants.WORLD_WIDTH / 2.0f,
+        Constants.WORLD_HEIGHT / 8.0f);
+
     private GameScreen()
     {
         init();
@@ -42,9 +47,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
 
     public void init()
     {
-        player = new Player(new Vector2(
-                Constants.WORLD_WIDTH / 2.0f,
-                Constants.WORLD_HEIGHT / 8.0f));
+        player = new Player(playerSpawnPoint);
 
         spawnables = new DelayedRemovalArray<Spawnable>();
         shooters = new DelayedRemovalArray<Shooter>();
@@ -81,6 +84,21 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
 
         for (Shooter shooter: shooters)
             shooter.update(delta);
+
+        /*
+        Check for Collisions with the player
+         */
+        for (Spawnable spawnable: spawnables)
+        {
+            if (spawnable instanceof Bullet)
+            {
+                if (((Bullet) spawnable).isColliding(player))
+                {
+                    player.init(playerSpawnPoint);
+                    break;
+                }
+            }
+        }
 
         /*
          Render logic
