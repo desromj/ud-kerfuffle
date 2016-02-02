@@ -39,7 +39,12 @@ public class FlyEnemy extends Enemy
 
     @Override
     protected void setHealth() {
-        this.setHealth(Constants.ENEMY_FLY_HEALTH);
+        this.health = Constants.ENEMY_FLY_HEALTH;
+    }
+
+    @Override
+    protected void setHitRadius() {
+        this.hitRadius = Constants.ENEMY_FLY_RADIUS;
     }
 
     @Override
@@ -61,7 +66,7 @@ public class FlyEnemy extends Enemy
 
         renderer.begin(ShapeRenderer.ShapeType.Filled);
         renderer.setColor(Constants.ENEMY_FLY_COLOUR);
-        renderer.circle(this.getPosition().x, this.getPosition().y, Constants.ENEMY_FLY_RADIUS);
+        renderer.circle(this.getPosition().x, this.getPosition().y, this.hitRadius);
         renderer.end();
     }
 }

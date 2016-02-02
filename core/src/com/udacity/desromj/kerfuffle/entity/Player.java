@@ -35,9 +35,13 @@ public class Player extends Shooter
      * Player always dies in 1 hit
      */
     @Override
-    protected final void setHealth()
-    {
+    protected final void setHealth() {
         this.health = Constants.PLAYER_HEALTH;
+    }
+
+    @Override
+    protected void setHitRadius() {
+        this.hitRadius = Constants.PLAYER_RADIUS;
     }
 
     @Override
@@ -54,10 +58,10 @@ public class Player extends Shooter
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) position.y -= magnitude;
 
         // Constrain the player to the play area
-        if (position.x - Constants.PLAYER_RADIUS <= 0.0f) position.x = Constants.PLAYER_RADIUS;
-        if (position.x + Constants.PLAYER_RADIUS >= Constants.WORLD_WIDTH) position.x = Constants.WORLD_WIDTH - Constants.PLAYER_RADIUS;
-        if (position.y - Constants.PLAYER_RADIUS <= 0.0f) position.y = Constants.PLAYER_RADIUS;
-        if (position.y + Constants.PLAYER_RADIUS >= Constants.WORLD_HEIGHT) position.y = Constants.WORLD_HEIGHT - Constants.PLAYER_RADIUS;
+        if (position.x - this.hitRadius <= 0.0f) position.x = this.hitRadius;
+        if (position.x + this.hitRadius >= Constants.WORLD_WIDTH) position.x = Constants.WORLD_WIDTH - this.hitRadius;
+        if (position.y - this.hitRadius <= 0.0f) position.y = this.hitRadius;
+        if (position.y + this.hitRadius >= Constants.WORLD_HEIGHT) position.y = Constants.WORLD_HEIGHT - this.hitRadius;
 
         // Handle shooting bullets
         if (Gdx.input.isKeyPressed(Input.Keys.Z))

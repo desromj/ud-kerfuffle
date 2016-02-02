@@ -4,8 +4,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
-import com.udacity.desromj.kerfuffle.bullet.FlyBullet;
-import com.udacity.desromj.kerfuffle.bullet.PlayerBullet;
+import com.udacity.desromj.kerfuffle.bullet.Bullet_SmallRedPellet;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
@@ -22,8 +21,8 @@ public class FlyBulletPattern extends Pattern
     @Override
     public void render(ShapeRenderer renderer)
     {
-        renderer.setColor(Constants.ENEMY_FLY_SHOT_COLOUR);
-        renderer.circle(this.position.x, this.position.y, Constants.ENEMY_FLY_SHOT_RADIUS);
+        renderer.setColor(Constants.BULLET_SMALL_RED_PELLET_COLOR);
+        renderer.circle(this.position.x, this.position.y, Constants.BULLET_SMALL_RED_PELLET_RADIUS);
     }
 
     @Override
@@ -34,7 +33,7 @@ public class FlyBulletPattern extends Pattern
         Shooter parent = this.getParent();
         Vector2 origin = parent.getPosition();
 
-        spawns.add(new FlyBullet(
+        spawns.add(new Bullet_SmallRedPellet(
                 parent,
                 new Vector2(
                         origin.x,

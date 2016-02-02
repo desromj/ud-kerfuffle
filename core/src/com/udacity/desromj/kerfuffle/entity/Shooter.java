@@ -11,7 +11,7 @@ import com.udacity.desromj.kerfuffle.screen.GameScreen;
 public abstract class Shooter
 {
     Vector2 position;
-    float health;
+    protected float health, hitRadius;
 
     public Shooter(Vector2 position)
     {
@@ -27,23 +27,16 @@ public abstract class Shooter
      * Each Shooter on load will need stats such as health. Use setHealth(float) for subclasses
      */
     protected abstract void setHealth();
+    protected abstract void setHitRadius();
     public abstract void update(float delta);
     public abstract void render(SpriteBatch batch);
 
-    public final Vector2 getPosition()
-    {
-        return this.position;
-    }
-
-    protected final void setHealth(float health)
-    {
-        this.health = health;
-    }
-
+    public final Vector2 getPosition() { return this.position; }
     public final float getHealth()
     {
         return this.health;
     }
+    public final float getHitRadius() { return this.hitRadius; }
 
     public final boolean isDead()
     {
