@@ -11,12 +11,22 @@ import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
+import java.util.Random;
+
 /**
  * Created by Quiv on 2016-01-31.
  */
-public class RedPelletTargettedPattern extends Pattern
+public class RedPelletPattern extends Pattern
 {
-    public RedPelletTargettedPattern(Shooter parent, Vector2 position, Vector2 velocity) { super(parent, position, velocity); }
+    float speed;
+    boolean targetted;
+
+    public RedPelletPattern(Shooter parent, Vector2 position, Vector2 velocity, float speed, boolean targetted)
+    {
+        super(parent, position, velocity);
+        this.speed = speed;
+        this.targetted = targetted;
+    }
 
     @Override
     public void render(ShapeRenderer renderer)
@@ -32,15 +42,22 @@ public class RedPelletTargettedPattern extends Pattern
         Shooter parent = this.getParent();
         Vector2 origin = parent.getPosition();
 
+        Vector2 target;
+
+        if (this.targetted) {
+            target = new Vector2(
+                    GameScreen.instance.getPlayerPosition().x - origin.x,
+                    GameScreen.instance.getPlayerPosition().y - origin.y).nor().scl(Constants.ENEMY_FLY_SHOT_SPEED);
+        } else {
+            target = new Vector2(new Random().nextInt(200) - 100, new Random().nextInt(200) - 100);
+        }
+
         spawns.add(new Bullet_SmallRedPellet(
                 parent,
                 new Vector2(
                         origin.x,
                         origin.y),
-                new Vector2(
-                        GameScreen.instance.getPlayerPosition().x - origin.x,
-                        GameScreen.instance.getPlayerPosition().y - origin.y).nor().scl(Constants.ENEMY_FLY_SHOT_SPEED)
-                ));
+                target));
 
         return spawns;
     }
