@@ -11,21 +11,25 @@ import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
 
+import java.util.Random;
+
 /**
  * Created by Mike on 2016-02-02.
  */
-public class RedPelletCircleTargettedPattern extends Pattern
+public class RedPelletCirclePattern extends Pattern
 {
     int bulletsInCircle;
     float radius;
     float speed;
+    boolean targetted;
 
-    public RedPelletCircleTargettedPattern(Shooter parent, Vector2 position, Vector2 velocity, int bulletsInCircle, float radius, float speed)
+    public RedPelletCirclePattern(Shooter parent, Vector2 position, Vector2 velocity, int bulletsInCircle, float radius, float speed, boolean targetted)
     {
         super(parent, position, velocity);
         this.bulletsInCircle = bulletsInCircle;
         this.radius = radius;
         this.speed = speed;
+        this.targetted = targetted;
     }
 
     @Override
@@ -37,11 +41,20 @@ public class RedPelletCircleTargettedPattern extends Pattern
         Vector2 origin = new Vector2(parent.getPosition().x, parent.getPosition().y);
         Vector2 playerPos = GameScreen.instance.getPlayerPosition();
 
-        // Get the angle between the origin of this pattern and the player
-        float angleRads = MathUtils.atan2(
-                origin.y - playerPos.y,
-                origin.x - playerPos.x
-        );
+        float angleRads;
+
+        // Get the angle between the origin of this pattern and the player. Or a random target, if requested
+        if (this.targetted) {
+            angleRads = MathUtils.atan2(
+                    playerPos.y - origin.y,
+                    playerPos.x - origin.x
+            );
+        } else {
+            angleRads = MathUtils.atan2(
+                    new Random().nextInt(200) - 100,
+                    new Random().nextInt(200) - 100
+            );
+        }
 
         // get the offset in radians each additional bullet will need to be spawned at
         float stepOffset = (float) (360.0f / this.bulletsInCircle * (Math.PI / 180.0f));
@@ -60,8 +73,8 @@ public class RedPelletCircleTargettedPattern extends Pattern
 
             // velocity = normalized distance between origin and spawnPosition, multiplied by a scalar
             Vector2 spawnVelocity = new Vector2(
-                    origin.x - spawnPosition.x,
-                    origin.y - spawnPosition.y
+                    spawnPosition.x - origin.x,
+                    spawnPosition.y - origin.y
             ).nor().scl(this.speed);
 
             spawns.add(new Bullet_SmallRedPellet(this.getParent(), spawnPosition, spawnVelocity));

@@ -1,6 +1,7 @@
 package com.udacity.desromj.kerfuffle.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Camera;
@@ -221,8 +222,13 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
 
 
     @Override
-    public boolean keyDown(int keycode) {
-        return false;
+    public boolean keyDown(int keycode)
+    {
+        // Reset the game by pressing 'R' - TODO: remove debug control
+        if (keycode == Input.Keys.R)
+            instance.init();
+
+        return true;
     }
 
     @Override

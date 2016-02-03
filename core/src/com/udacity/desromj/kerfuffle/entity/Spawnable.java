@@ -46,7 +46,7 @@ public abstract class Spawnable
         return null;
     }
 
-    public final boolean isOffScreen()
+    public boolean isOffScreen()
     {
         return (this.position.x < 0.0f)
                 || (this.position.x > Constants.WORLD_WIDTH)

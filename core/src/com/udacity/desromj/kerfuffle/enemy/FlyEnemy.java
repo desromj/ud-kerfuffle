@@ -5,8 +5,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.udacity.desromj.kerfuffle.entity.Enemy;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
-import com.udacity.desromj.kerfuffle.pattern.RedPelletCircleTargettedPattern;
-import com.udacity.desromj.kerfuffle.pattern.RedPelletTargettedPattern;
+import com.udacity.desromj.kerfuffle.pattern.RedPelletCirclePattern;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
@@ -21,7 +20,7 @@ public class FlyEnemy extends Enemy
 
     float shotDelay, cannotShootFor;
 
-    Pattern bulletPattern;
+    Pattern [] bulletPatterns;
 
     public FlyEnemy(Vector2 position)
     {
@@ -30,14 +29,26 @@ public class FlyEnemy extends Enemy
         this.shotDelay = 1.0f / Constants.ENEMY_FLY_SHOTS_PER_SECOND;
         cannotShootFor = 0.0f;
 
-        this.bulletPattern = new RedPelletCircleTargettedPattern(
-                this,
-                new Vector2(this.getPosition().x, this.getPosition().y),
-                new Vector2(0, 0),
-                25,                     // Bullets per circle
-                20.0f,                  // Radius for spawning
-                250.0f                  // shot speed
-        );
+        this.bulletPatterns = new Pattern [] {
+                new RedPelletCirclePattern(
+                        this,
+                        new Vector2(this.getPosition().x, this.getPosition().y),
+                        new Vector2(0, 0),
+                        16,                     // Bullets per circle
+                        50.0f,                  // Radius for spawning
+                        80.0f,                 // shot speed
+                        false                   // targetted
+                ),
+                new RedPelletCirclePattern(
+                        this,
+                        new Vector2(this.getPosition().x, this.getPosition().y),
+                        new Vector2(0, 0),
+                        25,                     // Bullets per circle
+                        20.0f,                  // Radius for spawning
+                        240.0f,                 // shot speed
+                        true                   // targetted
+                ),
+        };
     }
 
     @Override
@@ -58,7 +69,9 @@ public class FlyEnemy extends Enemy
         if (cannotShootFor <= 0.0f)
         {
             cannotShootFor = shotDelay;
-            GameScreen.instance.addSpawnables(this.bulletPattern.spawnChildren());
+
+            for (Pattern pattern: bulletPatterns)
+                GameScreen.instance.addSpawnables(pattern.spawnChildren());
         }
     }
 
