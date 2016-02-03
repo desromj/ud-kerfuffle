@@ -7,7 +7,22 @@ import com.badlogic.gdx.math.Vector2;
  */
 public abstract class Enemy extends Shooter
 {
-    public Enemy(Vector2 position) { super(position); }
+    protected Pattern [] patterns;
 
+    public Enemy(Vector2 position)
+    {
+        super(position);
+    }
+
+    public Enemy(Vector2 position, Pattern [] patterns)
+    {
+        super(position);
+        setPatterns(patterns);
+    }
+
+    public final void setPatterns(Pattern [] patterns)
+    {
+        this.patterns = patterns;
+    }
 
 }

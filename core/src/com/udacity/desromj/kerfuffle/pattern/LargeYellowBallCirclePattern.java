@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
+import com.udacity.desromj.kerfuffle.bullet.LargeYellowBallBullet;
 import com.udacity.desromj.kerfuffle.bullet.SmallRedPelletBullet;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
@@ -14,16 +15,16 @@ import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import java.util.Random;
 
 /**
- * Created by Mike on 2016-02-02.
+ * Created by Quiv on 2016-02-03.
  */
-public class RedPelletCirclePattern extends Pattern
+public class LargeYellowBallCirclePattern extends Pattern
 {
     int bulletsInCircle;
     float radius;
     float speed;
     boolean targetted;
 
-    public RedPelletCirclePattern(Shooter parent, Vector2 position, Vector2 velocity, int bulletsInCircle, float radius, float speed, boolean targetted)
+    public LargeYellowBallCirclePattern(Shooter parent, Vector2 position, Vector2 velocity, int bulletsInCircle, float radius, float speed, boolean targetted)
     {
         super(parent, position, velocity);
         this.bulletsInCircle = bulletsInCircle;
@@ -77,7 +78,7 @@ public class RedPelletCirclePattern extends Pattern
                     spawnPosition.y - origin.y
             ).nor().scl(this.speed);
 
-            spawns.add(new SmallRedPelletBullet(this.getParent(), spawnPosition, spawnVelocity));
+            spawns.add(new LargeYellowBallBullet(this.getParent(), spawnPosition, spawnVelocity));
         }
 
         return spawns;

@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
-import com.udacity.desromj.kerfuffle.bullet.Bullet_SmallRedPellet;
+import com.udacity.desromj.kerfuffle.bullet.SmallRedPelletBullet;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
@@ -52,7 +52,7 @@ public class RedPelletPattern extends Pattern
             target = new Vector2(new Random().nextInt(200) - 100, new Random().nextInt(200) - 100);
         }
 
-        spawns.add(new Bullet_SmallRedPellet(
+        spawns.add(new SmallRedPelletBullet(
                 parent,
                 new Vector2(
                         origin.x,

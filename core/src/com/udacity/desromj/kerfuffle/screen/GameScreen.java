@@ -55,7 +55,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
 
         shooters.add(new FlyEnemy(new Vector2(
                 Constants.WORLD_WIDTH / 2.0f,
-                (Constants.WORLD_HEIGHT * 7.0f) / 8.0f
+                (Constants.WORLD_HEIGHT * 6.0f) / 8.0f
         )));
     }
 
