@@ -19,6 +19,7 @@ public class FlyEnemy extends Enemy
     // TODO: Use ShapeRenderer until graphics can be made
     ShapeRenderer renderer;
 
+    // TODO: This should probably be moved to the 'Pattern' abstract class
     float shotDelay, cannotShootFor;
 
     public FlyEnemy(Vector2 position)
@@ -30,13 +31,13 @@ public class FlyEnemy extends Enemy
 
         this.setPatterns(
                 new Pattern [] {
-                    new LargeYellowBallCirclePattern(
+                    new RedPelletCirclePattern(
                             this,
                             new Vector2(this.getPosition().x, this.getPosition().y),
                             new Vector2(0, 0),
-                            15,                     // Bullets per circle
+                            16,                     // Bullets per circle
                             5.0f,                  // Radius for spawning
-                            200.0f,                 // shot speed
+                            280.0f,                 // shot speed
                             true                   // targetted
                     ),
                     new RedPelletCirclePattern(
@@ -44,8 +45,8 @@ public class FlyEnemy extends Enemy
                             new Vector2(this.getPosition().x, this.getPosition().y),
                             new Vector2(0, 0),
                             30,                     // Bullets per circle
-                            80.0f,                  // Radius for spawning
-                            60.0f,                 // shot speed
+                            120.0f,                  // Radius for spawning
+                            160.0f,                 // shot speed
                             false                   // targetted
                     )
                 });
