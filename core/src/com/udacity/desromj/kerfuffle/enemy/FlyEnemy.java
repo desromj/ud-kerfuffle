@@ -3,10 +3,13 @@ package com.udacity.desromj.kerfuffle.enemy;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.udacity.desromj.kerfuffle.bullet.BulletType;
 import com.udacity.desromj.kerfuffle.entity.Enemy;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
+import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.pattern.LargeYellowBallCirclePattern;
 import com.udacity.desromj.kerfuffle.pattern.RedPelletCirclePattern;
+import com.udacity.desromj.kerfuffle.pattern.template.ShotgunTemplate;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
@@ -22,6 +25,13 @@ public class FlyEnemy extends Enemy
     // TODO: This should probably be moved to the 'Pattern' abstract class
     float shotDelay, cannotShootFor;
 
+    public class TestShotgunPattern extends ShotgunTemplate
+    {
+        public TestShotgunPattern(Shooter parent, Vector2 position, Vector2 velocity, boolean targetted, int shotsPerArm, int arms, float radius, float armAngleOffsetDegrees, float armSpeedModifier, float speed, boolean angledShots, BulletType mainShotType, BulletType armShotType) {
+            super(parent, position, velocity, targetted, shotsPerArm, arms, radius, armAngleOffsetDegrees, armSpeedModifier, speed, angledShots, mainShotType, armShotType);
+        }
+    }
+
     public FlyEnemy(Vector2 position)
     {
         super(position);
@@ -29,6 +39,27 @@ public class FlyEnemy extends Enemy
         this.shotDelay = 1.0f / Constants.ENEMY_FLY_SHOTS_PER_SECOND;
         cannotShootFor = 0.0f;
 
+        this.setPatterns(
+                new Pattern [] {
+                        new TestShotgunPattern(
+                                this,
+                                new Vector2(this.getPosition().x, this.getPosition().y),
+                                new Vector2(),
+                                true,
+                                5,
+                                3,
+                                80.0f,
+                                15.0f,
+                                0.8f,
+                                240.0f,
+                                true,
+                                BulletType.SMALL_RED_PELLET,
+                                BulletType.SMALL_RED_PELLET
+                        )
+                }
+        );
+
+        /* Funky random/targetted pattern
         this.setPatterns(
                 new Pattern [] {
                     new RedPelletCirclePattern(
@@ -50,6 +81,7 @@ public class FlyEnemy extends Enemy
                             false                   // targetted
                     )
                 });
+                */
     }
 
     @Override

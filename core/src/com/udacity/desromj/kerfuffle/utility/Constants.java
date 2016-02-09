@@ -33,7 +33,7 @@ public class Constants
     public static final Color ENEMY_FLY_COLOUR = Color.RED;
     public static final float ENEMY_FLY_RADIUS = 16.0f;
 
-    public static final float ENEMY_FLY_SHOTS_PER_SECOND = 2.5f;
+    public static final float ENEMY_FLY_SHOTS_PER_SECOND = 0.8f;
     public static final float ENEMY_FLY_SHOT_SPEED = 400.0f;
 
     /*
