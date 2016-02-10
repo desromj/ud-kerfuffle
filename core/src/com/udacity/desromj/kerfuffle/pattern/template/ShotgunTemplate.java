@@ -42,7 +42,7 @@ public abstract class ShotgunTemplate extends Pattern
      * @param velocity The velocity of the Pattern, NOT the Bullets it spawns
      * @param targetted true to target the player, false to target straight down onscreen
      * @param shotsPerArm Number of bullets to spawn per row
-     * @param arms Number of arms to spawn along with the main one. Capped between 1 - 5
+     * @param arms Number of arms to spawn along with the main one. Capped between 1 - 50
      * @param radius Radius of the circle to spawn the shots from
      * @param armAngleOffsetDegrees Number of degrees to separate shots by. Capped between 0.0 - 15.0f
      * @param armSpeedModifier Value to multiply the speed by for each new arm. Capped between 0.75 - 1.00
@@ -63,8 +63,8 @@ public abstract class ShotgunTemplate extends Pattern
         // Cap number of arms
         if (arms <= 0)
             this.arms = 1;
-        else if (arms > 5)
-            this.arms = 5;
+        else if (arms > 50)
+            this.arms = 50;
         else
             this.arms = arms;
 
@@ -115,19 +115,23 @@ public abstract class ShotgunTemplate extends Pattern
         }
 
         // Spawn a bullet arm distributed at the arm angle offset for EACH arm. First is main Bullet Type, everything after is secondary
-        for (int i = 1; i <= this.arms; i++)
+        for (int i = 0; i < this.arms; i++)
         {
-            float offsetRads = (float)(this.armAngleOffsetDegrees * Math.PI / 180.0f) * i;
+            boolean firstArm = (i == 0);
+
+            float offsetRads;
+
+            if (firstArm)
+                offsetRads = 0.0f;
+            else
+                offsetRads = (float)(this.armAngleOffsetDegrees * Math.PI / 180.0f) * i;
 
             // Working angle to spawn bullets at for each new bullet in the circle
             float workingAngleLeft = angleRads - offsetRads;
             float workingAngleRight = angleRads + offsetRads;
 
-            boolean firstArm = (i == 1);
-
             // Spawn each Bullet in the arm
-            for (int j = 0; j < this.shotsPerArm; j++)
-            {
+            for (int j = 0; j < this.shotsPerArm; j++) {
                 spawns.add(generateBullet(origin, j, workingAngleLeft, firstArm));
 
                 // Don't spawn duplicate bullets in the same position
@@ -167,7 +171,7 @@ public abstract class ShotgunTemplate extends Pattern
         }
 
         // Scale the bullet to the instance of the bullet in the arm
-        spawnVelocity.nor().scl(this.speed * (float)(1.0 * Math.pow(this.armSpeedModifier, armShotIdx)));
+        spawnVelocity.nor().scl(this.speed * (1.0f * (float) Math.pow(this.armSpeedModifier, armShotIdx)));
 
         // Spawn the main shot type for first arm, and the secondary type for each additional one
         if (firstArm) {

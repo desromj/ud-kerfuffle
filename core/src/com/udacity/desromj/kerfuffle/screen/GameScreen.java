@@ -54,7 +54,11 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         shooters = new DelayedRemovalArray<Shooter>();
 
         shooters.add(new FlyEnemy(new Vector2(
-                Constants.WORLD_WIDTH / 2.0f,
+                Constants.WORLD_WIDTH / 4.0f,
+                (Constants.WORLD_HEIGHT * 6.0f) / 8.0f
+        )));
+        shooters.add(new FlyEnemy(new Vector2(
+                Constants.WORLD_WIDTH * 3.0f / 4.0f,
                 (Constants.WORLD_HEIGHT * 6.0f) / 8.0f
         )));
     }

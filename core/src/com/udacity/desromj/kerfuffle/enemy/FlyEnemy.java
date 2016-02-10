@@ -45,16 +45,16 @@ public class FlyEnemy extends Enemy
                                 this,
                                 new Vector2(this.getPosition().x, this.getPosition().y),
                                 new Vector2(),
-                                true,
-                                5,
-                                3,
-                                80.0f,
-                                15.0f,
-                                0.8f,
-                                240.0f,
-                                true,
-                                BulletType.SMALL_RED_PELLET,
-                                BulletType.SMALL_RED_PELLET
+                                true,                           // target player
+                                3,                              // shots per arm
+                                6,                             // arms
+                                25.0f,                          // radius
+                                7.5f,                           // arm angle offset
+                                0.8f,                           // arm speed mod
+                                130.0f,                         // speed
+                                true,                           // angled shots
+                                BulletType.SMALL_RED_PELLET,    // main type
+                                BulletType.SMALL_RED_PELLET     // sub type
                         )
                 }
         );

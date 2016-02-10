@@ -1,5 +1,6 @@
 package com.udacity.desromj.kerfuffle.entity;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -62,8 +63,7 @@ public abstract class Spawnable
      */
     public void update(float delta)
     {
-        this.position.x += this.velocity.x * delta;
-        this.position.y += this.velocity.y * delta;
+        this.position.mulAdd(this.velocity, delta);
     }
 
     /**
