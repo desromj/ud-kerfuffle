@@ -40,9 +40,9 @@ public abstract class CirclePatternTemplate extends Pattern
      * @param targetted true to have the first bullet target the player, false for randomized targetting
      * @param type The type of bullet to spawn
      */
-    public CirclePatternTemplate(Shooter parent, Vector2 position, Vector2 velocity, int bulletsInCircle, float radius, float speed, boolean targetted, BulletType type)
+    public CirclePatternTemplate(Shooter parent, Vector2 position, Vector2 velocity, float shotDelay, int bulletsInCircle, float radius, float speed, boolean targetted, BulletType type)
     {
-        super(parent, position, velocity);
+        super(parent, position, velocity, shotDelay);
         this.bulletType = type;
         this.bulletsInCircle = bulletsInCircle;
         this.radius = radius;

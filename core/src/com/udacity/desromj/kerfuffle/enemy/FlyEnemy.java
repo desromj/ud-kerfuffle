@@ -22,13 +22,10 @@ public class FlyEnemy extends Enemy
     // TODO: Use ShapeRenderer until graphics can be made
     ShapeRenderer renderer;
 
-    // TODO: This should probably be moved to the 'Pattern' abstract class
-    float shotDelay, cannotShootFor;
-
     public class TestShotgunPattern extends ShotgunTemplate
     {
-        public TestShotgunPattern(Shooter parent, Vector2 position, Vector2 velocity, boolean targetted, int shotsPerArm, int arms, float radius, float armAngleOffsetDegrees, float armSpeedModifier, float speed, boolean angledShots, BulletType mainShotType, BulletType armShotType) {
-            super(parent, position, velocity, targetted, shotsPerArm, arms, radius, armAngleOffsetDegrees, armSpeedModifier, speed, angledShots, mainShotType, armShotType);
+        public TestShotgunPattern(Shooter parent, Vector2 position, Vector2 velocity, float shotDelay, boolean targetted, int shotsPerArm, int arms, float radius, float armAngleOffsetDegrees, float armSpeedModifier, float speed, boolean angledShots, BulletType mainShotType, BulletType armShotType) {
+            super(parent, position, velocity, shotDelay, targetted, shotsPerArm, arms, radius, armAngleOffsetDegrees, armSpeedModifier, speed, angledShots, mainShotType, armShotType);
         }
     }
 
@@ -36,8 +33,6 @@ public class FlyEnemy extends Enemy
     {
         super(position);
         renderer = new ShapeRenderer();
-        this.shotDelay = 1.0f / Constants.ENEMY_FLY_SHOTS_PER_SECOND;
-        cannotShootFor = 0.0f;
 
         this.setPatterns(
                 new Pattern [] {
@@ -45,16 +40,17 @@ public class FlyEnemy extends Enemy
                                 this,
                                 new Vector2(this.getPosition().x, this.getPosition().y),
                                 new Vector2(),
-                                true,                           // target player
-                                3,                              // shots per arm
-                                6,                             // arms
-                                25.0f,                          // radius
-                                7.5f,                           // arm angle offset
-                                0.8f,                           // arm speed mod
-                                130.0f,                         // speed
-                                true,                           // angled shots
-                                BulletType.SMALL_RED_PELLET,    // main type
-                                BulletType.SMALL_RED_PELLET     // sub type
+                                1.0f / Constants.ENEMY_FLY_SHOTS_PER_SECOND,
+                                true,
+                                5,
+                                3,
+                                80.0f,
+                                15.0f,
+                                0.8f,
+                                240.0f,
+                                true,
+                                BulletType.SMALL_RED_PELLET,
+                                BulletType.SMALL_RED_PELLET
                         )
                 }
         );
@@ -97,15 +93,8 @@ public class FlyEnemy extends Enemy
     @Override
     public void update(float delta)
     {
-        this.cannotShootFor -= delta;
-
-        if (cannotShootFor <= 0.0f)
-        {
-            cannotShootFor = shotDelay;
-
-            for (Pattern pattern: patterns)
-                GameScreen.instance.addSpawnables(pattern.spawnChildren());
-        }
+        for (Pattern pattern: patterns)
+            pattern.shoot();
     }
 
     @Override

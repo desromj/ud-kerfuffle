@@ -15,7 +15,7 @@ import com.udacity.desromj.kerfuffle.utility.Constants;
  */
 public class PlayerBulletPattern extends Pattern
 {
-    public PlayerBulletPattern(Shooter parent, Vector2 position, Vector2 velocity) { super(parent, position, velocity); }
+    public PlayerBulletPattern(Shooter parent, Vector2 position, Vector2 velocity, float shotDelay) { super(parent, position, velocity, shotDelay); }
 
     @Override
     public void render(ShapeRenderer renderer)

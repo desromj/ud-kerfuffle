@@ -21,9 +21,9 @@ public class RedPelletPattern extends Pattern
     float speed;
     boolean targetted;
 
-    public RedPelletPattern(Shooter parent, Vector2 position, Vector2 velocity, float speed, boolean targetted)
+    public RedPelletPattern(Shooter parent, Vector2 position, Vector2 velocity, float speed, float shotDelay, boolean targetted)
     {
-        super(parent, position, velocity);
+        super(parent, position, velocity, shotDelay);
         this.speed = speed;
         this.targetted = targetted;
     }
