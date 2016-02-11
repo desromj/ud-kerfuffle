@@ -40,6 +40,7 @@ public abstract class ShotgunTemplate extends Pattern
      * @param parent The Shooter shooting this Pattern
      * @param position The position of the Pattern, NOT the Bullets it spawns
      * @param velocity The velocity of the Pattern, NOT the Bullets it spawns
+     * @param shotDelay The delay, in seconds, between spawning waves of Spawnables
      * @param targetted true to target the player, false to target straight down onscreen
      * @param shotsPerArm Number of bullets to spawn per row
      * @param arms Number of arms to spawn along with the main one. Capped between 1 - 5
@@ -51,10 +52,11 @@ public abstract class ShotgunTemplate extends Pattern
      * @param mainShotType BulletType for the first arm
      * @param armShotType BulletType for each additional arm
      */
-    public ShotgunTemplate(Shooter parent, Vector2 position, Vector2 velocity, boolean targetted, int shotsPerArm, int arms, float radius, float armAngleOffsetDegrees,
+    public ShotgunTemplate(Shooter parent, Vector2 position, Vector2 velocity, float shotDelay,
+                           boolean targetted, int shotsPerArm, int arms, float radius, float armAngleOffsetDegrees,
                            float armSpeedModifier, float speed, boolean angledShots, BulletType mainShotType, BulletType armShotType)
     {
-        super(parent, position, velocity);
+        super(parent, position, velocity, shotDelay);
 
         this.targetted = targetted;
         this.shotsPerArm = shotsPerArm;

@@ -20,12 +20,13 @@ import java.util.Random;
  */
 public class RedPelletCirclePattern extends CirclePatternTemplate
 {
-    public RedPelletCirclePattern(Shooter parent, Vector2 position, Vector2 velocity, int bulletsInCircle, float radius, float speed, boolean targetted)
+    public RedPelletCirclePattern(Shooter parent, Vector2 position, Vector2 velocity, float shotDelay, int bulletsInCircle, float radius, float speed, boolean targetted)
     {
         super(
                 parent,
                 position,
                 velocity,
+                shotDelay,
                 bulletsInCircle,
                 radius,
                 speed,

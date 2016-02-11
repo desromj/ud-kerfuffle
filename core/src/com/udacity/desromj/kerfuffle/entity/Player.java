@@ -14,18 +14,17 @@ import com.udacity.desromj.kerfuffle.utility.Constants;
  */
 public class Player extends Shooter
 {
-    float shotDelay, cannotShootFor;
-
     Pattern bulletPattern;
 
     public Player(Vector2 position)
     {
         super(position);
-        this.shotDelay = 1.0f / Constants.PLAYER_SHOTS_PER_SECOND;
+
         this.bulletPattern = new PlayerBulletPattern(
                 this,
                 new Vector2(this.position.x, this.position.y),
-                new Vector2(0, 0)
+                new Vector2(0, 0),
+                1.0f / Constants.PLAYER_SHOTS_PER_SECOND
         );
 
         init(position);
@@ -34,7 +33,6 @@ public class Player extends Shooter
     public void init(Vector2 spawnPoint)
     {
         this.position = new Vector2(spawnPoint.x, spawnPoint.y);
-        this.cannotShootFor = 0.0f;
     }
 
     /**
@@ -53,8 +51,6 @@ public class Player extends Shooter
     @Override
     public void update(float delta)
     {
-        this.cannotShootFor -= delta;
-
         // Keyboard Controls
         float magnitude = ((Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) ? Constants.PLAYER_FOCUS_SPEED : Constants.PLAYER_SPEED) * delta;
 
@@ -71,13 +67,7 @@ public class Player extends Shooter
 
         // Handle shooting bullets
         if (Gdx.input.isKeyPressed(Input.Keys.Z))
-        {
-            if (cannotShootFor <= 0.0f)
-            {
-                cannotShootFor = shotDelay;
-                GameScreen.instance.addSpawnables(this.bulletPattern.spawnChildren());
-            }
-        }
+            bulletPattern.shoot();
 
         /*
             Update skeleton and animation data
