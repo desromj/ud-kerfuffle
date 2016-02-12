@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.udacity.desromj.kerfuffle.pattern.PlayerBulletPattern;
-import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
@@ -24,7 +23,9 @@ public class Player extends Shooter
                 this,
                 new Vector2(this.position.x, this.position.y),
                 new Vector2(0, 0),
-                1.0f / Constants.PLAYER_SHOTS_PER_SECOND
+                new PatternProperties.Builder()
+                        .shotDelay(1.0f / Constants.PLAYER_SHOTS_PER_SECOND)
+                        .createProps()
         );
 
         init(position);

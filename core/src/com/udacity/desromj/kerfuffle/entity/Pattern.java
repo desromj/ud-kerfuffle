@@ -1,37 +1,28 @@
 package com.udacity.desromj.kerfuffle.entity;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.udacity.desromj.kerfuffle.bullet.BulletType;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
+import com.udacity.desromj.kerfuffle.utility.Constants;
 
 /**
  * Created by Mike on 2016-01-27.
  *
- * Pattern positions and velocities SHOULD be influenced by their parent
+ * Pattern positions and velocities SHOULD be influenced by their parent.
+ *
+ * Set Properties using PatternProperties.Builder - follows the Builder design pattern
  */
 public abstract class Pattern extends Spawnable
 {
-    /** true means the shoot() method will shoot its Spawnables (Bullets and Patterns) */
-    boolean active;
+    protected PatternProperties props;
 
-    /** Time (in seconds) to wait between waves of shooting children Spawnable objects */
-    float shotDelay;
-
-    /** Internal timer used in conjuction with shotDelay */
-    float cannotShootFor;
-
-    public Pattern(Shooter parent, Vector2 position, Vector2 velocity, float shotDelay)
-    {
-        this(parent, position, velocity, shotDelay, 0.0f);
-    }
-
-    public Pattern(Shooter parent, Vector2 position, Vector2 velocity, float shotDelay, float cannotShootFor)
+    public Pattern(Shooter parent, Vector2 position, Vector2 velocity, PatternProperties props)
     {
         super(parent, position, velocity);
-        this.shotDelay = shotDelay;
-        this.cannotShootFor = cannotShootFor;
-        this.active = true;
+        this.props = props;
     }
 
     /**
@@ -43,11 +34,11 @@ public abstract class Pattern extends Spawnable
      */
     public final void shoot()
     {
-        this.cannotShootFor -= Gdx.graphics.getDeltaTime();
+        props.setCannotShootFor(props.getCannotShootFor() - Gdx.graphics.getDeltaTime());
 
-        if (this.active && cannotShootFor <= 0.0f)
+        if (props.isActive() && props.getCannotShootFor() <= 0.0f)
         {
-            cannotShootFor = shotDelay;
+            props.setCannotShootFor(props.getShotDelay());
             GameScreen.instance.addSpawnables(this.spawnChildren());
         }
     }
@@ -73,12 +64,12 @@ public abstract class Pattern extends Spawnable
     Getters and Setters
      */
 
-    public final void turnOff() { this.active = false; }
-    public final void turnOn() { this.active = true; }
-    public final void setActive(boolean active) { this.active = active; }
+    public final void turnOff() { props.setActive(false); }
+    public final void turnOn() { props.setActive(true); }
+    public final void setActive(boolean active) { props.setActive(active); }
 
-    public final boolean isActive() { return this.active; }
-    public final float getShotDelay() { return this.shotDelay; }
-    public final float getCannotShootFor() { return this.cannotShootFor; }
+    public final boolean isActive() { return props.isActive(); }
+    public final float getShotDelay() { return props.getShotDelay(); }
+    public final float getCannotShootFor() { return props.getCannotShootFor(); }
 
 }
