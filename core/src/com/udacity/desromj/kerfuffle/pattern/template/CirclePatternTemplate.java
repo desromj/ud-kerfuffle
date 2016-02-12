@@ -10,6 +10,7 @@ import com.udacity.desromj.kerfuffle.bullet.BulletType;
 import com.udacity.desromj.kerfuffle.bullet.SmallRedPelletBullet;
 import com.udacity.desromj.kerfuffle.entity.Bullet;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
+import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
@@ -21,33 +22,14 @@ import java.util.Random;
  */
 public abstract class CirclePatternTemplate extends Pattern
 {
-    BulletType bulletType;
-
-    int bulletsInCircle;
-    float radius;
-    float speed;
-    boolean targetted;
-
     /**
      * Spawns bullets in a circular pattern around an origin point
      *
-     * @param parent The Shooter spawning the bullets
-     * @param position The origin of the pattern, around which the bullets will spawn
-     * @param velocity The velocity of the PATTERN, not the BULLETs
-     * @param bulletsInCircle How many bullets to spawn evenly around the circular area
-     * @param radius The radius offset from the centre the bullets will spawn at
-     * @param speed The speed of the bullets
-     * @param targetted true to have the first bullet target the player, false for randomized targetting
-     * @param type The type of bullet to spawn
+     * Properties should set: shotDelay, mainShotType, arms, radius, speed, targetted
      */
-    public CirclePatternTemplate(Shooter parent, Vector2 position, Vector2 velocity, float shotDelay, int bulletsInCircle, float radius, float speed, boolean targetted, BulletType type)
+    public CirclePatternTemplate(Shooter parent, Vector2 position, Vector2 velocity, PatternProperties props)
     {
-        super(parent, position, velocity, shotDelay);
-        this.bulletType = type;
-        this.bulletsInCircle = bulletsInCircle;
-        this.radius = radius;
-        this.speed = speed;
-        this.targetted = targetted;
+        super(parent, position, velocity, props);
     }
 
     @Override
@@ -62,7 +44,7 @@ public abstract class CirclePatternTemplate extends Pattern
         float angleRads;
 
         // Get the angle between the origin of this pattern and the player. Or a random target, if requested
-        if (this.targetted) {
+        if (props.isTargetted()) {
             angleRads = MathUtils.atan2(
                     playerPos.y - origin.y,
                     playerPos.x - origin.x
@@ -75,27 +57,27 @@ public abstract class CirclePatternTemplate extends Pattern
         }
 
         // get the offset in radians each additional bullet will need to be spawned at
-        float stepOffset = (float) (360.0f / this.bulletsInCircle * (Math.PI / 180.0f));
+        float stepOffset = (float) (360.0f / props.getArms() * (Math.PI / 180.0f));
 
         // Spawn a bullet distributed evenly around the outside radius of the circle. First bullet is targetted towards the player
-        for (int i = 0; i < this.bulletsInCircle; i++)
+        for (int i = 0; i < props.getArms(); i++)
         {
             // Working angle to spawn bullets at for each new bullet in the circle
             float workingAngle = angleRads + stepOffset * i;
 
             // position = origin + radius offset by the angle
             Vector2 spawnPosition = new Vector2(
-                    origin.x + (float) Math.cos(workingAngle) * this.radius,
-                    origin.y + (float) Math.sin(workingAngle) * this.radius
+                    origin.x + (float) Math.cos(workingAngle) * props.getRadius(),
+                    origin.y + (float) Math.sin(workingAngle) * props.getRadius()
             );
 
             // velocity = normalized distance between origin and spawnPosition, multiplied by a scalar
             Vector2 spawnVelocity = new Vector2(
                     spawnPosition.x - origin.x,
                     spawnPosition.y - origin.y
-            ).nor().scl(this.speed);
+            ).nor().scl(props.getSpeed());
 
-            spawns.add(BulletFactory.makeBullet(this.bulletType, this.getParent(), spawnPosition, spawnVelocity));
+            spawns.add(BulletFactory.makeBullet(props.getMainShotType(), this.getParent(), spawnPosition, spawnVelocity));
         }
 
         return spawns;

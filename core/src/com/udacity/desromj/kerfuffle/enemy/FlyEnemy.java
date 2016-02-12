@@ -6,9 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.udacity.desromj.kerfuffle.bullet.BulletType;
 import com.udacity.desromj.kerfuffle.entity.Enemy;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
+import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
-import com.udacity.desromj.kerfuffle.pattern.LargeYellowBallCirclePattern;
-import com.udacity.desromj.kerfuffle.pattern.RedPelletCirclePattern;
 import com.udacity.desromj.kerfuffle.pattern.template.ShotgunTemplate;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Constants;
@@ -24,8 +23,8 @@ public class FlyEnemy extends Enemy
 
     public class TestShotgunPattern extends ShotgunTemplate
     {
-        public TestShotgunPattern(Shooter parent, Vector2 position, Vector2 velocity, float shotDelay, boolean targetted, int shotsPerArm, int arms, float radius, float armAngleOffsetDegrees, float armSpeedModifier, float speed, boolean angledShots, BulletType mainShotType, BulletType armShotType) {
-            super(parent, position, velocity, shotDelay, targetted, shotsPerArm, arms, radius, armAngleOffsetDegrees, armSpeedModifier, speed, angledShots, mainShotType, armShotType);
+        public TestShotgunPattern(Shooter parent, Vector2 position, Vector2 velocity, PatternProperties props) {
+            super(parent, position, velocity, props);
         }
     }
 
@@ -40,44 +39,21 @@ public class FlyEnemy extends Enemy
                                 this,
                                 new Vector2(this.getPosition().x, this.getPosition().y),
                                 new Vector2(),
-                                1.0f / Constants.ENEMY_FLY_SHOTS_PER_SECOND,
-                                true,
-                                5,
-                                3,
-                                80.0f,
-                                15.0f,
-                                0.8f,
-                                240.0f,
-                                true,
-                                BulletType.SMALL_RED_PELLET,
-                                BulletType.SMALL_RED_PELLET
+                                new PatternProperties.Builder()
+                                        .shotDelay(1.0f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
+                                        .targetted(true)
+                                        .arms(4)
+                                        .shotsPerArm(6)
+                                        .radius(25.0f)
+                                        .armAngleOffsetDegrees(15.0f)
+                                        .armSpeedModifier(0.8f)
+                                        .speed(240.0f)
+                                        .mainShotType(BulletType.SMALL_RED_PELLET)
+                                        .secondaryShotType(BulletType.SMALL_RED_PELLET)
+                                        .createProps()
                         )
                 }
         );
-
-        /* Funky random/targetted pattern
-        this.setPatterns(
-                new Pattern [] {
-                    new RedPelletCirclePattern(
-                            this,
-                            new Vector2(this.getPosition().x, this.getPosition().y),
-                            new Vector2(0, 0),
-                            16,                     // Bullets per circle
-                            5.0f,                  // Radius for spawning
-                            280.0f,                 // shot speed
-                            true                   // targetted
-                    ),
-                    new RedPelletCirclePattern(
-                            this,
-                            new Vector2(this.getPosition().x, this.getPosition().y),
-                            new Vector2(0, 0),
-                            30,                     // Bullets per circle
-                            120.0f,                  // Radius for spawning
-                            160.0f,                 // shot speed
-                            false                   // targetted
-                    )
-                });
-                */
     }
 
     @Override

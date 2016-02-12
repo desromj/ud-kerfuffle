@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.udacity.desromj.kerfuffle.bullet.SmallRedPelletBullet;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
+import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
@@ -18,14 +19,9 @@ import java.util.Random;
  */
 public class RedPelletPattern extends Pattern
 {
-    float speed;
-    boolean targetted;
-
-    public RedPelletPattern(Shooter parent, Vector2 position, Vector2 velocity, float speed, float shotDelay, boolean targetted)
+    public RedPelletPattern(Shooter parent, Vector2 position, Vector2 velocity, PatternProperties props)
     {
-        super(parent, position, velocity, shotDelay);
-        this.speed = speed;
-        this.targetted = targetted;
+        super(parent, position, velocity, props);
     }
 
     @Override
@@ -44,7 +40,7 @@ public class RedPelletPattern extends Pattern
 
         Vector2 target;
 
-        if (this.targetted) {
+        if (props.isTargetted()) {
             target = new Vector2(
                     GameScreen.instance.getPlayerPosition().x - origin.x,
                     GameScreen.instance.getPlayerPosition().y - origin.y).nor().scl(Constants.ENEMY_FLY_SHOT_SPEED);

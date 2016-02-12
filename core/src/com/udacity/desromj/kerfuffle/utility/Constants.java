@@ -1,6 +1,7 @@
 package com.udacity.desromj.kerfuffle.utility;
 
 import com.badlogic.gdx.graphics.Color;
+import com.udacity.desromj.kerfuffle.bullet.BulletType;
 
 /**
  * Created by Mike on 2016-01-27.
@@ -40,6 +41,9 @@ public class Constants
     /*
     Bullet values
      */
+    public static final float DEFAULT_SHOT_SPEED = 80.0f;
+    public static final BulletType DEFAULT_SHOT_TYPE = BulletType.SMALL_RED_PELLET;
+
     public static final Color BULLET_SMALL_RED_PELLET_COLOR_BORDER = Color.RED;
     public static final Color BULLET_SMALL_RED_PELLET_COLOR_INNER = Color.WHITE;
     public static final float BULLET_SMALL_RED_PELLET_RADIUS = WORLD_WIDTH / 100.0f;

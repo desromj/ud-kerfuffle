@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.udacity.desromj.kerfuffle.bullet.PlayerBullet;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
+import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.utility.Constants;
@@ -15,7 +16,10 @@ import com.udacity.desromj.kerfuffle.utility.Constants;
  */
 public class PlayerBulletPattern extends Pattern
 {
-    public PlayerBulletPattern(Shooter parent, Vector2 position, Vector2 velocity, float shotDelay) { super(parent, position, velocity, shotDelay); }
+    public PlayerBulletPattern(Shooter parent, Vector2 position, Vector2 velocity, PatternProperties props)
+    {
+        super(parent, position, velocity, props);
+    }
 
     @Override
     public void render(ShapeRenderer renderer)
