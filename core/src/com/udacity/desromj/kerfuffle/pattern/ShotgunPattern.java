@@ -1,4 +1,4 @@
-package com.udacity.desromj.kerfuffle.pattern.template;
+package com.udacity.desromj.kerfuffle.pattern;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
@@ -19,7 +19,7 @@ import java.util.Random;
 /**
  * Created by Mike on 2016-02-09.
  */
-public abstract class ShotgunTemplate extends Pattern
+public class ShotgunPattern extends Pattern
 {
     /**
      * Spawns bullets either targetted - towards the player, or not targetted - straight vertically down
@@ -29,7 +29,20 @@ public abstract class ShotgunTemplate extends Pattern
      *
      * Properties should set: targetted, arms, shotsPerArm, radius, armAngleOffsetDegrees, armSpeedModifier, speed, mainShotType, secondaryShotType
      */
-    public ShotgunTemplate(Shooter parent, Vector2 position, Vector2 velocity, PatternProperties props)
+    public ShotgunPattern(Shooter parent, PatternProperties props)
+    {
+        super(parent, props);
+    }
+
+    /**
+     * Spawns bullets either targetted - towards the player, or not targetted - straight vertically down
+     *
+     * Spawns a double row of bullets (number = shotsPerArm) shot in a straight line. The row of bullets is
+     * offset by armAngleOffsetDegrees for the origin (initial shot) and for each arm thereafter (arms).
+     *
+     * Properties should set: targetted, arms, shotsPerArm, radius, armAngleOffsetDegrees, armSpeedModifier, speed, mainShotType, secondaryShotType
+     */
+    public ShotgunPattern(Shooter parent, Vector2 position, Vector2 velocity, PatternProperties props)
     {
         super(parent, position, velocity, props);
     }

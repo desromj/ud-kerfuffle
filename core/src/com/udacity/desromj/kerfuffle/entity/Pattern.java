@@ -19,6 +19,20 @@ public abstract class Pattern extends Spawnable
 {
     protected PatternProperties props;
 
+    /**
+     * Defaults the position and velocity to the same as the current Shooter's
+     *
+     * TODO: Shooter Velocity currently doesn't exist. Set to 0 instead
+     *
+     * @param parent
+     * @param props
+     */
+    public Pattern(Shooter parent, PatternProperties props)
+    {
+        super(parent, parent.getPosition(), new Vector2());
+        this.props = props;
+    }
+
     public Pattern(Shooter parent, Vector2 position, Vector2 velocity, PatternProperties props)
     {
         super(parent, position, velocity);

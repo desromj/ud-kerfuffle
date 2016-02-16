@@ -13,11 +13,17 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.udacity.desromj.kerfuffle.bullet.BulletType;
 import com.udacity.desromj.kerfuffle.enemy.FlyEnemy;
 import com.udacity.desromj.kerfuffle.entity.Bullet;
+import com.udacity.desromj.kerfuffle.entity.Enemy;
+import com.udacity.desromj.kerfuffle.entity.Pattern;
+import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Player;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
+import com.udacity.desromj.kerfuffle.pattern.CirclePattern;
+import com.udacity.desromj.kerfuffle.pattern.ShotgunPattern;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
@@ -53,14 +59,52 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         spawnables = new DelayedRemovalArray<Spawnable>();
         shooters = new DelayedRemovalArray<Shooter>();
 
-        shooters.add(new FlyEnemy(new Vector2(
-                Constants.WORLD_WIDTH / 4.0f,
-                (Constants.WORLD_HEIGHT * 6.0f) / 8.0f
-        )));
-        shooters.add(new FlyEnemy(new Vector2(
+        Enemy enemy;
+
+        enemy = new FlyEnemy(new Vector2(
+                    Constants.WORLD_WIDTH / 4.0f,
+                    (Constants.WORLD_HEIGHT * 6.0f) / 8.0f));
+
+        enemy.setPatterns(new Pattern[]{
+                new ShotgunPattern(
+                        enemy,
+                        new PatternProperties.Builder()
+                                .shotDelay(1.0f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
+                                .targetted(true)
+                                .arms(4)
+                                .shotsPerArm(6)
+                                .radius(25.0f)
+                                .armAngleOffsetDegrees(15.0f)
+                                .armSpeedModifier(0.8f)
+                                .speed(240.0f)
+                                .mainShotType(BulletType.SMALL_RED_PELLET)
+                                .secondaryShotType(BulletType.SMALL_RED_PELLET)
+                                .createProps()
+                )
+        });
+
+        shooters.add(enemy);
+
+        enemy = new FlyEnemy(new Vector2(
                 Constants.WORLD_WIDTH * 3.0f / 4.0f,
-                (Constants.WORLD_HEIGHT * 6.0f) / 8.0f
-        )));
+                (Constants.WORLD_HEIGHT * 6.0f) / 8.0f));
+
+        // CirclePattern Properties should set: shotDelay, mainShotType, arms, radius, speed, targetted
+        enemy.setPatterns(new Pattern[]{
+                new CirclePattern(
+                        enemy,
+                        new PatternProperties.Builder()
+                                .shotDelay(0.4f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
+                                .targetted(false)
+                                .arms(16)
+                                .radius(20.0f)
+                                .speed(150.0f)
+                                .mainShotType(BulletType.LARGE_YELLOW_BALL)
+                                .createProps()
+                )
+        });
+
+        shooters.add(enemy);
     }
 
 

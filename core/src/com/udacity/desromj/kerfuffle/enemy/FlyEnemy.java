@@ -7,8 +7,7 @@ import com.udacity.desromj.kerfuffle.bullet.BulletType;
 import com.udacity.desromj.kerfuffle.entity.Enemy;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.PatternProperties;
-import com.udacity.desromj.kerfuffle.entity.Shooter;
-import com.udacity.desromj.kerfuffle.pattern.template.ShotgunTemplate;
+import com.udacity.desromj.kerfuffle.pattern.ShotgunPattern;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
@@ -21,39 +20,16 @@ public class FlyEnemy extends Enemy
     // TODO: Use ShapeRenderer until graphics can be made
     ShapeRenderer renderer;
 
-    public class TestShotgunPattern extends ShotgunTemplate
-    {
-        public TestShotgunPattern(Shooter parent, Vector2 position, Vector2 velocity, PatternProperties props) {
-            super(parent, position, velocity, props);
-        }
-    }
-
     public FlyEnemy(Vector2 position)
     {
         super(position);
         renderer = new ShapeRenderer();
+    }
 
-        this.setPatterns(
-                new Pattern [] {
-                        new TestShotgunPattern(
-                                this,
-                                new Vector2(this.getPosition().x, this.getPosition().y),
-                                new Vector2(),
-                                new PatternProperties.Builder()
-                                        .shotDelay(1.0f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
-                                        .targetted(true)
-                                        .arms(4)
-                                        .shotsPerArm(6)
-                                        .radius(25.0f)
-                                        .armAngleOffsetDegrees(15.0f)
-                                        .armSpeedModifier(0.8f)
-                                        .speed(240.0f)
-                                        .mainShotType(BulletType.SMALL_RED_PELLET)
-                                        .secondaryShotType(BulletType.SMALL_RED_PELLET)
-                                        .createProps()
-                        )
-                }
-        );
+    public FlyEnemy(Vector2 position, Pattern [] patterns)
+    {
+        super(position, patterns);
+        renderer = new ShapeRenderer();
     }
 
     @Override

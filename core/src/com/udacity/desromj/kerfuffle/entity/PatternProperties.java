@@ -57,9 +57,9 @@ public class PatternProperties
     }
 
     /*
-    Pattern Property Builder - holds all optional parameters which Patterns may make use of
+    Pattern Property Builder - holds all optional parameters which Patterns may make use of.
+    Also creates standard default values for the Properties which should be relatively decent if not overridden.
      */
-
     public static class Builder
     {
         private boolean active = true;              // true means the shoot() method will shoot its Spawnables (Bullets and Patterns)
@@ -68,8 +68,8 @@ public class PatternProperties
         private boolean targetted = true;           // true to target the Player, false for random or other targetting
         private int shotsPerArm = 1;                // Number of Bullets per arm
         private int arms = 1;                       // Number of arms/columns of Bullets to spawn
-        private float radius = 0.0f;                        // Radius of a circle around the origin to spawn Bullets
-        private float armAngleOffsetDegrees = 0.0f;         // Offset in degrees for each new Bullet arm
+        private float radius = Constants.WORLD_WIDTH / 250.0f;      // Radius of a circle around the origin to spawn Bullets
+        private float armAngleOffsetDegrees = 0.0f;                 // Offset in degrees for each new Bullet arm
         private float armSpeedModifier = 1.0f;                      // Multiplier for multiple Bullets in the arm
         private float speed = Constants.DEFAULT_SHOT_SPEED;         // Speed the Pattern will shoot Bullets at
 

@@ -1,4 +1,4 @@
-package com.udacity.desromj.kerfuffle.pattern.template;
+package com.udacity.desromj.kerfuffle.pattern;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
@@ -20,14 +20,24 @@ import java.util.Random;
 /**
  * Created by Mike on 2016-02-03.
  */
-public abstract class CirclePatternTemplate extends Pattern
+public class CirclePattern extends Pattern
 {
     /**
      * Spawns bullets in a circular pattern around an origin point
      *
      * Properties should set: shotDelay, mainShotType, arms, radius, speed, targetted
      */
-    public CirclePatternTemplate(Shooter parent, Vector2 position, Vector2 velocity, PatternProperties props)
+    public CirclePattern(Shooter parent, PatternProperties props)
+    {
+        super(parent, props);
+    }
+
+    /**
+     * Spawns bullets in a circular pattern around an origin point
+     *
+     * Properties should set: shotDelay, mainShotType, arms, radius, speed, targetted
+     */
+    public CirclePattern(Shooter parent, Vector2 position, Vector2 velocity, PatternProperties props)
     {
         super(parent, position, velocity, props);
     }
