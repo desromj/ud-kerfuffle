@@ -138,9 +138,4 @@ public class ShotgunPattern extends Pattern
             return BulletFactory.makeBullet(props.getSecondaryShotType(), this.getParent(), spawnPosition, spawnVelocity);
         }
     }
-
-    @Override
-    public void render(ShapeRenderer renderer) {
-
-    }
 }

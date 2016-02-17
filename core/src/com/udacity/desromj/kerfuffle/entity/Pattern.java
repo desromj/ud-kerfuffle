@@ -74,6 +74,31 @@ public abstract class Pattern extends Spawnable
      */
     protected abstract Array<Spawnable> spawnChildren();
 
+    /**
+     * Default render method - renders debug circle area of each pattern
+     *
+     * @param renderer
+     */
+    @Override
+    public void render(ShapeRenderer renderer) {
+        renderer.setAutoShapeType(true);
+        renderer.setColor(Constants.PATTERN_DEBUG_COLOR);
+
+        renderer.set(ShapeRenderer.ShapeType.Line);
+
+        renderer.circle(
+                this.position.x,
+                this.position.y,
+                Constants.PATTERN_DEBUG_OUTER_RADIUS,
+                24);
+
+        renderer.circle(
+                this.position.x,
+                this.position.y,
+                Constants.PATTERN_DEBUG_INNER_RADIUS,
+                8);
+    }
+
     /*
     Getters and Setters
      */

@@ -22,12 +22,6 @@ public class PlayerBulletPattern extends Pattern
     }
 
     @Override
-    public void render(ShapeRenderer renderer)
-    {
-
-    }
-
-    @Override
     public Array<Spawnable> spawnChildren()
     {
         Array<Spawnable> spawns = new DelayedRemovalArray<Spawnable>();

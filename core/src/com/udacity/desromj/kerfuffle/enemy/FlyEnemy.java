@@ -7,6 +7,7 @@ import com.udacity.desromj.kerfuffle.bullet.BulletType;
 import com.udacity.desromj.kerfuffle.entity.Enemy;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.PatternProperties;
+import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.pattern.ShotgunPattern;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Constants;
@@ -57,6 +58,13 @@ public class FlyEnemy extends Enemy
         renderer.begin(ShapeRenderer.ShapeType.Filled);
         renderer.setColor(Constants.ENEMY_FLY_COLOUR);
         renderer.circle(this.getPosition().x, this.getPosition().y, this.hitRadius);
+
+        // TODO: Render Patterns this enemy is holding
+        renderer.setColor(Constants.PATTERN_DEBUG_COLOR);
+
+        for (Spawnable spawnable: this.patterns)
+            spawnable.render(renderer);
+
         renderer.end();
     }
 }

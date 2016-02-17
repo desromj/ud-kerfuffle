@@ -14,6 +14,7 @@ import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
+import com.udacity.desromj.kerfuffle.utility.Constants;
 
 import java.util.Random;
 
@@ -91,10 +92,5 @@ public class CirclePattern extends Pattern
         }
 
         return spawns;
-    }
-
-    @Override
-    public void render(ShapeRenderer renderer) {
-
     }
 }

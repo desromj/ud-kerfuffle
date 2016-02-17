@@ -41,6 +41,10 @@ public class Constants
     /*
     Bullet values
      */
+    public static final Color PATTERN_DEBUG_COLOR = Color.PINK;
+    public static final float PATTERN_DEBUG_OUTER_RADIUS = 25.0f;
+    public static final float PATTERN_DEBUG_INNER_RADIUS = 2.0f;
+
     public static final float DEFAULT_SHOT_SPEED = 80.0f;
     public static final BulletType DEFAULT_SHOT_TYPE = BulletType.SMALL_RED_PELLET;
 
