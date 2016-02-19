@@ -13,7 +13,6 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.udacity.desromj.kerfuffle.bullet.BulletType;
 import com.udacity.desromj.kerfuffle.enemy.FlyEnemy;
 import com.udacity.desromj.kerfuffle.entity.Bullet;
 import com.udacity.desromj.kerfuffle.entity.Enemy;
@@ -26,6 +25,7 @@ import com.udacity.desromj.kerfuffle.pattern.CirclePattern;
 import com.udacity.desromj.kerfuffle.pattern.ShotgunPattern;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
+import com.udacity.desromj.kerfuffle.utility.Enums;
 
 /**
  * Created by Mike on 2016-01-27.
@@ -77,8 +77,8 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                                 .armAngleOffsetDegrees(15.0f)
                                 .armSpeedModifier(0.8f)
                                 .speed(240.0f)
-                                .mainShotType(BulletType.SMALL_RED_PELLET)
-                                .secondaryShotType(BulletType.SMALL_RED_PELLET)
+                                .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                .secondaryShotType(Enums.BulletType.SMALL_RED_PELLET)
                                 .createProps()
                 )
         });
@@ -99,7 +99,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                                 .arms(16)
                                 .radius(20.0f)
                                 .speed(150.0f)
-                                .mainShotType(BulletType.LARGE_YELLOW_BALL)
+                                .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
                                 .createProps()
                 )
         });

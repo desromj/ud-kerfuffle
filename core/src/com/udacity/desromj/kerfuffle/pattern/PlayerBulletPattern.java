@@ -1,10 +1,10 @@
 package com.udacity.desromj.kerfuffle.pattern;
 
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
-import com.udacity.desromj.kerfuffle.bullet.PlayerBullet;
+import com.udacity.desromj.kerfuffle.bullet.SpawnFactory;
+import com.udacity.desromj.kerfuffle.entity.Bullet;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
@@ -26,34 +26,28 @@ public class PlayerBulletPattern extends Pattern
     {
         Array<Spawnable> spawns = new DelayedRemovalArray<Spawnable>();
 
-        Shooter parent = this.getParent();
-        Vector2 origin = parent.getPosition();
+        Vector2 origin = this.getParent().getPosition();
 
-        spawns.add(new PlayerBullet(
-                parent,
-                new Vector2(origin.x - Constants.PLAYER_SHOT_SEPARATION * 4, origin.y + Constants.PLAYER_SHOT_SEPARATION),
-                new Vector2(0.0f, Constants.PLAYER_SHOT_SPEED)));
-
-        spawns.add(new PlayerBullet(
-                this.getParent(),
-                new Vector2(origin.x - Constants.PLAYER_SHOT_SEPARATION * 2, origin.y + Constants.PLAYER_SHOT_SEPARATION * 3),
-                new Vector2(0.0f, Constants.PLAYER_SHOT_SPEED)));
-
-        spawns.add(new PlayerBullet(
-                this.getParent(),
-                new Vector2(origin.x, origin.y + Constants.PLAYER_SHOT_SEPARATION * 5),
-                new Vector2(0.0f, Constants.PLAYER_SHOT_SPEED)));
-
-        spawns.add(new PlayerBullet(
-                this.getParent(),
-                new Vector2(origin.x + Constants.PLAYER_SHOT_SEPARATION * 2, origin.y + Constants.PLAYER_SHOT_SEPARATION * 3),
-                new Vector2(0.0f, Constants.PLAYER_SHOT_SPEED)));
-
-        spawns.add(new PlayerBullet(
-                this.getParent(),
-                new Vector2(origin.x + Constants.PLAYER_SHOT_SEPARATION * 4, origin.y + Constants.PLAYER_SHOT_SEPARATION),
-                new Vector2(0.0f, Constants.PLAYER_SHOT_SPEED)));
+        spawns.add(getBullet(
+                new Vector2(origin.x - Constants.PLAYER_SHOT_SEPARATION * 4, origin.y + Constants.PLAYER_SHOT_SEPARATION)));
+        spawns.add(getBullet(
+                new Vector2(origin.x - Constants.PLAYER_SHOT_SEPARATION * 2, origin.y + Constants.PLAYER_SHOT_SEPARATION * 3)));
+        spawns.add(getBullet(
+                new Vector2(origin.x, origin.y + Constants.PLAYER_SHOT_SEPARATION * 5)));
+        spawns.add(getBullet(
+                new Vector2(origin.x + Constants.PLAYER_SHOT_SEPARATION * 2, origin.y + Constants.PLAYER_SHOT_SEPARATION * 3)));
+        spawns.add(getBullet(
+                new Vector2(origin.x + Constants.PLAYER_SHOT_SEPARATION * 4, origin.y + Constants.PLAYER_SHOT_SEPARATION)));
 
         return spawns;
+    }
+
+    private Bullet getBullet(Vector2 origin)
+    {
+        return SpawnFactory.makeBullet(
+                BulletType.PLAYER_BULLET,
+                this.getParent(),
+                origin,
+                new Vector2(0.0f, Constants.PLAYER_SHOT_SPEED));
     }
 }

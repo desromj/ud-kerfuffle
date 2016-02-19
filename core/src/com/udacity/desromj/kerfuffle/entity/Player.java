@@ -4,9 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.udacity.desromj.kerfuffle.bullet.SpawnFactory;
 import com.udacity.desromj.kerfuffle.pattern.PlayerBulletPattern;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
+import com.udacity.desromj.kerfuffle.utility.Enums;
 
 /**
  * Created by Mike on 2016-01-27.
@@ -19,7 +21,8 @@ public class Player extends Shooter
     {
         super(position);
 
-        this.bulletPattern = new PlayerBulletPattern(
+        this.bulletPattern = SpawnFactory.makePattern(
+                Enums.PatternType.PLAYER_BULLET_PATTERN,
                 this,
                 new Vector2(this.position.x, this.position.y),
                 new Vector2(0, 0),

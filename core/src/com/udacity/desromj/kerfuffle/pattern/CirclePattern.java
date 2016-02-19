@@ -1,20 +1,15 @@
 package com.udacity.desromj.kerfuffle.pattern;
 
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
-import com.udacity.desromj.kerfuffle.bullet.BulletFactory;
-import com.udacity.desromj.kerfuffle.bullet.BulletType;
-import com.udacity.desromj.kerfuffle.bullet.SmallRedPelletBullet;
-import com.udacity.desromj.kerfuffle.entity.Bullet;
+import com.udacity.desromj.kerfuffle.bullet.SpawnFactory;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
-import com.udacity.desromj.kerfuffle.utility.Constants;
 
 import java.util.Random;
 
@@ -88,7 +83,7 @@ public class CirclePattern extends Pattern
                     spawnPosition.y - origin.y
             ).nor().scl(props.getSpeed());
 
-            spawns.add(BulletFactory.makeBullet(props.getMainShotType(), this.getParent(), spawnPosition, spawnVelocity));
+            spawns.add(SpawnFactory.makeBullet(props.getMainShotType(), this.getParent(), spawnPosition, spawnVelocity));
         }
 
         return spawns;

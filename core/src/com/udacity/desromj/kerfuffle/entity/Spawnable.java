@@ -20,8 +20,6 @@ import com.udacity.desromj.kerfuffle.utility.Constants;
 public abstract class Spawnable
 {
     Shooter parent;
-    Array<Spawnable> children;
-
     protected Vector2 position, velocity;
 
     public Spawnable(Shooter parent, Vector2 position, Vector2 velocity)
@@ -34,17 +32,6 @@ public abstract class Spawnable
     public final Shooter getParent()
     {
         return this.parent;
-    }
-
-    public final Array<Spawnable> getChildren()
-    {
-        return this.children;
-    }
-
-    public final Array<Spawnable> getFamilyTree()
-    {
-        // TODO: Iterate over all leaves and get an array of all Spawnables connected to this object. Will be useful for updating, rendering, and disposing
-        return null;
     }
 
     public boolean isOffScreen()

@@ -1,20 +1,16 @@
 package com.udacity.desromj.kerfuffle.pattern;
 
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
-import com.udacity.desromj.kerfuffle.bullet.BulletFactory;
-import com.udacity.desromj.kerfuffle.bullet.BulletType;
+import com.udacity.desromj.kerfuffle.bullet.SpawnFactory;
 import com.udacity.desromj.kerfuffle.entity.Bullet;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
-
-import java.util.Random;
 
 /**
  * Created by Mike on 2016-02-09.
@@ -133,9 +129,9 @@ public class ShotgunPattern extends Pattern
 
         // Spawn the main shot type for first arm, and the secondary type for each additional one
         if (firstArm) {
-            return BulletFactory.makeBullet(props.getMainShotType(), this.getParent(), spawnPosition, spawnVelocity);
+            return SpawnFactory.makeBullet(props.getMainShotType(), this.getParent(), spawnPosition, spawnVelocity);
         } else {
-            return BulletFactory.makeBullet(props.getSecondaryShotType(), this.getParent(), spawnPosition, spawnVelocity);
+            return SpawnFactory.makeBullet(props.getSecondaryShotType(), this.getParent(), spawnPosition, spawnVelocity);
         }
     }
 }

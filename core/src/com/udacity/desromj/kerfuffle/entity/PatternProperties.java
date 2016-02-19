@@ -1,8 +1,7 @@
 package com.udacity.desromj.kerfuffle.entity;
 
-import com.badlogic.gdx.math.Vector2;
-import com.udacity.desromj.kerfuffle.bullet.BulletType;
 import com.udacity.desromj.kerfuffle.utility.Constants;
+import com.udacity.desromj.kerfuffle.utility.Enums;
 
 /**
  * Created by Quiv on 2016-02-11.
@@ -24,8 +23,8 @@ public class PatternProperties
     private float armSpeedModifier;             // Multiplier for multiple Bullets in the arm
     private float speed;                        // Speed the Pattern will shoot Bullets at
 
-    private BulletType mainShotType;          // Shot type for majority of the Bullets
-    private BulletType secondaryShotType;     // Shot type for secondary Bullets
+    private Enums.BulletType mainShotType;          // Shot type for majority of the Bullets
+    private Enums.BulletType secondaryShotType;     // Shot type for secondary Bullets
 
     private PatternProperties(
             boolean active,
@@ -38,8 +37,8 @@ public class PatternProperties
             float armAngleOffsetDegrees,
             float armSpeedModifier,
             float speed,
-            BulletType mainShotType,
-            BulletType secondaryShotType
+            Enums.BulletType mainShotType,
+            Enums.BulletType secondaryShotType
     )
     {
         this.active = active;
@@ -73,8 +72,8 @@ public class PatternProperties
         private float armSpeedModifier = 1.0f;                      // Multiplier for multiple Bullets in the arm
         private float speed = Constants.DEFAULT_SHOT_SPEED;         // Speed the Pattern will shoot Bullets at
 
-        private BulletType mainShotType = Constants.DEFAULT_SHOT_TYPE;          // Shot type for majority of the Bullets
-        private BulletType secondaryShotType = Constants.DEFAULT_SHOT_TYPE;     // Shot type for secondary Bullets
+        private Enums.BulletType mainShotType = Constants.DEFAULT_SHOT_TYPE;          // Shot type for majority of the Bullets
+        private Enums.BulletType secondaryShotType = Constants.DEFAULT_SHOT_TYPE;     // Shot type for secondary Bullets
 
         public PatternProperties createProps()
         {
@@ -144,12 +143,12 @@ public class PatternProperties
             return this;
         }
 
-        public Builder mainShotType(BulletType mainShotType) {
+        public Builder mainShotType(Enums.BulletType mainShotType) {
             this.mainShotType = mainShotType;
             return this;
         }
 
-        public Builder secondaryShotType(BulletType secondaryShotType) {
+        public Builder secondaryShotType(Enums.BulletType secondaryShotType) {
             this.secondaryShotType = secondaryShotType;
             return this;
         }
@@ -239,19 +238,19 @@ public class PatternProperties
         this.speed = speed;
     }
 
-    public BulletType getMainShotType() {
+    public Enums.BulletType getMainShotType() {
         return mainShotType;
     }
 
-    public void setMainShotType(BulletType mainShotType) {
+    public void setMainShotType(Enums.BulletType mainShotType) {
         this.mainShotType = mainShotType;
     }
 
-    public BulletType getSecondaryShotType() {
+    public Enums.BulletType getSecondaryShotType() {
         return secondaryShotType;
     }
 
-    public void setSecondaryShotType(BulletType secondaryShotType) {
+    public void setSecondaryShotType(Enums.BulletType secondaryShotType) {
         this.secondaryShotType = secondaryShotType;
     }
 }
