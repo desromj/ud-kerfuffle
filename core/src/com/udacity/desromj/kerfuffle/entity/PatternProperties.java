@@ -23,6 +23,10 @@ public class PatternProperties
     private float armSpeedModifier;             // Multiplier for multiple Bullets in the arm
     private float speed;                        // Speed the Pattern will shoot Bullets at
 
+    private float waveDelay = 0.0f;             // time, in seconds, to wait between waves of Spawnables
+    private int shotsPerWave = 1;               // number of shots to make before resetting the wave delay
+    private int shotsLeftInWave = 1;            // number of shots remaining in the current wave of Spawnables
+
     private Enums.BulletType mainShotType;          // Shot type for majority of the Bullets
     private Enums.BulletType secondaryShotType;     // Shot type for secondary Bullets
 
@@ -37,6 +41,9 @@ public class PatternProperties
             float armAngleOffsetDegrees,
             float armSpeedModifier,
             float speed,
+            float waveDelay,
+            int shotsPerWave,
+            int shotsLeftInWave,
             Enums.BulletType mainShotType,
             Enums.BulletType secondaryShotType
     )
@@ -51,6 +58,9 @@ public class PatternProperties
         this.armAngleOffsetDegrees = armAngleOffsetDegrees;
         this.armSpeedModifier = armSpeedModifier;
         this.speed = speed;
+        this.waveDelay = waveDelay;
+        this.shotsPerWave = shotsPerWave;
+        this.shotsLeftInWave = shotsLeftInWave;
         this.mainShotType = mainShotType;
         this.secondaryShotType = secondaryShotType;
     }
@@ -72,6 +82,10 @@ public class PatternProperties
         private float armSpeedModifier = 1.0f;                      // Multiplier for multiple Bullets in the arm
         private float speed = Constants.DEFAULT_SHOT_SPEED;         // Speed the Pattern will shoot Bullets at
 
+        private float waveDelay = 0.0f;             // time, in seconds, to wait between waves of Spawnables
+        private int shotsPerWave = 1;               // number of shots to make before resetting the wave delay
+        private int shotsLeftInWave = 1;            // number of shots remaining in the current wave of Spawnables
+
         private Enums.BulletType mainShotType = Constants.DEFAULT_SHOT_TYPE;          // Shot type for majority of the Bullets
         private Enums.BulletType secondaryShotType = Constants.DEFAULT_SHOT_TYPE;     // Shot type for secondary Bullets
 
@@ -88,6 +102,9 @@ public class PatternProperties
                     armAngleOffsetDegrees,
                     armSpeedModifier,
                     speed,
+                    waveDelay,
+                    shotsPerWave,
+                    shotsLeftInWave,
                     mainShotType,
                     secondaryShotType
             );
@@ -140,6 +157,21 @@ public class PatternProperties
 
         public Builder speed(float speed) {
             this.speed = speed;
+            return this;
+        }
+
+        public Builder waveDelay(float waveDelay) {
+            this.waveDelay = waveDelay;
+            return this;
+        }
+
+        public Builder shotsPerWave(int shotsPerWave) {
+            this.shotsPerWave = shotsPerWave;
+            return this;
+        }
+
+        public Builder shotsLeftInWave(int shotsLeftInWave) {
+            this.shotsLeftInWave = shotsLeftInWave;
             return this;
         }
 
@@ -236,6 +268,30 @@ public class PatternProperties
 
     public void setSpeed(float speed) {
         this.speed = speed;
+    }
+
+    public float getWaveDelay() {
+        return waveDelay;
+    }
+
+    public void setWaveDelay(float waveDelay) {
+        this.waveDelay = waveDelay;
+    }
+
+    public int getShotsPerWave() {
+        return shotsPerWave;
+    }
+
+    public void setShotsPerWave(int shotsPerWave) {
+        this.shotsPerWave = shotsPerWave;
+    }
+
+    public int getShotsLeftInWave() {
+        return shotsLeftInWave;
+    }
+
+    public void setShotsLeftInWave(int shotsLeftInWave) {
+        this.shotsLeftInWave = shotsLeftInWave;
     }
 
     public Enums.BulletType getMainShotType() {
