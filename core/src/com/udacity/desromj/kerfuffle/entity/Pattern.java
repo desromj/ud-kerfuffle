@@ -47,11 +47,39 @@ public abstract class Pattern extends Spawnable
      */
     public final void shoot()
     {
-        props.setCannotShootFor(props.getCannotShootFor() - Gdx.graphics.getDeltaTime());
+        if (!props.isActive())
+            return;
 
-        if (props.isActive() && props.getCannotShootFor() <= 0.0f)
+        float delta = Gdx.graphics.getDeltaTime();
+
+        // Check wave timing first, only if wave shooting is enabled
+        if (props.getShotsPerWave() > 0)
+        {
+            props.setCannotWaveFor(props.getCannotWaveFor() - delta);
+
+            // Check if there are any shots left in the current wave. If not, reset shots in the wave and start delay timer
+            if (props.getShotsLeftInWave() <= 0)
+            {
+                props.setCannotWaveFor(props.getWaveDelay());
+                props.setShotsLeftInWave(props.getShotsPerWave());
+            }
+
+            // If the delay timer is active, reset the shot timer and return without spawning anything
+            if (props.getCannotWaveFor() > 0.0f)
+            {
+                props.setCannotShootFor(0.0f);
+                return;
+            }
+        }
+
+        // Then check standard shot timing within the wave
+        props.setCannotShootFor(props.getCannotShootFor() - delta);
+
+        if (props.getCannotShootFor() <= 0.0f)
         {
             props.setCannotShootFor(props.getShotDelay());
+            props.setShotsLeftInWave(props.getShotsLeftInWave() - 1);
+
             GameScreen.instance.addSpawnables(this.spawnChildren());
         }
     }

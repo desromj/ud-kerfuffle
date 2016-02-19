@@ -12,9 +12,10 @@ import com.udacity.desromj.kerfuffle.utility.Enums;
 public class PatternProperties
 {
     private boolean active;              // true means the shoot() method will shoot its Spawnables (Bullets and Patterns)
-    private float cannotShootFor;        // Internal timer used in conjuction with shotDelay
 
+    private float cannotShootFor;        // Internal timer used in conjuction with shotDelay
     private float shotDelay;             // Time (in seconds) to wait between waves of shooting children Spawnable objects
+
     private boolean targetted;           // true to target the Player, false for random or other targetting
     private int shotsPerArm;                // Number of Bullets per arm
     private int arms;                       // Number of arms/columns of Bullets to spawn
@@ -23,9 +24,11 @@ public class PatternProperties
     private float armSpeedModifier;             // Multiplier for multiple Bullets in the arm
     private float speed;                        // Speed the Pattern will shoot Bullets at
 
-    private float waveDelay = 0.0f;             // time, in seconds, to wait between waves of Spawnables
-    private int shotsPerWave = 1;               // number of shots to make before resetting the wave delay
-    private int shotsLeftInWave = 1;            // number of shots remaining in the current wave of Spawnables
+    private float waveDelay;             // time, in seconds, to wait between waves of Spawnables
+    private float cannotWaveFor;         // Internal timer for tracking wave delay
+
+    private int shotsPerWave;               // number of shots to make before resetting the wave delay
+    private int shotsLeftInWave;            // number of shots remaining in the current wave of Spawnables
 
     private Enums.BulletType mainShotType;          // Shot type for majority of the Bullets
     private Enums.BulletType secondaryShotType;     // Shot type for secondary Bullets
@@ -42,6 +45,7 @@ public class PatternProperties
             float armSpeedModifier,
             float speed,
             float waveDelay,
+            float cannotWaveFor,
             int shotsPerWave,
             int shotsLeftInWave,
             Enums.BulletType mainShotType,
@@ -59,6 +63,7 @@ public class PatternProperties
         this.armSpeedModifier = armSpeedModifier;
         this.speed = speed;
         this.waveDelay = waveDelay;
+        this.cannotWaveFor = cannotWaveFor;
         this.shotsPerWave = shotsPerWave;
         this.shotsLeftInWave = shotsLeftInWave;
         this.mainShotType = mainShotType;
@@ -83,6 +88,7 @@ public class PatternProperties
         private float speed = Constants.DEFAULT_SHOT_SPEED;         // Speed the Pattern will shoot Bullets at
 
         private float waveDelay = 0.0f;             // time, in seconds, to wait between waves of Spawnables
+        private float cannotWaveFor = 0.0f;         // Internal timer for tracking wave pattern spawning
         private int shotsPerWave = 1;               // number of shots to make before resetting the wave delay
         private int shotsLeftInWave = 1;            // number of shots remaining in the current wave of Spawnables
 
@@ -103,6 +109,7 @@ public class PatternProperties
                     armSpeedModifier,
                     speed,
                     waveDelay,
+                    cannotWaveFor,
                     shotsPerWave,
                     shotsLeftInWave,
                     mainShotType,
@@ -162,6 +169,11 @@ public class PatternProperties
 
         public Builder waveDelay(float waveDelay) {
             this.waveDelay = waveDelay;
+            return this;
+        }
+
+        public Builder cannotWaveFor(float cannotWaveFor) {
+            this.cannotWaveFor = cannotWaveFor;
             return this;
         }
 
@@ -276,6 +288,14 @@ public class PatternProperties
 
     public void setWaveDelay(float waveDelay) {
         this.waveDelay = waveDelay;
+    }
+
+    public float getCannotWaveFor() {
+        return cannotWaveFor;
+    }
+
+    public void setCannotWaveFor(float cannotWaveFor) {
+        this.cannotWaveFor = cannotWaveFor;
     }
 
     public int getShotsPerWave() {

@@ -10,6 +10,7 @@ import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.utility.Constants;
+import com.udacity.desromj.kerfuffle.utility.Enums;
 
 /**
  * Created by Quiv on 2016-01-29.
@@ -45,7 +46,7 @@ public class PlayerBulletPattern extends Pattern
     private Bullet getBullet(Vector2 origin)
     {
         return SpawnFactory.makeBullet(
-                BulletType.PLAYER_BULLET,
+                Enums.BulletType.PLAYER_BULLET,
                 this.getParent(),
                 origin,
                 new Vector2(0.0f, Constants.PLAYER_SHOT_SPEED));
