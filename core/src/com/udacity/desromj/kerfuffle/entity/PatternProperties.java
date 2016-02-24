@@ -117,6 +117,35 @@ public class PatternProperties
             );
         }
 
+        /**
+         * Creates a deep clone of the passed PatternProperties object. The result can be safely
+         * edited without affecting the original
+         *
+         * @param props
+         * @return
+         */
+        public PatternProperties clone(PatternProperties props)
+        {
+            return new PatternProperties(
+                    props.active,
+                    props.cannotShootFor,
+                    props.shotDelay,
+                    props.targetted,
+                    props.shotsPerArm,
+                    props.arms,
+                    props.radius,
+                    props.armAngleOffsetDegrees,
+                    props.armSpeedModifier,
+                    props.speed,
+                    props.waveDelay,
+                    props.cannotWaveFor,
+                    props.shotsPerWave,
+                    props.shotsLeftInWave,
+                    props.mainShotType,
+                    props.secondaryShotType
+            );
+        }
+
         public Builder active(boolean active) {
             this.active = active;
             return this;
