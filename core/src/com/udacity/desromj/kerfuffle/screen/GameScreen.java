@@ -23,6 +23,7 @@ import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.pattern.CirclePattern;
 import com.udacity.desromj.kerfuffle.pattern.ShotgunPattern;
+import com.udacity.desromj.kerfuffle.pattern.SpiralPattern;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 import com.udacity.desromj.kerfuffle.utility.Enums;
@@ -65,18 +66,18 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                     Constants.WORLD_WIDTH / 4.0f,
                     (Constants.WORLD_HEIGHT * 6.0f) / 8.0f));
 
+        // Check Shotgun Pattern
         enemy.setPatterns(new Pattern[]{
                 new ShotgunPattern(
                         enemy,
                         new PatternProperties.Builder()
-                                .shotDelay(0.04f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
+                                .shotDelay(0.1f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
                                 .targetted(true)
                                 .arms(3)
-                                .shotsPerArm(3)
-                                .radius(25.0f)
-                                .armAngleOffsetDegrees(15.0f)
-                                .armSpeedModifier(0.8f)
-                                .speed(240.0f)
+                                .shotsPerArm(6)
+                                .armAngleOffsetDegrees(30.0f)
+                                .armSpeedModifier(0.9f)
+                                .speed(200.0f)
                                 .shotsPerWave(5)
                                 .waveDelay(5.0f)
                                 .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
@@ -91,17 +92,50 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                 Constants.WORLD_WIDTH * 3.0f / 4.0f,
                 (Constants.WORLD_HEIGHT * 6.0f) / 8.0f));
 
-        // CirclePattern Properties should set: shotDelay, mainShotType, arms, radius, speed, targetted
+        // Check Circle Pattern
         enemy.setPatterns(new Pattern[]{
                 new CirclePattern(
                         enemy,
                         new PatternProperties.Builder()
-                                .shotDelay(0.4f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
+                                .shotDelay(1.2f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
                                 .targetted(false)
-                                .arms(16)
-                                .radius(20.0f)
-                                .speed(150.0f)
+                                .arms(20)
+                                .speed(160.0f)
                                 .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                .createProps()
+                )
+        });
+
+        shooters.add(enemy);
+
+        enemy = new FlyEnemy(new Vector2(
+                Constants.WORLD_WIDTH / 2.0f,
+                (Constants.WORLD_HEIGHT * 6.0f) / 8.0f));
+
+        // Check Spiral Pattern
+        enemy.setPatterns(new Pattern[]{
+                new SpiralPattern(
+                        enemy,
+                        new PatternProperties.Builder()
+                                .shotDelay(0.006f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
+                                .targetted(false)
+                                .armAngleOffsetDegrees(10.0f)
+                                .speed(240.0f)
+                                .shotsPerWave(100)
+                                .waveDelay(2.0f)
+                                .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                .createProps()
+                ),
+                new SpiralPattern(
+                        enemy,
+                        new PatternProperties.Builder()
+                                .shotDelay(0.006f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
+                                .targetted(false)
+                                .armAngleOffsetDegrees(-10.0f)
+                                .speed(180.0f)
+                                .shotsPerWave(160)
+                                .waveDelay(4.0f)
+                                .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
                                 .createProps()
                 )
         });
