@@ -34,9 +34,6 @@ public class Constants
     public static final Color ENEMY_FLY_COLOUR = Color.RED;
     public static final float ENEMY_FLY_RADIUS = WORLD_WIDTH / 30.0f;
 
-    public static final float ENEMY_FLY_SHOTS_PER_SECOND = 0.4f;
-    public static final float ENEMY_FLY_SHOT_SPEED = WORLD_WIDTH * 0.75f;
-
     /*
     Bullet values
      */

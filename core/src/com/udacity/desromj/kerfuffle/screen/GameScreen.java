@@ -22,6 +22,7 @@ import com.udacity.desromj.kerfuffle.entity.Player;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.pattern.CirclePattern;
+import com.udacity.desromj.kerfuffle.pattern.RandomBurstPattern;
 import com.udacity.desromj.kerfuffle.pattern.ShotgunPattern;
 import com.udacity.desromj.kerfuffle.pattern.SpiralPattern;
 import com.udacity.desromj.kerfuffle.utility.Assets;
@@ -119,7 +120,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                 new SpiralPattern(
                         enemy,
                         new PatternProperties.Builder()
-                                .shotDelay(0.009f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
+                                .shotDelay(0.03f)
                                 .targetted(false)
                                 .armAngleOffsetDegrees(12.0f)
                                 .speed(180.0f)
@@ -131,7 +132,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                 new SpiralPattern(
                         enemy,
                         new PatternProperties.Builder()
-                                .shotDelay(0.004f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
+                                .shotDelay(0.01f)
                                 .targetted(false)
                                 .armAngleOffsetDegrees(-7.5f)
                                 .speed(140.0f)
@@ -154,7 +155,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                 new SpiralPattern(
                         enemy,
                         new PatternProperties.Builder()
-                                .shotDelay(0.003f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
+                                .shotDelay(0.015f)
                                 .targetted(false)
                                 .armAngleOffsetDegrees(6.0f)
                                 .speed(220.0f)
@@ -166,13 +167,32 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                 new SpiralPattern(
                         enemy,
                         new PatternProperties.Builder()
-                                .shotDelay(0.006f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
+                                .shotDelay(0.015f)
                                 .targetted(false)
                                 .armAngleOffsetDegrees(-8.0f)
                                 .speed(250.0f)
                                 .shotsPerWave(225)
                                 .waveDelay(2.0f)
                                 .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                .createProps()
+                )
+        });
+
+        shooters.add(enemy);
+
+        // Random Bursting
+        enemy = new FlyEnemy(new Vector2(
+                Constants.WORLD_WIDTH / 2.0f,
+                (Constants.WORLD_HEIGHT * 5.0f) / 8.0f));
+
+        // Check Spiral Pattern
+        enemy.setPatterns(new Pattern[]{
+                new RandomBurstPattern(
+                        enemy,
+                        new PatternProperties.Builder()
+                                .shotDelay(0.02f)
+                                .speed(300.0f)
+                                .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
                                 .createProps()
                 )
         });
