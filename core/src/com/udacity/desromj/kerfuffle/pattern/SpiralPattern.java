@@ -19,21 +19,14 @@ import java.util.Random;
  */
 public class SpiralPattern extends Pattern
 {
-    private float nextShotDegree;
+    private float nextShotDegree = 0.0f;
 
     public SpiralPattern(Shooter parent, PatternProperties props) {
         super(parent, props);
-        initFields();
     }
 
     public SpiralPattern(Shooter parent, Vector2 position, Vector2 velocity, PatternProperties props) {
         super(parent, position, velocity, props);
-        initFields();
-    }
-
-    private void initFields()
-    {
-        this.nextShotDegree = 0.0f;
     }
 
     @Override

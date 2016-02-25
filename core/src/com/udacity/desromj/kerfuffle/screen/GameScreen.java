@@ -62,6 +62,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
 
         Enemy enemy;
 
+        /*
         enemy = new FlyEnemy(new Vector2(
                     Constants.WORLD_WIDTH / 4.0f,
                     (Constants.WORLD_HEIGHT * 6.0f) / 8.0f));
@@ -107,9 +108,10 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         });
 
         shooters.add(enemy);
+        */
 
         enemy = new FlyEnemy(new Vector2(
-                Constants.WORLD_WIDTH / 2.0f,
+                Constants.WORLD_WIDTH / 4.0f,
                 (Constants.WORLD_HEIGHT * 6.0f) / 8.0f));
 
         // Check Spiral Pattern
@@ -117,12 +119,47 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                 new SpiralPattern(
                         enemy,
                         new PatternProperties.Builder()
-                                .shotDelay(0.006f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
+                                .shotDelay(0.009f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
                                 .targetted(false)
-                                .armAngleOffsetDegrees(10.0f)
-                                .speed(240.0f)
+                                .armAngleOffsetDegrees(12.0f)
+                                .speed(180.0f)
+                                .shotsPerWave(150)
+                                .waveDelay(2.5f)
+                                .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                .createProps()
+                ),
+                new SpiralPattern(
+                        enemy,
+                        new PatternProperties.Builder()
+                                .shotDelay(0.004f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
+                                .targetted(false)
+                                .armAngleOffsetDegrees(-7.5f)
+                                .speed(140.0f)
+                                .shotsPerWave(160)
+                                .waveDelay(1.0f)
+                                .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                .createProps()
+                )
+        });
+
+        shooters.add(enemy);
+
+        // Second Spiral
+        enemy = new FlyEnemy(new Vector2(
+                Constants.WORLD_WIDTH * 3.0f / 4.0f,
+                (Constants.WORLD_HEIGHT * 6.0f) / 8.0f));
+
+        // Check Spiral Pattern
+        enemy.setPatterns(new Pattern[]{
+                new SpiralPattern(
+                        enemy,
+                        new PatternProperties.Builder()
+                                .shotDelay(0.003f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
+                                .targetted(false)
+                                .armAngleOffsetDegrees(6.0f)
+                                .speed(220.0f)
                                 .shotsPerWave(100)
-                                .waveDelay(2.0f)
+                                .waveDelay(3.0f)
                                 .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
                                 .createProps()
                 ),
@@ -131,10 +168,10 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                         new PatternProperties.Builder()
                                 .shotDelay(0.006f / Constants.ENEMY_FLY_SHOTS_PER_SECOND)
                                 .targetted(false)
-                                .armAngleOffsetDegrees(-10.0f)
-                                .speed(180.0f)
-                                .shotsPerWave(160)
-                                .waveDelay(4.0f)
+                                .armAngleOffsetDegrees(-8.0f)
+                                .speed(250.0f)
+                                .shotsPerWave(225)
+                                .waveDelay(2.0f)
                                 .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
                                 .createProps()
                 )
