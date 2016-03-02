@@ -89,7 +89,7 @@ public class Utils
      * @param object the JSONObject to read data fields from
      * @return A new Vector2 with x/y coordinates
      */
-    public static Vector2 getJSONObjectXYVector(JSONObject object)
+    public static Vector2 castJSONVector2(JSONObject object)
     {
         float x = 0.0f, y = 0.0f;
 
