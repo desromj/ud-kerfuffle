@@ -21,12 +21,14 @@ public abstract class Spawnable
 {
     Shooter parent;
     protected Vector2 position, velocity;
+    protected float rotationRads;
 
     public Spawnable(Shooter parent, Vector2 position, Vector2 velocity)
     {
         this.parent = parent;
         this.position = new Vector2(position.x, position.y);
         this.velocity = new Vector2(velocity.x, velocity.y);
+        this.rotationRads = 0.0f;
     }
 
     public final Shooter getParent()
@@ -51,6 +53,7 @@ public abstract class Spawnable
     public void update(float delta)
     {
         this.position.mulAdd(this.velocity, delta);
+        this.rotationRads = this.velocity.angleRad();
     }
 
     /**
