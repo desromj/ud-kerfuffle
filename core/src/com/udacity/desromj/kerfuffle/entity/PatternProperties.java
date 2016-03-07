@@ -2,6 +2,9 @@ package com.udacity.desromj.kerfuffle.entity;
 
 import com.udacity.desromj.kerfuffle.utility.Constants;
 import com.udacity.desromj.kerfuffle.utility.Enums;
+import com.udacity.desromj.kerfuffle.utility.Utils;
+
+import org.json.simple.JSONObject;
 
 /**
  * Created by Quiv on 2016-02-11.
@@ -115,6 +118,68 @@ public class PatternProperties
                     mainShotType,
                     secondaryShotType
             );
+        }
+
+        // TODO: Not tested, but already this is not right. Needs to read property values from the JSONObject
+        public PatternProperties createPropsFromJSON(JSONObject object)
+        {
+            PatternProperties props = createProps();
+
+            for (Object key: object.keySet())
+            {
+                String tag;
+
+                try {
+                    tag = Utils.castJSON(object, key);
+                } catch (Exception ex) { continue; }
+
+                if (tag.equals("active")) {
+                    Boolean val = Utils.castJSON(object, key);
+                    props.setActive(val);
+                }
+                if (tag.equals("shotDelay")) {
+                    float val = Utils.castJSONFloat(object, key);
+                    props.setShotDelay(val);
+                }
+                if (tag.equals("targetted")) {
+                    Boolean val = Utils.castJSON(object, key);
+                    props.setTargetted(val);
+                }
+                if (tag.equals("shotsPerArm")) {
+                    int val = Utils.castJSONInteger(object, key);
+                    props.setShotsPerArm(val);
+                }
+                if (tag.equals("arms")) {
+                    int val = Utils.castJSONInteger(object, key);
+                    props.setArms(val);
+                }
+                if (tag.equals("radius")) {
+                    float val = Utils.castJSONFloat(object, key);
+                    props.setRadius(val);
+                }
+                if (tag.equals("armAngleOffsetDegrees")) {
+                    float val = Utils.castJSONFloat(object, key);
+                    props.setArmAngleOffsetDegrees(val);
+                }
+                if (tag.equals("armSpeedModifier")) {
+                    float val = Utils.castJSONFloat(object, key);
+                    props.setArmSpeedModifier(val);
+                }
+                if (tag.equals("speed")) {
+                    float val = Utils.castJSONFloat(object, key);
+                    props.setSpeed(val);
+                }
+                if (tag.equals("waveDelay")) {
+                    float val = Utils.castJSONFloat(object, key);
+                    props.setWaveDelay(val);
+                }
+                if (tag.equals("shotsPerWave")) {
+                    int val = Utils.castJSONInteger(object, key);
+                    props.setShotsPerWave(val);
+                }
+            }
+
+            return props;
         }
 
         /**

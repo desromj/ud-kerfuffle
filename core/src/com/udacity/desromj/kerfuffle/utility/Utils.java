@@ -63,7 +63,7 @@ public class Utils
      * @param <T> Data type to cast and return the found property key
      * @return The casted property value
      */
-    public static <T extends Object> T castJSON(JSONObject object, String key)
+    public static <T extends Object> T castJSON(JSONObject object, Object key)
     {
         return (T) object.get(key);
     }
@@ -76,10 +76,24 @@ public class Utils
      * @param key The key to read properties for
      * @return float field containing the requested data
      */
-    public static float castJSONFloat(JSONObject object, String key)
+    public static float castJSONFloat(JSONObject object, Object key)
     {
         Number num = castJSON(object, key);
         return num.floatValue();
+    }
+
+    /**
+     * Utility JSON reader to automatically handle casting to expected classes
+     * Specifically returns primitive float values, first casting to a Number
+     *
+     * @param object JSONObject to read a key value from
+     * @param key The key to read properties for
+     * @return float field containing the requested data
+     */
+    public static int castJSONInteger(JSONObject object, Object key)
+    {
+        Number num = castJSON(object, key);
+        return num.intValue();
     }
 
     /**
