@@ -18,15 +18,15 @@ public class FlyEnemy extends Enemy
     // TODO: Use ShapeRenderer until graphics can be made
     ShapeRenderer renderer;
 
-    public FlyEnemy(Vector2 position)
+    public FlyEnemy(Vector2 position, float screenActivationHeight)
     {
-        super(position);
+        super(position, screenActivationHeight);
         renderer = new ShapeRenderer();
     }
 
-    public FlyEnemy(Vector2 position, Pattern [] patterns)
+    public FlyEnemy(Vector2 position, float screenActivationHeight, Pattern [] patterns)
     {
-        super(position, patterns);
+        super(position, screenActivationHeight, patterns);
         renderer = new ShapeRenderer();
     }
 
@@ -38,13 +38,6 @@ public class FlyEnemy extends Enemy
     @Override
     protected void setHitRadius() {
         this.hitRadius = Constants.ENEMY_FLY_RADIUS;
-    }
-
-    @Override
-    public void update(float delta)
-    {
-        for (Pattern pattern: patterns)
-            pattern.shoot();
     }
 
     @Override

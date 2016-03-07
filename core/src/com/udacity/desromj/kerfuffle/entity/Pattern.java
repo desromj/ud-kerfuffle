@@ -64,7 +64,7 @@ public abstract class Pattern extends Spawnable
                 props.setShotsLeftInWave(props.getShotsPerWave());
             }
 
-            // If the delay timer is active, reset the shot timer and return without spawning anything
+            // If the delay timer is shooting, reset the shot timer and return without spawning anything
             if (props.getCannotWaveFor() > 0.0f)
             {
                 props.setCannotShootFor(0.0f);
@@ -85,7 +85,7 @@ public abstract class Pattern extends Spawnable
     }
 
     /**
-     * Shoots the Pattern NOW, regardless of whether or not it is currently active.
+     * Shoots the Pattern NOW, regardless of whether or not it is currently shooting.
      * Does not affect internal timing shot clock
      */
     public final void shootNow()

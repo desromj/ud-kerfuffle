@@ -8,8 +8,11 @@ import com.badlogic.gdx.graphics.Color;
 public class Constants
 {
     public static final float WORLD_WIDTH = 520.0f;
-
     public static final float WORLD_HEIGHT = WORLD_WIDTH * 1.5f;
+
+    public static final float ACTIVATION_HEIGHT_HIGH = WORLD_HEIGHT * 3.0f / 4.0f;
+    public static final float ACTIVATION_HEIGHT_MEDIUM = WORLD_HEIGHT * 5.0f / 8.0f;
+    public static final float ACTIVATION_HEIGHT_LOW = WORLD_HEIGHT / 2.0f;
 
     public static final String GAME_TITLE = "A-Pollen";
 
@@ -33,6 +36,7 @@ public class Constants
     public static final float ENEMY_FLY_HEALTH = 60.0f;
     public static final Color ENEMY_FLY_COLOUR = Color.RED;
     public static final float ENEMY_FLY_RADIUS = WORLD_WIDTH / 30.0f;
+    public static final float ENEMY_FALL_SPEED = WORLD_WIDTH * 0.16f;
 
     /*
     Bullet values

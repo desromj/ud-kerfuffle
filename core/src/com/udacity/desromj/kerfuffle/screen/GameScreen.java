@@ -21,9 +21,7 @@ import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Player;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
-import com.udacity.desromj.kerfuffle.pattern.CirclePattern;
 import com.udacity.desromj.kerfuffle.pattern.RandomBurstPattern;
-import com.udacity.desromj.kerfuffle.pattern.ShotgunPattern;
 import com.udacity.desromj.kerfuffle.pattern.SpiralPattern;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
@@ -112,8 +110,9 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         */
 
         enemy = new FlyEnemy(new Vector2(
-                Constants.WORLD_WIDTH / 4.0f,
-                (Constants.WORLD_HEIGHT * 6.0f) / 8.0f));
+                    Constants.WORLD_WIDTH / 4.0f,
+                    Constants.WORLD_HEIGHT),
+                Constants.ACTIVATION_HEIGHT_HIGH);
 
         // Check Spiral Pattern
         enemy.setPatterns(new Pattern[]{
@@ -147,8 +146,9 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
 
         // Second Spiral
         enemy = new FlyEnemy(new Vector2(
-                Constants.WORLD_WIDTH * 3.0f / 4.0f,
-                (Constants.WORLD_HEIGHT * 6.0f) / 8.0f));
+                    Constants.WORLD_WIDTH * 3.0f / 4.0f,
+                    Constants.WORLD_HEIGHT),
+                Constants.ACTIVATION_HEIGHT_HIGH);
 
         // Check Spiral Pattern
         enemy.setPatterns(new Pattern[]{
@@ -182,8 +182,9 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
 
         // Random Bursting
         enemy = new FlyEnemy(new Vector2(
-                Constants.WORLD_WIDTH / 2.0f,
-                (Constants.WORLD_HEIGHT * 5.0f) / 8.0f));
+                    Constants.WORLD_WIDTH / 2.0f,
+                    Constants.WORLD_HEIGHT * 1.5f),
+                Constants.ACTIVATION_HEIGHT_MEDIUM);
 
         // Check Spiral Pattern
         enemy.setPatterns(new Pattern[]{
