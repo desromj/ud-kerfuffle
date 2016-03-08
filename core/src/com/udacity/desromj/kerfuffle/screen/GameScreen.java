@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.udacity.desromj.kerfuffle.enemy.FlyEnemy;
+import com.udacity.desromj.kerfuffle.enemy.MiteEnemy;
 import com.udacity.desromj.kerfuffle.entity.Bullet;
 import com.udacity.desromj.kerfuffle.entity.Enemy;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
@@ -62,7 +62,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         Enemy enemy;
 
         /*
-        enemy = new FlyEnemy(new Vector2(
+        enemy = new MiteEnemy(new Vector2(
                     Constants.WORLD_WIDTH / 4.0f,
                     (Constants.WORLD_HEIGHT * 6.0f) / 8.0f));
 
@@ -88,7 +88,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
 
         shooters.add(enemy);
 
-        enemy = new FlyEnemy(new Vector2(
+        enemy = new MiteEnemy(new Vector2(
                 Constants.WORLD_WIDTH * 3.0f / 4.0f,
                 (Constants.WORLD_HEIGHT * 6.0f) / 8.0f));
 
@@ -109,7 +109,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         shooters.add(enemy);
         */
 
-        enemy = new FlyEnemy(new Vector2(
+        enemy = new MiteEnemy(new Vector2(
                     Constants.WORLD_WIDTH / 4.0f,
                     Constants.WORLD_HEIGHT),
                 Constants.ACTIVATION_HEIGHT_HIGH);
@@ -145,7 +145,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         shooters.add(enemy);
 
         // Second Spiral
-        enemy = new FlyEnemy(new Vector2(
+        enemy = new MiteEnemy(new Vector2(
                     Constants.WORLD_WIDTH * 3.0f / 4.0f,
                     Constants.WORLD_HEIGHT),
                 Constants.ACTIVATION_HEIGHT_HIGH);
@@ -181,7 +181,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         shooters.add(enemy);
 
         // Random Bursting
-        enemy = new FlyEnemy(new Vector2(
+        enemy = new MiteEnemy(new Vector2(
                     Constants.WORLD_WIDTH / 2.0f,
                     Constants.WORLD_HEIGHT * 1.5f),
                 Constants.ACTIVATION_HEIGHT_MEDIUM);
@@ -250,13 +250,12 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
 
         renderer.end();
 
-        // TODO: Debug - starts and closes the ShapeRenderer - once graphics exist, move this to spritebatch rendering
-        for (Shooter shooter: shooters)
-            shooter.render(batch);
-
         // Sprites
         batch.getProjectionMatrix().set(viewport.getCamera().combined);
         batch.begin();
+
+        for (Shooter shooter: shooters)
+            shooter.render(batch);
 
         player.render(batch);
 

@@ -1,0 +1,48 @@
+
+mite.png
+size: 222,143
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+arm-big
+  rotate: true
+  xy: 2, 2
+  size: 28, 92
+  orig: 28, 92
+  offset: 0, 0
+  index: -1
+arm-huge
+  rotate: false
+  xy: 180, 44
+  size: 28, 97
+  orig: 28, 97
+  offset: 0, 0
+  index: -1
+arm-medium
+  rotate: true
+  xy: 96, 9
+  size: 21, 65
+  orig: 21, 65
+  offset: 0, 0
+  index: -1
+arm-small
+  rotate: true
+  xy: 163, 11
+  size: 19, 55
+  orig: 19, 55
+  offset: 0, 0
+  index: -1
+arm-tiny
+  rotate: false
+  xy: 210, 122
+  size: 10, 19
+  orig: 10, 19
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 2, 32
+  size: 176, 109
+  orig: 176, 109
+  offset: 0, 0
+  index: -1

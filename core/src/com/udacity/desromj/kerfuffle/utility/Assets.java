@@ -31,8 +31,6 @@ public class Assets implements Disposable, AssetErrorListener
     // Bloom is the main character of the game
     public BloomAssets bloomAssets;
 
-
-
     public void init()
     {
         assetManager = new AssetManager();
@@ -51,6 +49,56 @@ public class Assets implements Disposable, AssetErrorListener
     @Override
     public void dispose() {
         assetManager.dispose();
+    }
+
+    public MiteAssets makeMiteAssets()
+    {
+        return new MiteAssets();
+    }
+
+    /**
+     * Mites are the simplest enemy
+     */
+    public final class MiteAssets
+    {
+        public SkeletonRenderer skeletonRenderer;
+        public SkeletonRendererDebug skeletonRendererDebug;
+        public TextureAtlas atlas;
+        public Skeleton skeleton;
+        public AnimationState animationState;
+
+        public MiteAssets()
+        {
+            skeletonRenderer = new SkeletonRenderer();
+            skeletonRenderer.setPremultipliedAlpha(true);       // Alpha blending to reduce outlines
+
+            skeletonRendererDebug = new SkeletonRendererDebug();
+            skeletonRendererDebug.setBoundingBoxes(false);
+            skeletonRendererDebug.setRegionAttachments(false);
+
+            atlas = new TextureAtlas(Gdx.files.internal("enemies/mite.atlas"));
+            SkeletonJson json = new SkeletonJson(atlas);        // load stateless skeleton JSON data
+            json.setScale(0.04f);                                // set skeleton scale from Spine
+
+            // Read the JSON data and create the skeleton
+            SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("enemies/mite.json"));
+            skeleton = new Skeleton(skeletonData);
+
+            // init animation
+            AnimationStateData stateData = new AnimationStateData(skeletonData);
+            animationState = new AnimationState(stateData);
+            animationState.setAnimation(0, "animation", true);
+        }
+
+        public void render(SpriteBatch batch)
+        {
+            animationState.update(Gdx.graphics.getDeltaTime());
+            animationState.apply(skeleton);
+            skeleton.updateWorldTransform();
+
+            skeletonRenderer.draw(batch, skeleton);
+            // skeletonRendererDebug.draw(skeleton);
+        }
     }
 
     /**
@@ -78,7 +126,7 @@ public class Assets implements Disposable, AssetErrorListener
             json.setScale(0.4f);                                // set skeleton scale from Spine
 
             // Read the JSON data and create the skeleton
-            SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("bloom/skeleton-bloom.json"));
+            SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("bloom/bloom.json"));
             skeleton = new Skeleton(skeletonData);
 
             // init animation
