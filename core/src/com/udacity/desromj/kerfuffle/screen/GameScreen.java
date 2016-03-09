@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.desromj.kerfuffle.enemy.MiteEnemy;
@@ -314,7 +315,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     public void show()
     {
         Assets.instance.init();
-        viewport = new FitViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
+        viewport = new ExtendViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
 
         renderer = new ShapeRenderer();
         batch = new SpriteBatch();

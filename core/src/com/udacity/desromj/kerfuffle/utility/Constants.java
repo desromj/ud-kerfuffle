@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.Color;
  */
 public class Constants
 {
-    public static final float WORLD_WIDTH = 520.0f;
-    public static final float WORLD_HEIGHT = WORLD_WIDTH * 1.5f;
+    public static final float WORLD_WIDTH = 420.0f;
+    public static final float WORLD_HEIGHT = WORLD_WIDTH * 16.0f / 9.0f;
 
     public static final float ACTIVATION_HEIGHT_HIGH = WORLD_HEIGHT * 3.0f / 4.0f;
     public static final float ACTIVATION_HEIGHT_MEDIUM = WORLD_HEIGHT * 5.0f / 8.0f;
