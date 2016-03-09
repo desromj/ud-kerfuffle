@@ -110,74 +110,20 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         shooters.add(enemy);
         */
 
-        enemy = new MiteEnemy(new Vector2(
+        enemy = new MiteEnemy(
+                new Vector2(
                     Constants.WORLD_WIDTH / 4.0f,
                     Constants.WORLD_HEIGHT),
                 Constants.ACTIVATION_HEIGHT_HIGH);
 
-        // Check Spiral Pattern
-        enemy.setPatterns(new Pattern[]{
-                new SpiralPattern(
-                        enemy,
-                        new PatternProperties.Builder()
-                                .shotDelay(0.03f)
-                                .targetted(false)
-                                .armAngleOffsetDegrees(12.0f)
-                                .speed(180.0f)
-                                .shotsPerWave(150)
-                                .waveDelay(2.5f)
-                                .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
-                                .createProps()
-                ),
-                new SpiralPattern(
-                        enemy,
-                        new PatternProperties.Builder()
-                                .shotDelay(0.01f)
-                                .targetted(false)
-                                .armAngleOffsetDegrees(-7.5f)
-                                .speed(140.0f)
-                                .shotsPerWave(160)
-                                .waveDelay(1.0f)
-                                .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
-                                .createProps()
-                )
-        });
-
         shooters.add(enemy);
 
         // Second Spiral
-        enemy = new MiteEnemy(new Vector2(
+        enemy = new MiteEnemy(
+                new Vector2(
                     Constants.WORLD_WIDTH * 3.0f / 4.0f,
                     Constants.WORLD_HEIGHT),
                 Constants.ACTIVATION_HEIGHT_HIGH);
-
-        // Check Spiral Pattern
-        enemy.setPatterns(new Pattern[]{
-                new SpiralPattern(
-                        enemy,
-                        new PatternProperties.Builder()
-                                .shotDelay(0.015f)
-                                .targetted(false)
-                                .armAngleOffsetDegrees(6.0f)
-                                .speed(220.0f)
-                                .shotsPerWave(100)
-                                .waveDelay(3.0f)
-                                .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
-                                .createProps()
-                ),
-                new SpiralPattern(
-                        enemy,
-                        new PatternProperties.Builder()
-                                .shotDelay(0.015f)
-                                .targetted(false)
-                                .armAngleOffsetDegrees(-8.0f)
-                                .speed(250.0f)
-                                .shotsPerWave(225)
-                                .waveDelay(2.0f)
-                                .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
-                                .createProps()
-                )
-        });
 
         shooters.add(enemy);
 

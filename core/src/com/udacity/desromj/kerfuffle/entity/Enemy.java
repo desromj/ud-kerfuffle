@@ -35,7 +35,7 @@ public abstract class Enemy extends Shooter
     public void update(float delta)
     {
         if (!shooting)
-            this.position.y -= Constants.ENEMY_FALL_SPEED * delta;
+            this.position.y -= Constants.ENEMY_WORLD_SCROLL_SPEED * delta;
 
         // check whether or not we need to activate our shooter
         if (this.position.y <= this.screenActivationHeight)

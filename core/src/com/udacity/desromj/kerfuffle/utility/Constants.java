@@ -33,10 +33,21 @@ public class Constants
     /*
     Enemy values
      */
-    public static final float ENEMY_FLY_HEALTH = 60.0f;
-    public static final Color ENEMY_FLY_COLOUR = Color.RED;
-    public static final float ENEMY_FLY_RADIUS = WORLD_WIDTH / 30.0f;
-    public static final float ENEMY_FALL_SPEED = WORLD_WIDTH * 0.16f;
+
+    // How fast enemies scroll down the level to hit the activation zones in the viewport
+    public static final float ENEMY_WORLD_SCROLL_SPEED = WORLD_WIDTH * 0.16f;
+
+    // Mite values - weak enemy
+    public static final float ENEMY_MITE_HEALTH = 80.0f;
+    public static final float ENEMY_MITE_RADIUS = WORLD_WIDTH / 30.0f;
+
+    // Fly values - medium enemy
+    public static final float ENEMY_FLY_HEALTH = 240.0f;
+    public static final float ENEMY_FLY_RADIUS = WORLD_WIDTH / 40.0f;
+
+    // Mantis values - tough enemy
+    public static final float ENEMY_MANTIS_HEALTH = 600.0f;
+    public static final float ENEMY_MANTIS_RADIUS = WORLD_WIDTH / 35.0f;
 
     /*
     Bullet values
@@ -50,8 +61,8 @@ public class Constants
 
     public static final Color BULLET_SMALL_RED_PELLET_COLOR_BORDER = Color.RED;
     public static final Color BULLET_SMALL_RED_PELLET_COLOR_INNER = Color.WHITE;
-    public static final float BULLET_SMALL_RED_PELLET_RADIUS = WORLD_WIDTH / 100.0f;
-    public static final float BULLET_SMALL_RED_PELLET_MARGIN = WORLD_WIDTH / 250.0f;
+    public static final float BULLET_SMALL_RED_PELLET_RADIUS = WORLD_WIDTH / 80.0f;
+    public static final float BULLET_SMALL_RED_PELLET_MARGIN = WORLD_WIDTH / 200.0f;
     public static final float BULLET_SMALL_RED_PELLET_DAMAGE = 2.0f;
 
     public static final Color BULLET_LARGE_YELLOW_BALL_COLOR_BORDER = Color.YELLOW;
