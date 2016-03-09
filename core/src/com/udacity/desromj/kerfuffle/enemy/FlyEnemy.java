@@ -36,4 +36,10 @@ public class FlyEnemy extends Enemy
     {
 
     }
+
+    @Override
+    public void loadDefaultPattern()
+    {
+
+    }
 }

@@ -115,6 +115,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                     Constants.WORLD_WIDTH / 4.0f,
                     Constants.WORLD_HEIGHT),
                 Constants.ACTIVATION_HEIGHT_HIGH);
+        enemy.loadDefaultPattern();
 
         shooters.add(enemy);
 
@@ -124,6 +125,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                     Constants.WORLD_WIDTH * 3.0f / 4.0f,
                     Constants.WORLD_HEIGHT),
                 Constants.ACTIVATION_HEIGHT_HIGH);
+        enemy.loadDefaultPattern();
 
         shooters.add(enemy);
 

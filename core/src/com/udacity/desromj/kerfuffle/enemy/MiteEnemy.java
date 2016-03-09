@@ -28,36 +28,7 @@ public class MiteEnemy extends Enemy
     public MiteEnemy(Vector2 position, float screenActivationHeight)
     {
         super(position, screenActivationHeight);
-
-        // Default Pattern for MiteEnemy if nothing is passed
-        this.setPatterns(
-                new Pattern[]{
-                        new SpiralPattern(
-                                this,
-                                new PatternProperties.Builder()
-                                        .shotDelay(0.03f)
-                                        .targetted(false)
-                                        .armAngleOffsetDegrees(12.0f)
-                                        .speed(180.0f)
-                                        .shotsPerWave(150)
-                                        .waveDelay(2.5f)
-                                        .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
-                                        .createProps()
-                        ),
-                        new SpiralPattern(
-                                this,
-                                new PatternProperties.Builder()
-                                        .shotDelay(0.01f)
-                                        .targetted(false)
-                                        .armAngleOffsetDegrees(-7.5f)
-                                        .speed(140.0f)
-                                        .shotsPerWave(160)
-                                        .waveDelay(1.0f)
-                                        .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
-                                        .createProps()
-                        )
-                }
-        );
+        assets = Assets.instance.makeMiteAssets();
     }
 
     public MiteEnemy(Vector2 position, float screenActivationHeight, Pattern[] patterns)
@@ -87,5 +58,38 @@ public class MiteEnemy extends Enemy
     public void render(SpriteBatch batch)
     {
         this.assets.render(batch);
+    }
+
+    @Override
+    public void loadDefaultPattern()
+    {
+        this.setPatterns(
+                new Pattern[]{
+                        new SpiralPattern(
+                                this,
+                                new PatternProperties.Builder()
+                                        .shotDelay(0.03f)
+                                        .targetted(false)
+                                        .armAngleOffsetDegrees(12.0f)
+                                        .speed(180.0f)
+                                        .shotsPerWave(150)
+                                        .waveDelay(2.5f)
+                                        .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                        .createProps()
+                        ),
+                        new SpiralPattern(
+                                this,
+                                new PatternProperties.Builder()
+                                        .shotDelay(0.01f)
+                                        .targetted(false)
+                                        .armAngleOffsetDegrees(-7.5f)
+                                        .speed(140.0f)
+                                        .shotsPerWave(160)
+                                        .waveDelay(1.0f)
+                                        .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                        .createProps()
+                        )
+                }
+        );
     }
 }

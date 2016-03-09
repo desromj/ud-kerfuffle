@@ -30,6 +30,7 @@ public abstract class Enemy extends Shooter
     {
         this.patterns = patterns;
     }
+    public abstract void loadDefaultPattern();
 
     @Override
     public void update(float delta)
