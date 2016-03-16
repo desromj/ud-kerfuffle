@@ -72,7 +72,8 @@ public abstract class Shooter
     }
     public final float getHitRadius() { return this.hitRadius; }
 
-    public final boolean isDead()
+    /** Overridden by Bosses, since they deal with multiple Phases */
+    public boolean isDead()
     {
         return this.health <= 0.0f;
     }

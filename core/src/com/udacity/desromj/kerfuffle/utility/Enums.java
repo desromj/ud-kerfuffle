@@ -27,4 +27,18 @@ public class Enums
         SHOTGUN_PATTERN
     }
 
+    /**
+     * Enums to denote how Enemies should be shooting their Patterns []
+     */
+    public enum PatternShotType
+    {
+        // Shoot all of the Bullet Patterns at the same time
+        COMBINED,
+
+        // Pick one random Pattern to shoot for a length of time, then switch to another
+        RANDOM,
+
+        // Shoot the first Pattern for a length of time, then switch to Pattern 2, then 3, then loop, etc.
+        SEQUENTIAL_LOOP
+    }
 }
