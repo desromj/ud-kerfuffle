@@ -3,6 +3,7 @@ package com.udacity.desromj.kerfuffle.entity;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.DelayedRemovalArray;
 
 /**
  * Created by Mike on 2016-03-16.
@@ -18,13 +19,13 @@ public abstract class Boss extends Enemy
      * @param position
      * @param screenActivationHeight
      */
-    public Boss(Vector2 position, float screenActivationHeight) {
+    protected Boss(Vector2 position, float screenActivationHeight) {
         super(position, screenActivationHeight, new Pattern[] {});
-
+        this.phases = new DelayedRemovalArray<Phase>();
     }
 
     @Override
-    public boolean isDead()
+    public final boolean isDead()
     {
         return this.phases.size <= 0;
     }

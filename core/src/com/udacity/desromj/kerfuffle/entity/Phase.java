@@ -11,6 +11,13 @@ public class Phase
     Pattern [] patterns;
     Enums.PatternShotType shotType;
 
+    /**
+     * Each Pattern in the phase can use waveDelay and shotsPerWave to determine when it is finished
+     *
+     * @param hitPoints
+     * @param patterns
+     * @param shotType
+     */
     public Phase(float hitPoints, Pattern [] patterns, Enums.PatternShotType shotType)
     {
         this.maxHitPoints = hitPoints;

@@ -42,7 +42,7 @@ public class MiteEnemy extends Enemy
      */
     public void move(float delta)
     {
-        this.getPosition().x += Constants.ENEMY_WORLD_SCROLL_SPEED * delta;
+        // this.getPosition().x += Constants.ENEMY_WORLD_SCROLL_SPEED * delta;
     }
 
     @Override
@@ -79,12 +79,12 @@ public class MiteEnemy extends Enemy
                         new SpiralPattern(
                                 this,
                                 new PatternProperties.Builder()
-                                        .shotDelay(0.03f)
-                                        .targetted(false)
-                                        .armAngleOffsetDegrees(12.0f)
-                                        .speed(180.0f)
-                                        .shotsPerWave(150)
-                                        .waveDelay(2.5f)
+                                        .shotDelay(0.004f)
+                                        .targetted(true)
+                                        .armAngleOffsetDegrees(16.0f)
+                                        .speed(90.0f)
+                                        .shotsPerWave(400)
+                                        .waveDelay(1.0f)
                                         .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
                                         .createProps()
                         ),
@@ -96,7 +96,7 @@ public class MiteEnemy extends Enemy
                                         .armAngleOffsetDegrees(-7.5f)
                                         .speed(140.0f)
                                         .shotsPerWave(160)
-                                        .waveDelay(1.0f)
+                                        .waveDelay(2.5f)
                                         .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
                                         .createProps()
                         )
