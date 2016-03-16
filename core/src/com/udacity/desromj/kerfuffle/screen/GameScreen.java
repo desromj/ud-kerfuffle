@@ -269,7 +269,10 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                 if (!playerHit && bullet.isColliding(player))
                 {
                     playerHit = true;
-                    player.init(playerSpawnPoint);
+                    player.respawn(playerSpawnPoint);
+
+                    // Clear all Bullets from the screen - give Player chance to react again
+                    spawnables.clear();
                 }
 
                 // Check for player bullets hitting the enemy - ONLY player bullets
@@ -292,6 +295,16 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                 }
             }
         }
+    }
+
+    /**
+     * We win when there are no Bosses remaining in the level
+     *
+     * @return
+     */
+    public boolean gameWin()
+    {
+        return bosses.size <= 0;
     }
 
     @Override

@@ -16,6 +16,7 @@ import com.udacity.desromj.kerfuffle.utility.Enums;
 public class Player extends Shooter
 {
     Pattern bulletPattern;
+    int lives, bombs;
 
     public Player(Vector2 position)
     {
@@ -31,12 +32,30 @@ public class Player extends Shooter
                         .createProps()
         );
 
+        this.lives = Constants.PLAYER_STARTING_LIVES;
+
         init(position);
     }
 
     public void init(Vector2 spawnPoint)
     {
         this.position = new Vector2(spawnPoint.x, spawnPoint.y);
+        this.bombs = Constants.PLAYER_STARTING_BOMBS;
+    }
+
+    /**
+     * Exact same as init(), except reduces number of lives by 1 also
+     * @param spawnPoint
+     */
+    public void respawn(Vector2 spawnPoint)
+    {
+        this.lives--;
+        init(spawnPoint);
+    }
+
+    public final boolean gameOver()
+    {
+        return this.lives <= 0;
     }
 
     /**
