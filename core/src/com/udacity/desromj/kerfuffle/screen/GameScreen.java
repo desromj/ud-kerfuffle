@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.desromj.kerfuffle.enemy.MiteEnemy;
+import com.udacity.desromj.kerfuffle.entity.Boss;
 import com.udacity.desromj.kerfuffle.entity.Bullet;
 import com.udacity.desromj.kerfuffle.entity.Enemy;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
@@ -40,9 +41,12 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     ShapeRenderer renderer;
     SpriteBatch batch;
 
+    // Easier manipulation if we can separate normal Enemies and Bosses
     Array<Shooter> shooters;
-    Player player;
+    Array<Boss> bosses;
     Array<Spawnable> spawnables;
+
+    Player player;
 
     private Vector2 playerSpawnPoint = new Vector2(
         Constants.WORLD_WIDTH / 2.0f,
@@ -59,6 +63,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
 
         spawnables = new DelayedRemovalArray<Spawnable>();
         shooters = new DelayedRemovalArray<Shooter>();
+        bosses = new DelayedRemovalArray<Boss>();
 
         Enemy enemy;
 
@@ -178,12 +183,36 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         }
 
         // Update shooters, aside from player. Remove if needed
-        for (int i = 0; i < shooters.size; i++)
-        {
-            shooters.get(i).update(delta);
+        boolean bossOnScreen = false;
 
-            if (shooters.get(i).enemyShouldBeDisposed())
-                shooters.removeIndex(i);
+        for (Shooter boss: bosses) {
+            if (boss.isOnScreen()) {
+                bossOnScreen = true;
+                break;
+            }
+        }
+
+        /*
+            If a boss is onscreen, remove all enemies and do not update them further.
+            Only that boss will update. If there are no bosses onscreen, proceed
+            with Enemy waves as normal
+          */
+        if (bossOnScreen)
+        {
+            for (int i = 0; i < bosses.size; i++) {
+                bosses.get(i).update(delta);
+
+                if (bosses.get(i).isDead())
+                    bosses.removeIndex(i);
+            }
+        }
+        else {
+            for (int i = 0; i < shooters.size; i++) {
+                shooters.get(i).update(delta);
+
+                if (shooters.get(i).enemyShouldBeDisposed())
+                    shooters.removeIndex(i);
+            }
         }
 
         // Check for Collisions with the player and enemies
@@ -208,12 +237,14 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
 
         renderer.end();
 
-        // Sprites - Player, shooters
+        // Sprites - Player, Shooters, Bosses
         batch.getProjectionMatrix().set(viewport.getCamera().combined);
         batch.begin();
 
         for (Shooter shooter: shooters)
             shooter.render(batch);
+        for (Boss boss: bosses)
+            boss.render(batch);
 
         player.render(batch);
 
