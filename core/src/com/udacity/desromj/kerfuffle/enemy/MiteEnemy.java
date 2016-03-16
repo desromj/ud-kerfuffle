@@ -37,6 +37,14 @@ public class MiteEnemy extends Enemy
         assets = Assets.instance.makeMiteAssets();
     }
 
+    /*
+        TODO: implement movement behaviour here, when it is better understood
+     */
+    public void move(float delta)
+    {
+        this.getPosition().x += Constants.ENEMY_WORLD_SCROLL_SPEED * delta;
+    }
+
     @Override
     protected void setHealth() {
         this.health = Constants.ENEMY_MITE_HEALTH;
@@ -52,6 +60,9 @@ public class MiteEnemy extends Enemy
         super.update(delta);
 
         this.assets.skeleton.setPosition(this.getPosition().x, this.getPosition().y);
+
+        if (this.isShooting())
+            move(delta);
     }
 
     @Override

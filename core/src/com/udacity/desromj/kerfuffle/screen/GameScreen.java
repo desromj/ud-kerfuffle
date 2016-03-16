@@ -164,8 +164,11 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         /*
          Update logic
           */
+
+        // Update the player
         player.update(delta);
 
+        // Update all Bullets and Patterns onscreen, and remove if offscreen
         for (int i = 0; i < spawnables.size; i++)
         {
             spawnables.get(i).update(delta);
@@ -174,17 +177,23 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                 spawnables.removeIndex(i);
         }
 
-        for (Shooter shooter: shooters)
-            shooter.update(delta);
+        // Update shooters, aside from player. Remove if needed
+        for (int i = 0; i < shooters.size; i++)
+        {
+            shooters.get(i).update(delta);
 
-        /*
-        Check for Collisions with the player and enemies
-         */
+            if (shooters.get(i).enemyShouldBeDisposed())
+                shooters.removeIndex(i);
+        }
+
+        // Check for Collisions with the player and enemies
         handleCollisions();
 
         /*
          Render logic
           */
+
+        // ShapeRenderer - background, and Spawnables if applicible
         renderer.begin(ShapeRenderer.ShapeType.Filled);
         renderer.setColor(Constants.BACKGROUND_COLOR);
         renderer.rect(
@@ -199,7 +208,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
 
         renderer.end();
 
-        // Sprites
+        // Sprites - Player, shooters
         batch.getProjectionMatrix().set(viewport.getCamera().combined);
         batch.begin();
 

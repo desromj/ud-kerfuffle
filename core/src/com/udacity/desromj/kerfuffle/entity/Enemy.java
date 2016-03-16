@@ -8,7 +8,6 @@ import com.udacity.desromj.kerfuffle.utility.Constants;
  */
 public abstract class Enemy extends Shooter
 {
-    protected boolean shooting;
     protected float screenActivationHeight;
     protected Pattern [] patterns;
 
@@ -22,7 +21,6 @@ public abstract class Enemy extends Shooter
     {
         super(position);
         setPatterns(patterns);
-        this.shooting = false;
         this.screenActivationHeight = screenActivationHeight;
     }
 
@@ -30,12 +28,13 @@ public abstract class Enemy extends Shooter
     {
         this.patterns = patterns;
     }
+
     public abstract void loadDefaultPattern();
 
     @Override
     public void update(float delta)
     {
-        if (!shooting)
+        if (!this.shooting)
             this.position.y -= Constants.ENEMY_WORLD_SCROLL_SPEED * delta;
 
         // check whether or not we need to activate our shooter
@@ -43,7 +42,7 @@ public abstract class Enemy extends Shooter
             shooting = true;
 
         // Shoot our Patterns if active
-        if (shooting) {
+        if (this.shooting) {
             for (Pattern pattern : patterns)
                 pattern.shoot();
         }
