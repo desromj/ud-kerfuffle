@@ -140,7 +140,6 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                     Constants.WORLD_HEIGHT * 1.5f),
                 Constants.ACTIVATION_HEIGHT_MEDIUM);
 
-        // Check Spiral Pattern
         enemy.setPatterns(new Pattern[]{
                 new RandomBurstPattern(
                         enemy,

@@ -39,7 +39,14 @@ public abstract class Enemy extends Shooter
 
         // check whether or not we need to activate our shooter
         if (this.position.y <= this.screenActivationHeight)
+        {
             shooting = true;
+
+            for (Pattern pattern: patterns) {
+                pattern.props.setCannotWaveFor(0.0f);
+                pattern.props.setCannotShootFor(0.0f);
+            }
+        }
 
         // Shoot our Patterns if active
         if (this.shooting) {
