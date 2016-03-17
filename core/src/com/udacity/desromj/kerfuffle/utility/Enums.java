@@ -6,6 +6,17 @@ package com.udacity.desromj.kerfuffle.utility;
 public class Enums
 {
     /**
+     * Difficulty for the game - determines which Patterns load from the JSON level file
+     */
+    public enum Difficulty
+    {
+        EASY,
+        MEDIUM,
+        HARD,
+        INSANE
+    }
+
+    /**
      * Types of Bullets which can be spawned
      */
     public enum BulletType
