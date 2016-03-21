@@ -53,6 +53,12 @@ public class Constants
     public static final float ENEMY_MANTIS_HEALTH = 600.0f;
     public static final float ENEMY_MANTIS_RADIUS = WORLD_WIDTH / 35.0f;
 
+    // Dew values - midboss
+    public static final float BOSS_DEW_RADIUS = WORLD_WIDTH / 25.0f;
+
+    // Mwap values - main boss
+    public static final float BOSS_MWAP_RADIUS = WORLD_WIDTH / 50.0f;
+
     /*
     Bullet values
      */

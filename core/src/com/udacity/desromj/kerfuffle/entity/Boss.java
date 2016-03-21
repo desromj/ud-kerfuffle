@@ -72,7 +72,22 @@ public abstract class Boss extends Shooter
     }
 
     /**
+     * Health for bosses does not matter - it is determined by their Phases
+     */
+    @Override
+    public final void setHealth()
+    {
+        this.health = 1.0f;
+    }
+
+    /**
      * For each Boss, load in Phases appropriate with the Difficulty of the game
      */
     public abstract Array<Phase> loadPhases();
+
+    /**
+     * Bosses will need to render themselves in some fashion
+     * @param batch
+     */
+    public abstract void render(SpriteBatch batch);
 }
