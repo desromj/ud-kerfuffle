@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
+import com.udacity.desromj.kerfuffle.screen.GameScreen;
+import com.udacity.desromj.kerfuffle.utility.Constants;
 
 /**
  * Created by Mike on 2016-03-16.
@@ -12,6 +14,8 @@ public abstract class Boss extends Shooter
 {
     public Array<Phase> phases;
     protected float screenActivationHeight;
+
+    private Phase currentPhase;
 
     /**
      * Bosses do not use their own Patterns - they read Patterns from the
@@ -23,7 +27,38 @@ public abstract class Boss extends Shooter
     protected Boss(Vector2 position, float screenActivationHeight) {
         super(position);
         this.screenActivationHeight = screenActivationHeight;
-        this.phases = new DelayedRemovalArray<Phase>();
+        this.phases = this.loadPhases();
+        this.currentPhase = phases.peek();
+    }
+
+    @Override
+    public final void update(float delta)
+    {
+        // If the current Phase is defeated,
+        if (this.currentPhase.isDead())
+        {
+            // Remove it from the Array
+            phases.pop();
+
+            // Assign the current Phase to the next item in the Array, if it exists. If not, destroy the boss
+            if (!this.isDead())
+                this.currentPhase = phases.peek();
+            else
+                GameScreen.instance.destroyBoss(this);
+        }
+
+        // Scroll the boss down the screen with the rest of the level
+        if (!this.shooting)
+            this.position.y -= Constants.ENEMY_WORLD_SCROLL_SPEED * delta;
+
+        // check whether or not we need to activate our shooter
+        if (this.position.y <= this.screenActivationHeight)
+            shooting = true;
+
+        // Shoot our Patterns in the current Phase if we are active
+        if (this.shooting)
+            for (Pattern p: this.currentPhase.getCurrentShootingPatterns())
+                p.shoot();
     }
 
     /**
@@ -37,7 +72,7 @@ public abstract class Boss extends Shooter
     }
 
     /**
-     * TODO: For each Boss, load in Phases appropriate with the Difficulty of the game
+     * For each Boss, load in Phases appropriate with the Difficulty of the game
      */
-    public abstract void loadPhases();
+    public abstract Array<Phase> loadPhases();
 }

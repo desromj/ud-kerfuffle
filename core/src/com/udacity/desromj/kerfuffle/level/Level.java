@@ -299,4 +299,16 @@ public class Level
     {
         bosses.add(boss);
     }
+
+    // Remove a boss from the Array of Bosses in the level
+    public void destroyBoss(Boss boss)
+    {
+        for (int i = 0; i < bosses.size; i++)
+        {
+            Boss chk = bosses.get(i);
+
+            if (chk == boss)
+                bosses.removeIndex(i);
+        }
+    }
 }

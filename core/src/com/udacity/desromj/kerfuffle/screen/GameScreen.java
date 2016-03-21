@@ -100,6 +100,11 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         level.addSpawnables(spawnables);
     }
 
+    public void destroyBoss(Boss boss)
+    {
+        level.destroyBoss(boss);
+    }
+
     /*
     Getters and Setters
      */
