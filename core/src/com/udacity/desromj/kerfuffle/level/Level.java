@@ -219,9 +219,10 @@ public class Level
                     spawnables.clear();
                 }
 
-                // Check for player bullets hitting the enemy - ONLY player bullets
+                // Check for player bullets hitting the enemy or bosses - ONLY player bullets
                 if (bullet.getParent() == player)
                 {
+                    // Collision with normal enemies
                     for (int i = 0; i < shooters.size; i++)
                     {
                         if (bullet.isColliding(shooters.get(i)))
@@ -233,6 +234,22 @@ public class Level
                                 shooters.removeIndex(i);
 
                             // Remove the bullet when it hits an enemy
+                            spawnables.removeIndex(j);
+                        }
+                    }
+
+                    // Collision with Bosses
+                    for (int i = 0; i < bosses.size; i++)
+                    {
+                        if (bullet.isColliding(bosses.get(i)))
+                        {
+                            // Reduce the shooter's health when hit, and remove it if dead
+                            bosses.get(i).reduceHealth(bullet);
+
+                            if (bosses.get(i).isDead())
+                                bosses.removeIndex(i);
+
+                            // Remove the bullet when it hits a Boss
                             spawnables.removeIndex(j);
                         }
                     }

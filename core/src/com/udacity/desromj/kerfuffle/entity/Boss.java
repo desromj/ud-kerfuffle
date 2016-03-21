@@ -80,6 +80,12 @@ public abstract class Boss extends Shooter
         this.health = 1.0f;
     }
 
+    @Override
+    public void reduceHealth(Bullet hitBy)
+    {
+        this.currentPhase.damageHitPoints(hitBy.damage);
+    }
+
     /**
      * For each Boss, load in Phases appropriate with the Difficulty of the game
      */

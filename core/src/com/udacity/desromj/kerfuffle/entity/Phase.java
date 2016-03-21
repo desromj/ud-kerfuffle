@@ -65,6 +65,11 @@ public class Phase
             this.currentIndex = 0;
     }
 
+    public void damageHitPoints(float damage)
+    {
+        this.hitPoints -= damage;
+    }
+
     /*
     Getters and Setters
      */

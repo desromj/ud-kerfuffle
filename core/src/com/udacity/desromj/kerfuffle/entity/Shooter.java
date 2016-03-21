@@ -78,7 +78,8 @@ public abstract class Shooter
         return this.health <= 0.0f;
     }
 
-    public final void reduceHealth(Bullet hitBy)
+    /** Overridden by Bosses, to reduce health of their Phases instead */
+    public void reduceHealth(Bullet hitBy)
     {
         this.health -= hitBy.getDamage();
     }
