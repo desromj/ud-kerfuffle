@@ -53,7 +53,7 @@ public class Player extends Shooter
         init(spawnPoint);
     }
 
-    public final boolean gameOver()
+    public final boolean isOutOfLives()
     {
         return this.lives <= 0;
     }

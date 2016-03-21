@@ -36,7 +36,7 @@ public class Level
 
     Player player;
 
-    private Vector2 playerSpawnPoint = new Vector2(
+    private Vector2 spawnPosition = new Vector2(
             Constants.WORLD_WIDTH / 2.0f,
             Constants.WORLD_HEIGHT / 8.0f);
 
@@ -48,7 +48,7 @@ public class Level
 
     public void init()
     {
-        player = new Player(playerSpawnPoint);
+        player = new Player(spawnPosition);
 
         spawnables = new DelayedRemovalArray<Spawnable>();
         shooters = new DelayedRemovalArray<Shooter>();
@@ -213,7 +213,7 @@ public class Level
                 if (!playerHit && bullet.isColliding(player))
                 {
                     playerHit = true;
-                    player.respawn(playerSpawnPoint);
+                    player.respawn(spawnPosition);
 
                     // Clear all Bullets from the screen - give Player chance to react again
                     spawnables.clear();
@@ -246,11 +246,20 @@ public class Level
      *
      * @return
      */
-    public boolean levelWin()
+    public boolean winCondition()
     {
         return bosses.size <= 0;
     }
 
+    /**
+     * We lose when the player is out of lives
+     *
+     * @return
+     */
+    public boolean loseCondition()
+    {
+        return player.isOutOfLives();
+    }
 
     /*
         Utility/Spawning Methods
@@ -271,5 +280,23 @@ public class Level
         return new Vector2(player.getPosition().x, player.getPosition().y);
     }
 
+    /**
+        Utility methods to add Game Objects to the Level - to be used with the LevelLoader class
+     */
 
+    public void addPlayer(Vector2 spawnPosition)
+    {
+        this.spawnPosition = new Vector2(spawnPosition.x, spawnPosition.y);
+        this.player = new Player(this.spawnPosition);
+    }
+
+    public void addShooter(Shooter shooter)
+    {
+        shooters.add(shooter);
+    }
+
+    public void addBoss(Boss boss)
+    {
+        bosses.add(boss);
+    }
 }
