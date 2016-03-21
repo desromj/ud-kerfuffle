@@ -8,9 +8,10 @@ import com.badlogic.gdx.utils.DelayedRemovalArray;
 /**
  * Created by Mike on 2016-03-16.
  */
-public abstract class Boss extends Enemy
+public abstract class Boss extends Shooter
 {
     public Array<Phase> phases;
+    protected float screenActivationHeight;
 
     /**
      * Bosses do not use their own Patterns - they read Patterns from the
@@ -20,10 +21,15 @@ public abstract class Boss extends Enemy
      * @param screenActivationHeight
      */
     protected Boss(Vector2 position, float screenActivationHeight) {
-        super(position, screenActivationHeight, new Pattern[] {});
+        super(position);
+        this.screenActivationHeight = screenActivationHeight;
         this.phases = new DelayedRemovalArray<Phase>();
     }
 
+    /**
+     * Bosses are not dead when their HP is 0, they are dead when there are no Phases remaining.
+     * @return
+     */
     @Override
     public final boolean isDead()
     {
