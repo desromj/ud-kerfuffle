@@ -32,7 +32,7 @@ public abstract class Boss extends Shooter
     }
 
     @Override
-    public final void update(float delta)
+    public void update(float delta)
     {
         // If the current Phase is defeated,
         if (this.currentPhase.isDead())

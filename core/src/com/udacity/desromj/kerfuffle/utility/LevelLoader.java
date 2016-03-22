@@ -3,6 +3,7 @@ package com.udacity.desromj.kerfuffle.utility;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.udacity.desromj.kerfuffle.enemy.DewBoss;
 import com.udacity.desromj.kerfuffle.enemy.MiteEnemy;
 import com.udacity.desromj.kerfuffle.entity.Boss;
 import com.udacity.desromj.kerfuffle.entity.Enemy;
@@ -32,6 +33,11 @@ public class LevelLoader
 
         Enemy enemy;
 
+        /*
+        Add first set of enemies
+         */
+
+        // First spiral
         enemy = new MiteEnemy(
                 new Vector2(
                         Constants.WORLD_WIDTH / 4.0f,
@@ -41,7 +47,7 @@ public class LevelLoader
 
         level.addShooter(enemy);
 
-        // Second Spiral
+        // Second spiral
         enemy = new MiteEnemy(
                 new Vector2(
                         Constants.WORLD_WIDTH * 3.0f / 4.0f,
@@ -51,7 +57,7 @@ public class LevelLoader
 
         level.addShooter(enemy);
 
-        // Random Bursting
+        // Random bursting
         enemy = new MiteEnemy(new Vector2(
                 Constants.WORLD_WIDTH / 2.0f,
                 Constants.WORLD_HEIGHT * 1.5f),
@@ -63,6 +69,58 @@ public class LevelLoader
                         new PatternProperties.Builder()
                                 .shotDelay(0.02f)
                                 .speed(300.0f)
+                                .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                .createProps()
+                )
+        });
+
+        level.addShooter(enemy);
+
+        /*
+         Add a Boss
+          */
+
+        Boss midBoss = new DewBoss(new Vector2(
+                Constants.WORLD_WIDTH / 2.0f,
+                Constants.WORLD_HEIGHT * 3.0f),
+                Constants.ACTIVATION_HEIGHT_HIGH);
+
+        level.addBoss(midBoss);
+
+        /*
+         More shooters above the Boss
+          */
+
+        // First burst
+        enemy = new MiteEnemy(new Vector2(
+                Constants.WORLD_WIDTH * 3.0f / 4.0f,
+                Constants.WORLD_HEIGHT * 5.0f),
+                Constants.ACTIVATION_HEIGHT_MEDIUM);
+
+        enemy.setPatterns(new Pattern[]{
+                new RandomBurstPattern(
+                        enemy,
+                        new PatternProperties.Builder()
+                                .shotDelay(0.02f)
+                                .speed(240.0f)
+                                .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                .createProps()
+                )
+        });
+
+        // Second burst
+        level.addShooter(enemy);
+        enemy = new MiteEnemy(new Vector2(
+                Constants.WORLD_WIDTH / 4.0f,
+                Constants.WORLD_HEIGHT * 5.0f),
+                Constants.ACTIVATION_HEIGHT_MEDIUM);
+
+        enemy.setPatterns(new Pattern[]{
+                new RandomBurstPattern(
+                        enemy,
+                        new PatternProperties.Builder()
+                                .shotDelay(0.02f)
+                                .speed(240.0f)
                                 .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
                                 .createProps()
                 )

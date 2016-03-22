@@ -95,34 +95,25 @@ public class Level
             Only that boss will update. If there are no bosses onscreen, proceed
             with Enemy waves as normal
           */
-        if (bossOnScreen)
-        {
-            for (int i = 0; i < bosses.size; i++) {
-                bosses.get(i).update(delta);
 
-                if (bosses.get(i).isDead())
-                    bosses.removeIndex(i);
-            }
-            
-            // Only update onscreen Enemies
-            for (int i = 0; i < shooters.size; i++) {
-                Shooter shooter = shooters.get(i);
-                if (!shooter.isOnScreen())
-                    continue;
+        // Bosses
+        for (int i = 0; i < bosses.size; i++) {
+            bosses.get(i).update(delta);
 
-                shooters.get(i).update(delta);
-
-                if (shooters.get(i).enemyShouldBeDisposed())
-                    shooters.removeIndex(i);
-            }
+            if (bosses.get(i).isDead())
+                bosses.removeIndex(i);
         }
-        else {
-            for (int i = 0; i < shooters.size; i++) {
-                shooters.get(i).update(delta);
 
-                if (shooters.get(i).enemyShouldBeDisposed())
-                    shooters.removeIndex(i);
-            }
+        // Enemies - If boss is onscreen, only update onscreen enemies. Otherwise, update all
+        for (int i = 0; i < shooters.size; i++) {
+
+            if (bossOnScreen && !shooters.get(i).isOnScreen())
+                continue;
+
+            shooters.get(i).update(delta);
+
+            if (shooters.get(i).enemyShouldBeDisposed())
+                shooters.removeIndex(i);
         }
 
         // Check for Collisions with the player and enemies
