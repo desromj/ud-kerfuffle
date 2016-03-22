@@ -1,6 +1,7 @@
 package com.udacity.desromj.kerfuffle.utility;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  * Created by Mike on 2016-01-27.
@@ -27,6 +28,11 @@ public class Constants
     public static final float PLAYER_SHOT_SEPARATION = WORLD_WIDTH / 40.0f;
     public static final float PLAYER_SHOT_SPEED = WORLD_WIDTH * 2.0f;
     public static final float PLAYER_SHOT_DAMAGE = 2.0f;
+
+
+    public static Vector2 PLAYER_DEFAULT_SPAWN_POSITION = new Vector2(
+            Constants.WORLD_WIDTH / 2.0f,
+            Constants.WORLD_HEIGHT / 8.0f);
 
     // Difficulty increases with complex Patterns, not number of bombs or lives available
     public static final int PLAYER_STARTING_LIVES = 3;

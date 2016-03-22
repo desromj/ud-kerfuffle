@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -29,6 +30,7 @@ import com.udacity.desromj.kerfuffle.pattern.SpiralPattern;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 import com.udacity.desromj.kerfuffle.utility.Enums;
+import com.udacity.desromj.kerfuffle.utility.LevelLoader;
 
 /**
  * Created by Mike on 2016-01-27.
@@ -45,21 +47,18 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
 
     private GameScreen()
     {
+        Assets.instance.init();
+        viewport = new ExtendViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
         init();
+        Gdx.input.setInputProcessor(this);
     }
 
     public void init()
     {
-        Assets.instance.init();
-        viewport = new ExtendViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
-
         renderer = new ShapeRenderer();
         batch = new SpriteBatch();
 
-        Gdx.input.setInputProcessor(this);
-
-        // TODO: Replace with the LevelLoader when it is implemented
-        level = new Level(viewport);
+        level = LevelLoader.load("", viewport);
     }
 
     @Override
@@ -85,6 +84,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     {
         renderer.dispose();
         batch.dispose();
+        Assets.instance.dispose();
     }
 
     /*

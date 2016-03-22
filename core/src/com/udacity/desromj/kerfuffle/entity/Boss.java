@@ -57,8 +57,7 @@ public abstract class Boss extends Shooter
 
         // Shoot our Patterns in the current Phase if we are active
         if (this.shooting)
-            for (Pattern p: this.currentPhase.getCurrentShootingPatterns())
-                p.shoot();
+            this.currentPhase.shootPatterns();
     }
 
     /**

@@ -1,7 +1,18 @@
 package com.udacity.desromj.kerfuffle.utility;
 
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.udacity.desromj.kerfuffle.enemy.MiteEnemy;
+import com.udacity.desromj.kerfuffle.entity.Boss;
+import com.udacity.desromj.kerfuffle.entity.Enemy;
+import com.udacity.desromj.kerfuffle.entity.Pattern;
+import com.udacity.desromj.kerfuffle.entity.PatternProperties;
+import com.udacity.desromj.kerfuffle.entity.Player;
+import com.udacity.desromj.kerfuffle.entity.Shooter;
+import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.level.Level;
+import com.udacity.desromj.kerfuffle.pattern.RandomBurstPattern;
 
 public class LevelLoader
 /**
@@ -17,7 +28,47 @@ public class LevelLoader
         Level level = new Level(viewport);
 
         // TODO: Load level data from JSON files
+        level.addPlayer(Constants.PLAYER_DEFAULT_SPAWN_POSITION);
 
+        Enemy enemy;
+
+        enemy = new MiteEnemy(
+                new Vector2(
+                        Constants.WORLD_WIDTH / 4.0f,
+                        Constants.WORLD_HEIGHT),
+                Constants.ACTIVATION_HEIGHT_HIGH);
+        enemy.loadDefaultPattern();
+
+        level.addShooter(enemy);
+
+        // Second Spiral
+        enemy = new MiteEnemy(
+                new Vector2(
+                        Constants.WORLD_WIDTH * 3.0f / 4.0f,
+                        Constants.WORLD_HEIGHT),
+                Constants.ACTIVATION_HEIGHT_HIGH);
+        enemy.loadDefaultPattern();
+
+        level.addShooter(enemy);
+
+        // Random Bursting
+        enemy = new MiteEnemy(new Vector2(
+                Constants.WORLD_WIDTH / 2.0f,
+                Constants.WORLD_HEIGHT * 1.5f),
+                Constants.ACTIVATION_HEIGHT_MEDIUM);
+
+        enemy.setPatterns(new Pattern[]{
+                new RandomBurstPattern(
+                        enemy,
+                        new PatternProperties.Builder()
+                                .shotDelay(0.02f)
+                                .speed(300.0f)
+                                .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                .createProps()
+                )
+        });
+
+        level.addShooter(enemy);
 
         return level;
     }

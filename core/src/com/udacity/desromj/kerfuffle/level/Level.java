@@ -36,63 +36,17 @@ public class Level
 
     Player player;
 
-    private Vector2 spawnPosition = new Vector2(
-            Constants.WORLD_WIDTH / 2.0f,
-            Constants.WORLD_HEIGHT / 8.0f);
-
     public Level(Viewport viewport)
     {
-        init();
         this.viewport = viewport;
+        init();
     }
 
     public void init()
     {
-        player = new Player(spawnPosition);
-
         spawnables = new DelayedRemovalArray<Spawnable>();
         shooters = new DelayedRemovalArray<Shooter>();
         bosses = new DelayedRemovalArray<Boss>();
-
-        Enemy enemy;
-
-        enemy = new MiteEnemy(
-                new Vector2(
-                        Constants.WORLD_WIDTH / 4.0f,
-                        Constants.WORLD_HEIGHT),
-                Constants.ACTIVATION_HEIGHT_HIGH);
-        enemy.loadDefaultPattern();
-
-        shooters.add(enemy);
-
-        // Second Spiral
-        enemy = new MiteEnemy(
-                new Vector2(
-                        Constants.WORLD_WIDTH * 3.0f / 4.0f,
-                        Constants.WORLD_HEIGHT),
-                Constants.ACTIVATION_HEIGHT_HIGH);
-        enemy.loadDefaultPattern();
-
-        shooters.add(enemy);
-
-        // Random Bursting
-        enemy = new MiteEnemy(new Vector2(
-                Constants.WORLD_WIDTH / 2.0f,
-                Constants.WORLD_HEIGHT * 1.5f),
-                Constants.ACTIVATION_HEIGHT_MEDIUM);
-
-        enemy.setPatterns(new Pattern[]{
-                new RandomBurstPattern(
-                        enemy,
-                        new PatternProperties.Builder()
-                                .shotDelay(0.02f)
-                                .speed(300.0f)
-                                .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
-                                .createProps()
-                )
-        });
-
-        shooters.add(enemy);
     }
 
     /**
@@ -213,7 +167,7 @@ public class Level
                 if (!playerHit && bullet.isColliding(player))
                 {
                     playerHit = true;
-                    player.respawn(spawnPosition);
+                    player.respawn(Constants.PLAYER_DEFAULT_SPAWN_POSITION);
 
                     // Clear all Bullets from the screen - give Player chance to react again
                     spawnables.clear();
@@ -303,8 +257,7 @@ public class Level
 
     public void addPlayer(Vector2 spawnPosition)
     {
-        this.spawnPosition = new Vector2(spawnPosition.x, spawnPosition.y);
-        this.player = new Player(this.spawnPosition);
+        this.player = new Player(spawnPosition);
     }
 
     public void addShooter(Shooter shooter)
