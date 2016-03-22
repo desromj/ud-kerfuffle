@@ -103,6 +103,18 @@ public class Level
                 if (bosses.get(i).isDead())
                     bosses.removeIndex(i);
             }
+            
+            // Only update onscreen Enemies
+            for (int i = 0; i < shooters.size; i++) {
+                Shooter shooter = shooters.get(i);
+                if (!shooter.isOnScreen())
+                    continue;
+
+                shooters.get(i).update(delta);
+
+                if (shooters.get(i).enemyShouldBeDisposed())
+                    shooters.removeIndex(i);
+            }
         }
         else {
             for (int i = 0; i < shooters.size; i++) {
