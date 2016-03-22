@@ -38,13 +38,15 @@ public abstract class Boss extends Shooter
         if (this.currentPhase.isDead())
         {
             // Remove it from the Array
-            phases.pop();
+            try {
+                phases.pop();
+            } catch (Exception ex) {}
 
-            // Assign the current Phase to the next item in the Array, if it exists. If not, destroy the boss
+            // Assign the current Phase to the next item in the Array, if it exists
             if (!this.isDead())
                 this.currentPhase = phases.peek();
             else
-                GameScreen.instance.destroyBoss(this);
+                return;
         }
 
         // Scroll the boss down the screen with the rest of the level
