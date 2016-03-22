@@ -118,6 +118,14 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         return level.getPlayerPosition();
     }
 
+    public Vector2 getMiddleOfScreen()
+    {
+        return new Vector2(
+                viewport.getWorldWidth() / 2.0f,
+                viewport.getWorldHeight() / 2.0f
+        );
+    }
+
     /*
         Input Processing Overrides
      */
