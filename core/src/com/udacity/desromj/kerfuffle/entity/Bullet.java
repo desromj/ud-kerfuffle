@@ -44,4 +44,6 @@ public abstract class Bullet extends Spawnable
     }
 
     public final float getDamage() { return this.damage; }
+
+    public final float getShotRadius() { return this.shotRadius; }
 }

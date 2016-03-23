@@ -22,6 +22,8 @@ import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 import com.udacity.desromj.kerfuffle.utility.Enums;
 
+import java.util.Comparator;
+
 /**
  * Created by Mike on 2016-03-17.
  */
@@ -135,6 +137,30 @@ public class Level
                 Constants.WORLD_WIDTH,
                 Constants.WORLD_HEIGHT
         );
+
+        /*
+         Attempt to sort the bullets so the render from largest to smallest
+         TODO: May be a big performance drain, we will see
+          */
+        spawnables.sort(new Comparator<Spawnable>() {
+            @Override
+            public int compare(Spawnable o1, Spawnable o2) {
+                try {
+                    Bullet first = (Bullet) o1;
+                    Bullet second = (Bullet) o2;
+
+                    if (second.getShotRadius() > first.getShotRadius())
+                        return 1;
+                    else if (second.getShotRadius() < first.getShotRadius())
+                        return -1;
+                    else
+                        return 0;
+
+                } catch (Exception ex) { }
+
+                return 0;
+            }
+        });
 
         for (Spawnable sp: spawnables)
             sp.render(renderer);
