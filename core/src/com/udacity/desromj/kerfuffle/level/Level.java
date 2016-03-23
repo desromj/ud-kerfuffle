@@ -119,10 +119,13 @@ public class Level
         // Check for Collisions with the player and enemies
         handleCollisions();
 
-        /*
-         Render logic
-          */
+        // Handle all rendering logic
+        doShapeRender(renderer);
+        doSpriteBatchRender(batch);
+    }
 
+    private void doShapeRender(ShapeRenderer renderer)
+    {
         // ShapeRenderer - background, and Spawnables if applicible
         renderer.begin(ShapeRenderer.ShapeType.Filled);
         renderer.setColor(Constants.BACKGROUND_COLOR);
@@ -137,7 +140,10 @@ public class Level
             sp.render(renderer);
 
         renderer.end();
+    }
 
+    private void doSpriteBatchRender(SpriteBatch batch)
+    {
         // Sprites - Player, Shooters, Bosses
         batch.getProjectionMatrix().set(GameScreen.instance.getCamera().combined);
         batch.begin();

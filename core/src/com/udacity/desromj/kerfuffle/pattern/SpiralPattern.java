@@ -16,6 +16,8 @@ import java.util.Random;
 
 /**
  * Created by Quiv on 2016-02-23.
+ *
+ * Used properties: armAngleOffsetDegrees
  */
 public class SpiralPattern extends Pattern
 {

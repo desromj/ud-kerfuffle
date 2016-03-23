@@ -82,7 +82,7 @@ public class LevelLoader
 
         Boss midBoss = new DewBoss(new Vector2(
                 Constants.WORLD_WIDTH / 2.0f,
-                Constants.WORLD_HEIGHT * 3.0f),
+                Constants.WORLD_HEIGHT * 2.5f),
                 Constants.ACTIVATION_HEIGHT_HIGH);
 
         level.addBoss(midBoss);
@@ -94,7 +94,7 @@ public class LevelLoader
         // First burst
         enemy = new MiteEnemy(new Vector2(
                 Constants.WORLD_WIDTH * 3.0f / 4.0f,
-                Constants.WORLD_HEIGHT * 5.0f),
+                Constants.WORLD_HEIGHT * 4.0f),
                 Constants.ACTIVATION_HEIGHT_MEDIUM);
 
         enemy.setPatterns(new Pattern[]{
@@ -112,7 +112,7 @@ public class LevelLoader
         level.addShooter(enemy);
         enemy = new MiteEnemy(new Vector2(
                 Constants.WORLD_WIDTH / 4.0f,
-                Constants.WORLD_HEIGHT * 5.0f),
+                Constants.WORLD_HEIGHT * 4.0f),
                 Constants.ACTIVATION_HEIGHT_MEDIUM);
 
         enemy.setPatterns(new Pattern[]{

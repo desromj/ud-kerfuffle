@@ -11,6 +11,7 @@ import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Phase;
 import com.udacity.desromj.kerfuffle.pattern.CirclePattern;
 import com.udacity.desromj.kerfuffle.pattern.ShotgunPattern;
+import com.udacity.desromj.kerfuffle.pattern.SpiralPattern;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
@@ -59,6 +60,35 @@ public class DewBoss extends Boss
 
         // First Phase
 
+        phasePatterns = new DelayedRemovalArray<Pattern>();
+
+        // Properties should set: shotDelay, mainShotType, arms, radius, speed, targetted
+        phasePatterns.add(new CirclePattern(
+                this,
+                new PatternProperties.Builder()
+                        .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                        .shotDelay(0.2f)
+                        .arms(24)
+                        .speed(120.0f)
+                        .targetted(true)
+                        .createProps()));
+
+        phasePatterns.add(new SpiralPattern(
+                this,
+                new PatternProperties.Builder()
+                        .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                        .shotDelay(0.06f)
+                        .speed(200.0f)
+                        .targetted(false)
+                        .armAngleOffsetDegrees(5.0f)
+                        .createProps()));
+
+        phases.add(new Phase(350.0f, phasePatterns));
+
+        // Second Phase
+
+        phasePatterns = new DelayedRemovalArray<Pattern>();
+
         // Properties should set: targetted, arms, shotsPerArm, radius, armAngleOffsetDegrees, armSpeedModifier, speed, mainShotType, secondaryShotType
         phasePatterns.add(new ShotgunPattern(
                 this,
@@ -71,9 +101,9 @@ public class DewBoss extends Boss
                         .speed(250.0f)
                         .createProps()));
 
-        phases.add(new Phase(50.0f, phasePatterns));
+        phases.add(new Phase(120.0f, phasePatterns));
 
-        // Second Phase
+        // Third Phase
         phasePatterns = new DelayedRemovalArray<Pattern>();
 
         // Properties should set: shotDelay, mainShotType, arms, radius, speed, targetted
@@ -87,7 +117,7 @@ public class DewBoss extends Boss
                         .targetted(false)
                         .createProps()));
 
-        phases.add(new Phase(50.0f, phasePatterns));
+        phases.add(new Phase(220.0f, phasePatterns));
 
         return phases;
     }
