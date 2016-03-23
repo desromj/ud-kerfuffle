@@ -145,20 +145,20 @@ public class Level
         spawnables.sort(new Comparator<Spawnable>() {
             @Override
             public int compare(Spawnable o1, Spawnable o2) {
-                try {
-                    Bullet first = (Bullet) o1;
-                    Bullet second = (Bullet) o2;
 
-                    if (second.getShotRadius() > first.getShotRadius())
-                        return 1;
-                    else if (second.getShotRadius() < first.getShotRadius())
-                        return -1;
-                    else
-                        return 0;
+                // Do no sorting if we're not working with two Bullets
+                if (!(o1 instanceof Bullet && o2 instanceof Bullet))
+                    return 0;
 
-                } catch (Exception ex) { }
+                Bullet first = (Bullet) o1;
+                Bullet second = (Bullet) o2;
 
-                return 0;
+                if (second.getShotRadius() > first.getShotRadius())
+                    return 1;
+                else if (second.getShotRadius() < first.getShotRadius())
+                    return -1;
+                else
+                    return 0;
             }
         });
 
