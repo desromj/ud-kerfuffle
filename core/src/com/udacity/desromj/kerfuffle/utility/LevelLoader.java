@@ -43,7 +43,8 @@ public class LevelLoader
                         Constants.WORLD_WIDTH / 4.0f,
                         Constants.WORLD_HEIGHT),
                 Constants.ACTIVATION_HEIGHT_HIGH);
-        enemy.loadDefaultPattern();
+
+        enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "rs"));
 
         level.addShooter(enemy);
 
@@ -53,7 +54,8 @@ public class LevelLoader
                         Constants.WORLD_WIDTH * 3.0f / 4.0f,
                         Constants.WORLD_HEIGHT),
                 Constants.ACTIVATION_HEIGHT_HIGH);
-        enemy.loadDefaultPattern();
+
+        enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "rs"));
 
         level.addShooter(enemy);
 

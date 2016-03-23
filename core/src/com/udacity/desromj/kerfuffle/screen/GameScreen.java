@@ -43,14 +43,16 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     SpriteBatch batch;
     ShapeRenderer renderer;
 
+    Enums.Difficulty difficulty = Enums.Difficulty.MEDIUM;
     Level level;
 
     private GameScreen()
     {
         Assets.instance.init();
         viewport = new ExtendViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
-        init();
         Gdx.input.setInputProcessor(this);
+
+        init();
     }
 
     public void init()
@@ -124,6 +126,16 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                 viewport.getWorldWidth() / 2.0f,
                 viewport.getWorldHeight() / 2.0f
         );
+    }
+
+    public Enums.Difficulty getDifficulty()
+    {
+        return this.difficulty;
+    }
+
+    public void setDifficulty(Enums.Difficulty difficulty)
+    {
+        this.difficulty = difficulty;
     }
 
     /*
