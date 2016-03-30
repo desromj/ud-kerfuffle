@@ -102,7 +102,7 @@ public class LevelPatterns
                                     new SpiralPattern(
                                             parent,
                                             new PatternProperties.Builder()
-                                                    .shotDelay(0.03f)
+                                                    .shotDelay(0.4f)
                                                     .targetted(true)
                                                     .armAngleOffsetDegrees(20.0f)
                                                     .speed(60.0f)
@@ -121,7 +121,7 @@ public class LevelPatterns
                                     new SpiralPattern(
                                             parent,
                                             new PatternProperties.Builder()
-                                                    .shotDelay(0.016f)
+                                                    .shotDelay(0.2f)
                                                     .targetted(true)
                                                     .armAngleOffsetDegrees(16.0f)
                                                     .speed(75.0f)
@@ -133,7 +133,7 @@ public class LevelPatterns
                                     new SpiralPattern(
                                             parent,
                                             new PatternProperties.Builder()
-                                                    .shotDelay(0.04f)
+                                                    .shotDelay(0.1f)
                                                     .targetted(false)
                                                     .armAngleOffsetDegrees(-7.5f)
                                                     .speed(110.0f)
@@ -152,7 +152,7 @@ public class LevelPatterns
                                     new SpiralPattern(
                                             parent,
                                             new PatternProperties.Builder()
-                                                    .shotDelay(0.004f)
+                                                    .shotDelay(0.04f)
                                                     .targetted(true)
                                                     .armAngleOffsetDegrees(16.0f)
                                                     .speed(90.0f)
@@ -220,7 +220,7 @@ public class LevelPatterns
                                     new RandomBurstPattern(
                                             parent,
                                             new PatternProperties.Builder()
-                                                    .shotDelay(0.1f)
+                                                    .shotDelay(0.32f)
                                                     .speed(140.0f)
                                                     .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
                                                     .createProps()
@@ -235,7 +235,7 @@ public class LevelPatterns
                                     new RandomBurstPattern(
                                             parent,
                                             new PatternProperties.Builder()
-                                                    .shotDelay(0.05f)
+                                                    .shotDelay(0.16f)
                                                     .speed(220.0f)
                                                     .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
                                                     .createProps()
@@ -250,7 +250,7 @@ public class LevelPatterns
                                     new RandomBurstPattern(
                                             parent,
                                             new PatternProperties.Builder()
-                                                    .shotDelay(0.02f)
+                                                    .shotDelay(0.04f)
                                                     .speed(300.0f)
                                                     .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
                                                     .createProps()
