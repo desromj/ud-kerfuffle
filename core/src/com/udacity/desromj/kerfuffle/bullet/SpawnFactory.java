@@ -7,7 +7,7 @@ import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.pattern.CirclePattern;
 import com.udacity.desromj.kerfuffle.pattern.PlayerBulletPattern;
-import com.udacity.desromj.kerfuffle.pattern.ShotgunPattern;
+import com.udacity.desromj.kerfuffle.pattern.DirectShotPattern;
 import com.udacity.desromj.kerfuffle.utility.Enums;
 
 /**
@@ -53,7 +53,7 @@ public final class SpawnFactory
         {
             case PLAYER_BULLET_PATTERN:         return new PlayerBulletPattern(parent, position, velocity, props);
             case CIRCLE_PATTERN:                return new CirclePattern(parent, position, velocity, props);
-            case SHOTGUN_PATTERN:               return new ShotgunPattern(parent, position, velocity, props);
+            case DIRECT_SHOT_PATTERN:               return new DirectShotPattern(parent, position, velocity, props);
         }
 
         return null;

@@ -1,7 +1,6 @@
 package com.udacity.desromj.kerfuffle.enemy;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
@@ -10,9 +9,8 @@ import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Phase;
 import com.udacity.desromj.kerfuffle.pattern.CirclePattern;
-import com.udacity.desromj.kerfuffle.pattern.ShotgunPattern;
+import com.udacity.desromj.kerfuffle.pattern.DirectShotPattern;
 import com.udacity.desromj.kerfuffle.pattern.SpiralPattern;
-import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 import com.udacity.desromj.kerfuffle.utility.Enums;
@@ -90,7 +88,7 @@ public class DewBoss extends Boss
         phasePatterns = new DelayedRemovalArray<Pattern>();
 
         // Properties should set: targetted, arms, shotsPerArm, radius, armAngleOffsetDegrees, armSpeedModifier, speed, mainShotType, secondaryShotType
-        phasePatterns.add(new ShotgunPattern(
+        phasePatterns.add(new DirectShotPattern(
                 this,
                 new PatternProperties.Builder()
                         .targetted(true)

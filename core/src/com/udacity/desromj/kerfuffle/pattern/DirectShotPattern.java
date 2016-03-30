@@ -15,7 +15,7 @@ import com.udacity.desromj.kerfuffle.screen.GameScreen;
 /**
  * Created by Mike on 2016-02-09.
  */
-public class ShotgunPattern extends Pattern
+public class DirectShotPattern extends Pattern
 {
     /**
      * Spawns bullets either targetted - towards the player, or not targetted - straight vertically down
@@ -25,7 +25,7 @@ public class ShotgunPattern extends Pattern
      *
      * Properties should set: targetted, arms, shotsPerArm, radius, armAngleOffsetDegrees, armSpeedModifier, speed, mainShotType, secondaryShotType
      */
-    public ShotgunPattern(Shooter parent, PatternProperties props)
+    public DirectShotPattern(Shooter parent, PatternProperties props)
     {
         super(parent, props);
     }
@@ -38,7 +38,7 @@ public class ShotgunPattern extends Pattern
      *
      * Properties should set: targetted, arms, shotsPerArm, radius, armAngleOffsetDegrees, armSpeedModifier, speed, mainShotType, secondaryShotType
      */
-    public ShotgunPattern(Shooter parent, Vector2 position, Vector2 velocity, PatternProperties props)
+    public DirectShotPattern(Shooter parent, Vector2 position, Vector2 velocity, PatternProperties props)
     {
         super(parent, position, velocity, props);
     }

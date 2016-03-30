@@ -1,11 +1,10 @@
 package com.udacity.desromj.kerfuffle.utility;
 
-import com.badlogic.gdx.Gdx;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.pattern.RandomBurstPattern;
-import com.udacity.desromj.kerfuffle.pattern.ShotgunPattern;
+import com.udacity.desromj.kerfuffle.pattern.DirectShotPattern;
 import com.udacity.desromj.kerfuffle.pattern.SpiralPattern;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
 
@@ -85,7 +84,7 @@ public class LevelPatterns
                 case DEFAULT:
 
                     patterns = new Pattern [] {
-                            new ShotgunPattern(
+                            new DirectShotPattern(
                                     parent,
                                     new PatternProperties.Builder().createProps()
                             )
