@@ -65,16 +65,7 @@ public class LevelLoader
                 Constants.WORLD_HEIGHT * 1.5f),
                 Constants.ACTIVATION_HEIGHT_MEDIUM);
 
-        enemy.setPatterns(new Pattern[]{
-                new RandomBurstPattern(
-                        enemy,
-                        new PatternProperties.Builder()
-                                .shotDelay(0.02f)
-                                .speed(300.0f)
-                                .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
-                                .createProps()
-                )
-        });
+        enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "yb"));
 
         level.addShooter(enemy);
 
@@ -99,16 +90,7 @@ public class LevelLoader
                 Constants.WORLD_HEIGHT * 4.0f),
                 Constants.ACTIVATION_HEIGHT_MEDIUM);
 
-        enemy.setPatterns(new Pattern[]{
-                new RandomBurstPattern(
-                        enemy,
-                        new PatternProperties.Builder()
-                                .shotDelay(0.02f)
-                                .speed(240.0f)
-                                .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
-                                .createProps()
-                )
-        });
+        enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "yb"));
 
         // Second burst
         level.addShooter(enemy);
@@ -117,16 +99,7 @@ public class LevelLoader
                 Constants.WORLD_HEIGHT * 4.0f),
                 Constants.ACTIVATION_HEIGHT_MEDIUM);
 
-        enemy.setPatterns(new Pattern[]{
-                new RandomBurstPattern(
-                        enemy,
-                        new PatternProperties.Builder()
-                                .shotDelay(0.02f)
-                                .speed(240.0f)
-                                .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
-                                .createProps()
-                )
-        });
+        enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "yb"));
 
         level.addShooter(enemy);
 

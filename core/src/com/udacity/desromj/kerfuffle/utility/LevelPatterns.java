@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
+import com.udacity.desromj.kerfuffle.pattern.RandomBurstPattern;
 import com.udacity.desromj.kerfuffle.pattern.ShotgunPattern;
 import com.udacity.desromj.kerfuffle.pattern.SpiralPattern;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
@@ -213,21 +214,64 @@ public class LevelPatterns
 
                 case YELLOW_BURST:
 
-                    switch (difficulty)
-                    {
+                    switch (difficulty) {
                         case EASY:
+
+                            patterns = new Pattern[]{
+                                    new RandomBurstPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(0.1f)
+                                                    .speed(140.0f)
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .createProps()
+                                    )
+                            };
 
                             break;
 
                         case MEDIUM:
 
+                            patterns = new Pattern[]{
+                                    new RandomBurstPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(0.05f)
+                                                    .speed(220.0f)
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .createProps()
+                                    )
+                            };
+
                             break;
 
                         case HARD:
 
+                            patterns = new Pattern[]{
+                                    new RandomBurstPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(0.02f)
+                                                    .speed(300.0f)
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .createProps()
+                                    )
+                            };
+
                             break;
 
                         case INSANE:
+
+                            patterns = new Pattern[]{
+                                    new RandomBurstPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(0.01f)
+                                                    .speed(360.0f)
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .createProps()
+                                    )
+                            };
 
                             break;
                     }

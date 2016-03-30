@@ -51,8 +51,6 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         Assets.instance.init();
         viewport = new ExtendViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
         Gdx.input.setInputProcessor(this);
-
-        init();
     }
 
     public void init()
