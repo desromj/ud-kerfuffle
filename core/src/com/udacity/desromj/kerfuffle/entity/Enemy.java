@@ -38,14 +38,14 @@ public abstract class Enemy extends Shooter
             this.position.y -= Constants.ENEMY_WORLD_SCROLL_SPEED * delta;
 
         // check whether or not we need to activate our shooter
-        if (this.position.y <= this.screenActivationHeight)
+        if (!shooting && this.position.y <= this.screenActivationHeight)
         {
-            shooting = true;
-
-            for (Pattern pattern: patterns) {
+            for (Pattern pattern : patterns) {
                 pattern.props.setCannotWaveFor(0.0f);
                 pattern.props.setCannotShootFor(0.0f);
             }
+
+            shooting = true;
         }
 
         // Shoot our Patterns if active

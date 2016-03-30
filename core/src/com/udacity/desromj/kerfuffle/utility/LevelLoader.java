@@ -44,7 +44,7 @@ public class LevelLoader
                         Constants.WORLD_HEIGHT),
                 Constants.ACTIVATION_HEIGHT_HIGH);
 
-        enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "rs"));
+        enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "rsg"));
 
         level.addShooter(enemy);
 
@@ -55,7 +55,7 @@ public class LevelLoader
                         Constants.WORLD_HEIGHT),
                 Constants.ACTIVATION_HEIGHT_HIGH);
 
-        enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "rs"));
+        enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "rsg"));
 
         level.addShooter(enemy);
 

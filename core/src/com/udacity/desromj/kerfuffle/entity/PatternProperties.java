@@ -92,8 +92,8 @@ public class PatternProperties
 
         private float waveDelay = 0.0f;             // time, in seconds, to wait between waves of Spawnables
         private float cannotWaveFor = 0.0f;         // Internal timer for tracking wave pattern spawning
-        private int shotsPerWave = 1;               // number of shots to make before resetting the wave delay
-        private int shotsLeftInWave = 1;            // number of shots remaining in the current wave of Spawnables
+        private int shotsPerWave = 0;               // number of shots to make before resetting the wave delay
+        private int shotsLeftInWave = 0;            // number of shots remaining in the current wave of Spawnables
 
         private Enums.BulletType mainShotType = Constants.DEFAULT_SHOT_TYPE;          // Shot type for majority of the Bullets
         private Enums.BulletType secondaryShotType = Constants.DEFAULT_SHOT_TYPE;     // Shot type for secondary Bullets

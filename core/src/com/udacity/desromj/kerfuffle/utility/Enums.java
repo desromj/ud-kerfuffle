@@ -35,7 +35,8 @@ public class Enums
         PLAYER_BULLET_PATTERN,
 
         CIRCLE_PATTERN,
-        DIRECT_SHOT_PATTERN
+        DIRECT_SHOT_PATTERN,
+        SHOTGUN_PATTERN
     }
 
     /**

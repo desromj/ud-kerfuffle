@@ -5,6 +5,7 @@ import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.pattern.RandomBurstPattern;
 import com.udacity.desromj.kerfuffle.pattern.DirectShotPattern;
+import com.udacity.desromj.kerfuffle.pattern.ShotgunPattern;
 import com.udacity.desromj.kerfuffle.pattern.SpiralPattern;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
 
@@ -50,6 +51,7 @@ public class LevelPatterns
         DEFAULT("d"),
 
         RED_SPIRAL("rs"),
+        RED_SHOTGUN("rsg"),
         YELLOW_BURST("yb"),
 
         DEW_PHASE_1("dp1"),
@@ -201,6 +203,89 @@ public class LevelPatterns
                                                     .speed(180.0f)
                                                     .shotsPerWave(220)
                                                     .waveDelay(2.0f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps()
+                                    )
+                            };
+
+                            break;
+                    }
+
+                    break;
+
+                case RED_SHOTGUN:
+
+                    switch (difficulty)
+                    {
+                        case EASY:
+
+                            patterns = new Pattern[]{
+                                    new ShotgunPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(2.0f)
+                                                    .targetted(true)
+                                                    .shotsPerArm(12)
+                                                    .armAngleOffsetDegrees(30.0f)
+                                                    .speed(80.0f)
+                                                    .armSpeedModifier(0.2f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps()
+                                    )
+                            };
+
+                            break;
+
+                        case MEDIUM:
+
+                            patterns = new Pattern[]{
+                                    new ShotgunPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(1.5f)
+                                                    .targetted(true)
+                                                    .shotsPerArm(20)
+                                                    .armAngleOffsetDegrees(26.0f)
+                                                    .speed(120.0f)
+                                                    .armSpeedModifier(0.25f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps()
+                                    )
+                            };
+
+                            break;
+
+                        case HARD:
+
+                            patterns = new Pattern[]{
+                                    new ShotgunPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(1.0f)
+                                                    .targetted(true)
+                                                    .shotsPerArm(30)
+                                                    .armAngleOffsetDegrees(22.0f)
+                                                    .speed(160.0f)
+                                                    .armSpeedModifier(0.35f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps()
+                                    )
+                            };
+
+                            break;
+
+                        case INSANE:
+
+                            patterns = new Pattern[]{
+                                    new ShotgunPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(0.8f)
+                                                    .targetted(true)
+                                                    .shotsPerArm(45)
+                                                    .armAngleOffsetDegrees(20.0f)
+                                                    .speed(200.0f)
+                                                    .armSpeedModifier(0.5f)
                                                     .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
                                                     .createProps()
                                     )
