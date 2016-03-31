@@ -63,10 +63,9 @@ public class ShotgunPattern extends Pattern
 
         for (int i = 0; i < props.getShotsPerArm(); i++)
         {
-            float modifiedAngle = (float)(props.getArmAngleOffsetDegrees() * Math.PI / 180.0f);     // convert to radians
-            modifiedAngle *= 2.0f;                                      // double the angle
-            modifiedAngle *= random.nextFloat();                        // randomize the angle's range
-            modifiedAngle -= props.getArmAngleOffsetDegrees() / 2.0f;   // subtract half the max range
+            float offsetRadians = (float) (props.getArmAngleOffsetDegrees() * Math.PI / 180.0f);        // convert to radians
+            float modifiedAngle = offsetRadians * random.nextFloat();   // Randomize the variance
+            modifiedAngle -= offsetRadians / 2.0f;                      // subtract half the max range to get an equal positive/negative angle dist
 
             float upperRange = 1.0f - props.getArmSpeedModifier();          // Determine the upper random range             (ex: val=0.6: 0.0 - 0.4)
             float modifiedSpeed = upperRange * random.nextFloat();          // Get random upper range value                 (ex: val=0.2 (random))
@@ -80,23 +79,10 @@ public class ShotgunPattern extends Pattern
             );
 
             // velocity = normalized distance between origin and spawnPosition, multiplied by a scalar and the power of the arm speed multiplier
-            Vector2 spawnVelocity = new Vector2();
-
-            // Spawn at the generated angle if targetted, otherwise straight down
-            if (props.isTargetted())
-            {
-                spawnVelocity.set(
-                        (float) Math.cos(angleRads + modifiedAngle),
-                        (float) Math.sin(angleRads + modifiedAngle)
-                );
-            }
-            else
-            {
-                spawnVelocity.set(
-                        0.0f,
-                        -1.0f
-                );
-            }
+            Vector2 spawnVelocity = new Vector2(
+                    (float) Math.cos(angleRads + modifiedAngle),
+                    (float) Math.sin(angleRads + modifiedAngle)
+            );
 
             spawnVelocity.nor().scl(modifiedSpeed * props.getSpeed());
 
