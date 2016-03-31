@@ -14,6 +14,7 @@ import com.udacity.desromj.kerfuffle.pattern.SpiralPattern;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 import com.udacity.desromj.kerfuffle.utility.Enums;
+import com.udacity.desromj.kerfuffle.utility.LevelPatterns;
 
 /**
  * Created by Mike on 2016-03-21.
@@ -60,27 +61,7 @@ public class DewBoss extends Boss
 
         phasePatterns = new DelayedRemovalArray<Pattern>();
 
-        // Properties should set: shotDelay, mainShotType, arms, radius, speed, targetted
-        phasePatterns.add(new CirclePattern(
-                this,
-                new PatternProperties.Builder()
-                        .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
-                        .shotDelay(0.2f)
-                        .arms(24)
-                        .speed(120.0f)
-                        .targetted(true)
-                        .createProps()));
-
-        phasePatterns.add(new SpiralPattern(
-                this,
-                new PatternProperties.Builder()
-                        .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
-                        .shotDelay(0.06f)
-                        .speed(200.0f)
-                        .targetted(false)
-                        .armAngleOffsetDegrees(5.0f)
-                        .createProps()));
-
+        phasePatterns.addAll(LevelPatterns.LevelNumber.makePattern(1, this, "dp1"));
         phases.add(new Phase(350.0f, phasePatterns));
 
         // Second Phase

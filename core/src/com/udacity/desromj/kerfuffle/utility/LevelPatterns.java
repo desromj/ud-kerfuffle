@@ -3,6 +3,7 @@ package com.udacity.desromj.kerfuffle.utility;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
+import com.udacity.desromj.kerfuffle.pattern.CirclePattern;
 import com.udacity.desromj.kerfuffle.pattern.RandomBurstPattern;
 import com.udacity.desromj.kerfuffle.pattern.DirectShotPattern;
 import com.udacity.desromj.kerfuffle.pattern.ShotgunPattern;
@@ -368,17 +369,101 @@ public class LevelPatterns
                     {
                         case EASY:
 
+                            patterns = new Pattern [] {
+                                    new CirclePattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .shotDelay(0.5f)
+                                                    .arms(16)
+                                                    .speed(100.0f)
+                                                    .targetted(true)
+                                                    .createProps()),
+                                    new SpiralPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .shotDelay(0.15f)
+                                                    .speed(140.0f)
+                                                    .targetted(false)
+                                                    .armAngleOffsetDegrees(7.5f)
+                                                    .createProps())
+                            };
+
                             break;
 
                         case MEDIUM:
+
+                            patterns = new Pattern [] {
+                                    new CirclePattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .shotDelay(0.25f)
+                                                    .arms(20)
+                                                    .speed(110.0f)
+                                                    .targetted(true)
+                                                    .createProps()),
+                                    new SpiralPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .shotDelay(0.1f)
+                                                    .speed(180.0f)
+                                                    .targetted(false)
+                                                    .armAngleOffsetDegrees(6.0f)
+                                                    .createProps())
+                            };
 
                             break;
 
                         case HARD:
 
+                            patterns = new Pattern [] {
+                                    new CirclePattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .shotDelay(0.2f)
+                                                    .arms(24)
+                                                    .speed(120.0f)
+                                                    .targetted(true)
+                                                    .createProps()),
+                                    new SpiralPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .shotDelay(0.06f)
+                                                    .speed(200.0f)
+                                                    .targetted(false)
+                                                    .armAngleOffsetDegrees(5.0f)
+                                                    .createProps())
+                            };
+
                             break;
 
                         case INSANE:
+
+                            patterns = new Pattern [] {
+                                    new CirclePattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .shotDelay(0.12f)
+                                                    .arms(32)
+                                                    .speed(150.0f)
+                                                    .targetted(true)
+                                                    .createProps()),
+                                    new SpiralPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .shotDelay(0.05f)
+                                                    .speed(240.0f)
+                                                    .targetted(false)
+                                                    .armAngleOffsetDegrees(4.0f)
+                                                    .createProps())
+                            };
 
                             break;
                     }

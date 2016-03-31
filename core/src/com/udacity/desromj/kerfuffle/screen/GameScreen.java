@@ -43,7 +43,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     SpriteBatch batch;
     ShapeRenderer renderer;
 
-    Enums.Difficulty difficulty = Enums.Difficulty.INSANE;
+    Enums.Difficulty difficulty = Enums.Difficulty.EASY;
     Level level;
 
     private GameScreen()
