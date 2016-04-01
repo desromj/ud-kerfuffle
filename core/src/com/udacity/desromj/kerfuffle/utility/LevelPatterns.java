@@ -483,9 +483,9 @@ public class LevelPatterns
                                                     .targetted(true)
                                                     .arms(2)
                                                     .shotsPerArm(5)
-                                                    .armAngleOffsetDegrees(10.0f)
+                                                    .armAngleOffsetDegrees(25.0f)
                                                     .armSpeedModifier(0.75f)
-                                                    .speed(200.0f)
+                                                    .speed(150.0f)
                                                     .createProps())
                             };
 
@@ -500,9 +500,9 @@ public class LevelPatterns
                                                     .targetted(true)
                                                     .arms(3)
                                                     .shotsPerArm(6)
-                                                    .armAngleOffsetDegrees(9.0f)
+                                                    .armAngleOffsetDegrees(17.5f)
                                                     .armSpeedModifier(0.8f)
-                                                    .speed(220.0f)
+                                                    .speed(180.0f)
                                                     .createProps())
                             };
 
@@ -517,9 +517,9 @@ public class LevelPatterns
                                                     .targetted(true)
                                                     .arms(4)
                                                     .shotsPerArm(7)
-                                                    .armAngleOffsetDegrees(7.5f)
+                                                    .armAngleOffsetDegrees(12.5f)
                                                     .armSpeedModifier(0.9f)
-                                                    .speed(250.0f)
+                                                    .speed(220.0f)
                                                     .createProps())
                             };
 
@@ -534,9 +534,9 @@ public class LevelPatterns
                                                     .targetted(true)
                                                     .arms(5)
                                                     .shotsPerArm(9)
-                                                    .armAngleOffsetDegrees(6.0f)
+                                                    .armAngleOffsetDegrees(10.0f)
                                                     .armSpeedModifier(0.9f)
-                                                    .speed(275.0f)
+                                                    .speed(250.0f)
                                                     .createProps())
                             };
 
