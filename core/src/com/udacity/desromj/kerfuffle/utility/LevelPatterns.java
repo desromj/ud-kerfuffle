@@ -52,6 +52,7 @@ public class LevelPatterns
         DEFAULT("d"),
 
         RED_SPIRAL("rs"),
+        DOUBLE_RED_SPIRAL("drs"),
         RED_SHOTGUN("rsg"),
         YELLOW_BURST("yb"),
 
@@ -204,6 +205,137 @@ public class LevelPatterns
                                                     .speed(180.0f)
                                                     .shotsPerWave(220)
                                                     .waveDelay(2.0f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps()
+                                    )
+                            };
+
+                            break;
+                    }
+
+                    break;
+
+                case DOUBLE_RED_SPIRAL:
+
+                    switch (difficulty)
+                    {
+                        case EASY:
+
+                            patterns = new Pattern[]{
+                                    new SpiralPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(0.04f)
+                                                    .targetted(true)
+                                                    .armAngleOffsetDegrees(24.0f)
+                                                    .speed(75.0f)
+                                                    .shotsPerWave(280)
+                                                    .waveDelay(1.0f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps()
+                                    ),
+                                    new SpiralPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(0.1f)
+                                                    .targetted(false)
+                                                    .armAngleOffsetDegrees(-16.0f)
+                                                    .speed(100.0f)
+                                                    .shotsPerWave(120)
+                                                    .waveDelay(2.5f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps()
+                                    )
+                            };
+
+                            break;
+
+                        case MEDIUM:
+
+                            patterns = new Pattern[]{
+                                    new SpiralPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(0.016f)
+                                                    .targetted(true)
+                                                    .armAngleOffsetDegrees(20.0f)
+                                                    .speed(80.0f)
+                                                    .shotsPerWave(350)
+                                                    .waveDelay(1.0f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps()
+                                    ),
+                                    new SpiralPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(0.04f)
+                                                    .targetted(false)
+                                                    .armAngleOffsetDegrees(-12.0f)
+                                                    .speed(120.0f)
+                                                    .shotsPerWave(140)
+                                                    .waveDelay(2.5f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps()
+                                    )
+                            };
+
+                            break;
+
+                        case HARD:
+
+                            patterns = new Pattern[]{
+                                    new SpiralPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(0.004f)
+                                                    .targetted(true)
+                                                    .armAngleOffsetDegrees(16.0f)
+                                                    .speed(90.0f)
+                                                    .shotsPerWave(400)
+                                                    .waveDelay(1.0f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps()
+                                    ),
+                                    new SpiralPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(0.01f)
+                                                    .targetted(false)
+                                                    .armAngleOffsetDegrees(-7.5f)
+                                                    .speed(140.0f)
+                                                    .shotsPerWave(160)
+                                                    .waveDelay(2.5f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps()
+                                    )
+                            };
+
+                            break;
+
+                        case INSANE:
+
+                            patterns = new Pattern[]{
+                                    new SpiralPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(0.002f)
+                                                    .targetted(true)
+                                                    .armAngleOffsetDegrees(15.0f)
+                                                    .speed(120.0f)
+                                                    .shotsPerWave(500)
+                                                    .waveDelay(1.0f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps()
+                                    ),
+                                    new SpiralPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .shotDelay(0.005f)
+                                                    .targetted(false)
+                                                    .armAngleOffsetDegrees(-6.0f)
+                                                    .speed(160.0f)
+                                                    .shotsPerWave(200)
+                                                    .waveDelay(2.5f)
                                                     .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
                                                     .createProps()
                                     )
