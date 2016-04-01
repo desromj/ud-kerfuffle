@@ -53,29 +53,16 @@ public class DewBoss extends Boss
     @Override
     public Array<Phase> loadPhases()
     {
-        // TODO: Load Phases based on the difficulty here
         Array<Phase> phases = new DelayedRemovalArray<Phase>();
-        Array<Pattern> phasePatterns = new DelayedRemovalArray<Pattern>();
+        Array<Pattern> phasePatterns;
 
-        // First Phase
+        for (int i = 0; i < Constants.BOSS_DEW_PATTERN_TAGS.length; i++)
+        {
+            phasePatterns = new DelayedRemovalArray<Pattern>();
 
-        phasePatterns = new DelayedRemovalArray<Pattern>();
-
-        phasePatterns.addAll(LevelPatterns.LevelNumber.makePattern(1, this, "dp1"));
-        phases.add(new Phase(450.0f, phasePatterns));
-
-        // Second Phase
-
-        phasePatterns = new DelayedRemovalArray<Pattern>();
-        phasePatterns.addAll(LevelPatterns.LevelNumber.makePattern(1, this, "dp2"));
-
-        phases.add(new Phase(200.0f, phasePatterns));
-
-        // Third Phase
-        phasePatterns = new DelayedRemovalArray<Pattern>();
-        phasePatterns.addAll(LevelPatterns.LevelNumber.makePattern(1, this, "dp3"));
-
-        phases.add(new Phase(300.0f, phasePatterns));
+            phasePatterns.addAll(LevelPatterns.LevelNumber.makePattern(1, this, Constants.BOSS_DEW_PATTERN_TAGS[i]));
+            phases.add(new Phase(Constants.BOSS_DEW_PATTERN_HEALTH[i], phasePatterns));
+        }
 
         return phases;
     }
