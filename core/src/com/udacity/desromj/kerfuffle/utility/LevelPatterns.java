@@ -476,17 +476,69 @@ public class LevelPatterns
                     {
                         case EASY:
 
+                            patterns = new Pattern [] {
+                                    new DirectShotPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .targetted(true)
+                                                    .arms(2)
+                                                    .shotsPerArm(5)
+                                                    .armAngleOffsetDegrees(10.0f)
+                                                    .armSpeedModifier(0.75f)
+                                                    .speed(200.0f)
+                                                    .createProps())
+                            };
+
                             break;
 
                         case MEDIUM:
+
+                            patterns = new Pattern [] {
+                                    new DirectShotPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .targetted(true)
+                                                    .arms(3)
+                                                    .shotsPerArm(6)
+                                                    .armAngleOffsetDegrees(9.0f)
+                                                    .armSpeedModifier(0.8f)
+                                                    .speed(220.0f)
+                                                    .createProps())
+                            };
 
                             break;
 
                         case HARD:
 
+                            patterns = new Pattern [] {
+                                    new DirectShotPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .targetted(true)
+                                                    .arms(4)
+                                                    .shotsPerArm(7)
+                                                    .armAngleOffsetDegrees(7.5f)
+                                                    .armSpeedModifier(0.9f)
+                                                    .speed(250.0f)
+                                                    .createProps())
+                            };
+
                             break;
 
                         case INSANE:
+
+                            patterns = new Pattern [] {
+                                    new DirectShotPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .targetted(true)
+                                                    .arms(5)
+                                                    .shotsPerArm(9)
+                                                    .armAngleOffsetDegrees(6.0f)
+                                                    .armSpeedModifier(0.9f)
+                                                    .speed(275.0f)
+                                                    .createProps())
+                            };
 
                             break;
                     }
@@ -499,17 +551,65 @@ public class LevelPatterns
                     {
                         case EASY:
 
+                            patterns = new Pattern []{
+                                    new CirclePattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .shotDelay(0.6f)
+                                                    .arms(16)
+                                                    .speed(100.0f)
+                                                    .targetted(false)
+                                                    .createProps())
+                            };
+
                             break;
 
                         case MEDIUM:
+
+                            patterns = new Pattern []{
+                                    new CirclePattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .shotDelay(0.4f)
+                                                    .arms(20)
+                                                    .speed(110.0f)
+                                                    .targetted(false)
+                                                    .createProps())
+                            };
 
                             break;
 
                         case HARD:
 
+                            patterns = new Pattern []{
+                                    new CirclePattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .shotDelay(0.2f)
+                                                    .arms(24)
+                                                    .speed(120.0f)
+                                                    .targetted(false)
+                                                    .createProps())
+                            };
+
                             break;
 
                         case INSANE:
+
+                            patterns = new Pattern []{
+                                    new CirclePattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .shotDelay(0.12f)
+                                                    .arms(27)
+                                                    .speed(150.0f)
+                                                    .targetted(false)
+                                                    .createProps())
+                            };
 
                             break;
                     }

@@ -62,41 +62,20 @@ public class DewBoss extends Boss
         phasePatterns = new DelayedRemovalArray<Pattern>();
 
         phasePatterns.addAll(LevelPatterns.LevelNumber.makePattern(1, this, "dp1"));
-        phases.add(new Phase(350.0f, phasePatterns));
+        phases.add(new Phase(450.0f, phasePatterns));
 
         // Second Phase
 
         phasePatterns = new DelayedRemovalArray<Pattern>();
+        phasePatterns.addAll(LevelPatterns.LevelNumber.makePattern(1, this, "dp2"));
 
-        // Properties should set: targetted, arms, shotsPerArm, radius, armAngleOffsetDegrees, armSpeedModifier, speed, mainShotType, secondaryShotType
-        phasePatterns.add(new DirectShotPattern(
-                this,
-                new PatternProperties.Builder()
-                        .targetted(true)
-                        .arms(4)
-                        .shotsPerArm(7)
-                        .armAngleOffsetDegrees(7.5f)
-                        .armSpeedModifier(0.95f)
-                        .speed(250.0f)
-                        .createProps()));
-
-        phases.add(new Phase(120.0f, phasePatterns));
+        phases.add(new Phase(200.0f, phasePatterns));
 
         // Third Phase
         phasePatterns = new DelayedRemovalArray<Pattern>();
+        phasePatterns.addAll(LevelPatterns.LevelNumber.makePattern(1, this, "dp3"));
 
-        // Properties should set: shotDelay, mainShotType, arms, radius, speed, targetted
-        phasePatterns.add(new CirclePattern(
-                this,
-                new PatternProperties.Builder()
-                        .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
-                        .shotDelay(0.2f)
-                        .arms(24)
-                        .speed(120.0f)
-                        .targetted(false)
-                        .createProps()));
-
-        phases.add(new Phase(220.0f, phasePatterns));
+        phases.add(new Phase(300.0f, phasePatterns));
 
         return phases;
     }
