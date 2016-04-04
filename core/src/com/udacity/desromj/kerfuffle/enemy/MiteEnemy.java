@@ -9,6 +9,7 @@ import com.udacity.desromj.kerfuffle.pattern.SpiralPattern;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 import com.udacity.desromj.kerfuffle.utility.Enums;
+import com.udacity.desromj.kerfuffle.utility.LevelPatterns;
 
 /**
  * Created by Quiv on 2016-01-31.
@@ -74,33 +75,6 @@ public class MiteEnemy extends Enemy
     @Override
     public void loadDefaultPattern()
     {
-        this.setPatterns(
-                new Pattern[]{
-                        new SpiralPattern(
-                                this,
-                                new PatternProperties.Builder()
-                                        .shotDelay(0.004f)
-                                        .targetted(true)
-                                        .armAngleOffsetDegrees(16.0f)
-                                        .speed(90.0f)
-                                        .shotsPerWave(400)
-                                        .waveDelay(1.0f)
-                                        .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
-                                        .createProps()
-                        ),
-                        new SpiralPattern(
-                                this,
-                                new PatternProperties.Builder()
-                                        .shotDelay(0.01f)
-                                        .targetted(false)
-                                        .armAngleOffsetDegrees(-7.5f)
-                                        .speed(140.0f)
-                                        .shotsPerWave(160)
-                                        .waveDelay(2.5f)
-                                        .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
-                                        .createProps()
-                        )
-                }
-        );
+        this.setPatterns(LevelPatterns.LevelNumber.makePattern(1, this, "drs"));
     }
 }
