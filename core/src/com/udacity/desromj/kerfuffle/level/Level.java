@@ -286,6 +286,12 @@ public class Level
         return new Vector2(player.getPosition().x, player.getPosition().y);
     }
 
+    // TODO: Dangerous method, used for debug only. Remove this later
+    public final Player getPlayer()
+    {
+        return this.player;
+    }
+
     /**
         Utility methods to add Game Objects to the Level - to be used with the LevelLoader class
      */

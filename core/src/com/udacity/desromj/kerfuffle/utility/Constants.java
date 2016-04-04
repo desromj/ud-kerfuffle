@@ -29,6 +29,9 @@ public class Constants
     public static final float PLAYER_SHOT_SPEED = WORLD_WIDTH * 2.0f;
     public static final float PLAYER_SHOT_DAMAGE = 2.0f;
 
+    public static final float PLAYER_SHOT_DEFAULT_POWER_LEVEL = 1.0f;
+    public static final float PLAYER_SHOT_MAX_POWER_LEVEL = 5.0f;
+    public static final float PLAYER_SHOT_DEGREE_ROTATION = 4.0f;
 
     public static Vector2 PLAYER_DEFAULT_SPAWN_POSITION = new Vector2(
             Constants.WORLD_WIDTH / 2.0f,
