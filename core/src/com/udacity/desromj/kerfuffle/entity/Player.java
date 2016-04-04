@@ -35,6 +35,7 @@ public class Player extends Shooter
         );
 
         this.lives = Constants.PLAYER_STARTING_LIVES;
+        this.bombs = Constants.PLAYER_STARTING_BOMBS;
 
         init(position);
     }
@@ -107,9 +108,19 @@ public class Player extends Shooter
         if (position.y - this.hitRadius <= 0.0f) position.y = this.hitRadius;
         if (position.y + this.hitRadius >= Constants.WORLD_HEIGHT) position.y = Constants.WORLD_HEIGHT - this.hitRadius;
 
-        // Handle shooting bullets
+        // Handle shooting Bullets
         if (Gdx.input.isKeyPressed(Input.Keys.Z))
             bulletPattern.shoot();
+
+        // Handle shooting Bombs
+        if (Gdx.input.isKeyPressed(Input.Keys.Z))
+        {
+            if (this.bombs > 0)
+            {
+                this.bombs--;
+                // TODO: Shoot bomb here
+            }
+        }
 
         /*
             Update skeleton and animation data
