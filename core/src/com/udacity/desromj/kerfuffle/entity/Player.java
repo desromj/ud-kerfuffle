@@ -15,6 +15,8 @@ import com.udacity.desromj.kerfuffle.utility.Enums;
  */
 public class Player extends Shooter
 {
+    private float magnitude;
+
     Pattern bulletPattern;
     int lives, bombs;
 
@@ -22,6 +24,7 @@ public class Player extends Shooter
     {
         super(position);
 
+        this.magnitude = 0.0f;
         this.bulletPattern = SpawnFactory.makePattern(
                 Enums.PatternType.PLAYER_BULLET_PATTERN,
                 this,
@@ -75,7 +78,7 @@ public class Player extends Shooter
     public void update(float delta)
     {
         // Keyboard Controls
-        float magnitude = ((Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) ? Constants.PLAYER_FOCUS_SPEED : Constants.PLAYER_SPEED) * delta;
+        this.magnitude = ((Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) ? Constants.PLAYER_FOCUS_SPEED : Constants.PLAYER_SPEED) * delta;
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) position.x -= magnitude;
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) position.x += magnitude;
