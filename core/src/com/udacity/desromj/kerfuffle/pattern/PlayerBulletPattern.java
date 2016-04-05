@@ -47,24 +47,24 @@ public class PlayerBulletPattern extends Pattern
                         new Vector2(
                                 (isFocussed) ? origin.x - Constants.PLAYER_SHOT_SEPARATION * 1.5f : origin.x - Constants.PLAYER_SHOT_SEPARATION * 2.0f,
                                 (isFocussed) ? origin.y + Constants.PLAYER_SHOT_SEPARATION * 0.5f : origin.y + Constants.PLAYER_SHOT_SEPARATION * 1.0f),
-                        Constants.PLAYER_SHOT_DEGREE_ROTATION));
+                        Constants.PLAYER_SHOT_DEGREE_ROTATION / ((isFocussed)? 2.0f : 1.0f)));
 
                 spawns.add(getBullet(
                         new Vector2(
                                 (isFocussed) ? origin.x - Constants.PLAYER_SHOT_SEPARATION * 1.5f : origin.x - Constants.PLAYER_SHOT_SEPARATION * 2.0f,
                                 (isFocussed) ? origin.y + Constants.PLAYER_SHOT_SEPARATION * 0.5f : origin.y + Constants.PLAYER_SHOT_SEPARATION * 1.0f),
-                        Constants.PLAYER_SHOT_DEGREE_ROTATION * 2.0f));
+                        Constants.PLAYER_SHOT_DEGREE_ROTATION * 2.0f / ((isFocussed)? 2.0f : 1.0f)));
 
                 spawns.add(getBullet(
                         new Vector2(
                                 (isFocussed) ? origin.x + Constants.PLAYER_SHOT_SEPARATION * 1.5f : origin.x + Constants.PLAYER_SHOT_SEPARATION * 2.0f,
                                 (isFocussed) ? origin.y + Constants.PLAYER_SHOT_SEPARATION * 0.5f : origin.y + Constants.PLAYER_SHOT_SEPARATION * 1.0f),
-                        -Constants.PLAYER_SHOT_DEGREE_ROTATION));
+                        -Constants.PLAYER_SHOT_DEGREE_ROTATION / ((isFocussed)? 2.0f : 1.0f)));
                 spawns.add(getBullet(
                         new Vector2(
                                 (isFocussed) ? origin.x + Constants.PLAYER_SHOT_SEPARATION * 1.5f : origin.x + Constants.PLAYER_SHOT_SEPARATION * 2.0f,
                                 (isFocussed) ? origin.y + Constants.PLAYER_SHOT_SEPARATION * 0.5f : origin.y + Constants.PLAYER_SHOT_SEPARATION * 1.0f),
-                        -Constants.PLAYER_SHOT_DEGREE_ROTATION * 2.0f));
+                        -Constants.PLAYER_SHOT_DEGREE_ROTATION * 2.0f / ((isFocussed)? 2.0f : 1.0f)));
 
             case 4:
 
@@ -84,13 +84,13 @@ public class PlayerBulletPattern extends Pattern
                         new Vector2(
                                 (isFocussed) ? origin.x - Constants.PLAYER_SHOT_SEPARATION * 0.5f : origin.x - Constants.PLAYER_SHOT_SEPARATION * 2.0f,
                                 (isFocussed) ? origin.y + Constants.PLAYER_SHOT_SEPARATION * 0.5f : origin.y + Constants.PLAYER_SHOT_SEPARATION * 1.0f),
-                        Constants.PLAYER_SHOT_DEGREE_ROTATION));
+                        Constants.PLAYER_SHOT_DEGREE_ROTATION / ((isFocussed)? 2.0f : 1.0f)));
 
                 spawns.add(getBullet(
                         new Vector2(
                                 (isFocussed) ? origin.x + Constants.PLAYER_SHOT_SEPARATION * 0.5f : origin.x + Constants.PLAYER_SHOT_SEPARATION * 2.0f,
                                 (isFocussed) ? origin.y + Constants.PLAYER_SHOT_SEPARATION * 0.5f : origin.y + Constants.PLAYER_SHOT_SEPARATION * 1.0f),
-                        -Constants.PLAYER_SHOT_DEGREE_ROTATION));
+                        -Constants.PLAYER_SHOT_DEGREE_ROTATION / ((isFocussed)? 2.0f : 1.0f)));
 
             case 2:
 
@@ -98,13 +98,13 @@ public class PlayerBulletPattern extends Pattern
                         new Vector2(
                                 (isFocussed) ? origin.x - Constants.PLAYER_SHOT_SEPARATION * 1.0f : origin.x - Constants.PLAYER_SHOT_SEPARATION * 2.0f,
                                 (isFocussed) ? origin.y + Constants.PLAYER_SHOT_SEPARATION * 1.5f : origin.y + Constants.PLAYER_SHOT_SEPARATION * 3.0f),
-                        Constants.PLAYER_SHOT_DEGREE_ROTATION / 3.0f));
+                        Constants.PLAYER_SHOT_DEGREE_ROTATION / 3.0f / ((isFocussed)? 2.0f : 1.0f)));
 
                 spawns.add(getBullet(
                         new Vector2(
                                 (isFocussed) ? origin.x + Constants.PLAYER_SHOT_SEPARATION * 1.0f : origin.x + Constants.PLAYER_SHOT_SEPARATION * 2.0f,
                                 (isFocussed) ? origin.y + Constants.PLAYER_SHOT_SEPARATION * 1.5f : origin.y + Constants.PLAYER_SHOT_SEPARATION * 3.0f),
-                        -Constants.PLAYER_SHOT_DEGREE_ROTATION / 3.0f));
+                        -Constants.PLAYER_SHOT_DEGREE_ROTATION / 3.0f / ((isFocussed)? 2.0f : 1.0f)));
 
             case 1:
             default:
