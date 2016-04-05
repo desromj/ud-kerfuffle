@@ -62,6 +62,9 @@ public class Player extends Shooter
         return this.lives <= 0;
     }
 
+    public int getLives() { return this.lives; }
+    public int getBombs() { return this.bombs; }
+
     public final float getShotPowerLevel() { return this.shotPowerLevel; };
 
     public final void addShotPower(float power)
