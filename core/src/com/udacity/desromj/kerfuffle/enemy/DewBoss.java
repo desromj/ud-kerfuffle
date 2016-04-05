@@ -14,6 +14,7 @@ import com.udacity.desromj.kerfuffle.pattern.SpiralPattern;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 import com.udacity.desromj.kerfuffle.utility.Enums;
+import com.udacity.desromj.kerfuffle.utility.LevelPatterns;
 
 /**
  * Created by Mike on 2016-03-21.
@@ -52,70 +53,16 @@ public class DewBoss extends Boss
     @Override
     public Array<Phase> loadPhases()
     {
-        // TODO: Load Phases based on the difficulty here
         Array<Phase> phases = new DelayedRemovalArray<Phase>();
-        Array<Pattern> phasePatterns = new DelayedRemovalArray<Pattern>();
+        Array<Pattern> phasePatterns;
 
-        // First Phase
+        for (int i = 0; i < Constants.BOSS_DEW_PATTERN_TAGS.length; i++)
+        {
+            phasePatterns = new DelayedRemovalArray<Pattern>();
 
-        phasePatterns = new DelayedRemovalArray<Pattern>();
-
-        // Properties should set: shotDelay, mainShotType, arms, radius, speed, targetted
-        phasePatterns.add(new CirclePattern(
-                this,
-                new PatternProperties.Builder()
-                        .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
-                        .shotDelay(0.2f)
-                        .arms(24)
-                        .speed(120.0f)
-                        .targetted(true)
-                        .createProps()));
-
-        phasePatterns.add(new SpiralPattern(
-                this,
-                new PatternProperties.Builder()
-                        .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
-                        .shotDelay(0.06f)
-                        .speed(200.0f)
-                        .targetted(false)
-                        .armAngleOffsetDegrees(5.0f)
-                        .createProps()));
-
-        phases.add(new Phase(350.0f, phasePatterns));
-
-        // Second Phase
-
-        phasePatterns = new DelayedRemovalArray<Pattern>();
-
-        // Properties should set: targetted, arms, shotsPerArm, radius, armAngleOffsetDegrees, armSpeedModifier, speed, mainShotType, secondaryShotType
-        phasePatterns.add(new DirectShotPattern(
-                this,
-                new PatternProperties.Builder()
-                        .targetted(true)
-                        .arms(4)
-                        .shotsPerArm(7)
-                        .armAngleOffsetDegrees(7.5f)
-                        .armSpeedModifier(0.95f)
-                        .speed(250.0f)
-                        .createProps()));
-
-        phases.add(new Phase(120.0f, phasePatterns));
-
-        // Third Phase
-        phasePatterns = new DelayedRemovalArray<Pattern>();
-
-        // Properties should set: shotDelay, mainShotType, arms, radius, speed, targetted
-        phasePatterns.add(new CirclePattern(
-                this,
-                new PatternProperties.Builder()
-                        .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
-                        .shotDelay(0.2f)
-                        .arms(24)
-                        .speed(120.0f)
-                        .targetted(false)
-                        .createProps()));
-
-        phases.add(new Phase(220.0f, phasePatterns));
+            phasePatterns.addAll(LevelPatterns.LevelNumber.makePattern(1, this, Constants.BOSS_DEW_PATTERN_TAGS[i]));
+            phases.add(new Phase(Constants.BOSS_DEW_PATTERN_HEALTH[i], phasePatterns));
+        }
 
         return phases;
     }

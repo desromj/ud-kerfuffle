@@ -43,7 +43,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     SpriteBatch batch;
     ShapeRenderer renderer;
 
-    Enums.Difficulty difficulty = Enums.Difficulty.MEDIUM;
+    Enums.Difficulty difficulty = Enums.Difficulty.EASY;
     Level level;
 
     private GameScreen()
@@ -143,9 +143,21 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     @Override
     public boolean keyDown(int keycode)
     {
-        // Reset the game by pressing 'R' - TODO: remove debug control
+        // TODO: remove debug control - Press 'R' to reset the level
         if (keycode == Input.Keys.R)
             instance.init();
+
+        // TODO: remove debug control - Press 'E' to increase player shot power level
+        if (keycode == Input.Keys.E)
+        {
+            Player player = level.getPlayer();
+            float playerPower = player.getShotPowerLevel();
+
+            if (playerPower >= 5.0f)
+                player.setShotPower(1.0f);
+            else
+                player.addShotPower(1.0f);
+        }
 
         return true;
     }

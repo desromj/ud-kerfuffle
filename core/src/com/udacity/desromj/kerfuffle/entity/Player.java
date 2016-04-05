@@ -3,6 +3,7 @@ package com.udacity.desromj.kerfuffle.entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.udacity.desromj.kerfuffle.bullet.SpawnFactory;
 import com.udacity.desromj.kerfuffle.pattern.PlayerBulletPattern;
@@ -19,6 +20,7 @@ public class Player extends Shooter
 
     Pattern bulletPattern;
     int lives, bombs;
+    float shotPowerLevel;
 
     public Player(Vector2 position)
     {
@@ -36,6 +38,7 @@ public class Player extends Shooter
         );
 
         this.lives = Constants.PLAYER_STARTING_LIVES;
+        this.bombs = Constants.PLAYER_STARTING_BOMBS;
 
         init(position);
     }
@@ -44,6 +47,7 @@ public class Player extends Shooter
     {
         this.position = new Vector2(spawnPoint.x, spawnPoint.y);
         this.bombs = Constants.PLAYER_STARTING_BOMBS;
+        this.shotPowerLevel = Constants.PLAYER_SHOT_DEFAULT_POWER_LEVEL;
     }
 
     /**
@@ -59,6 +63,22 @@ public class Player extends Shooter
     public final boolean isOutOfLives()
     {
         return this.lives <= 0;
+    }
+
+    public final float getShotPowerLevel() { return this.shotPowerLevel; };
+
+    public final void addShotPower(float power)
+    {
+        this.setShotPower(this.shotPowerLevel + power);
+    }
+
+    /**
+     * Dangerous method, used for initialization. Consider using addShotPower instead
+     * @param newLevel
+     */
+    public final void setShotPower(float newLevel)
+    {
+        this.shotPowerLevel = MathUtils.clamp(newLevel, Constants.PLAYER_SHOT_DEFAULT_POWER_LEVEL, Constants.PLAYER_SHOT_MAX_POWER_LEVEL);
     }
 
     /**
@@ -91,9 +111,19 @@ public class Player extends Shooter
         if (position.y - this.hitRadius <= 0.0f) position.y = this.hitRadius;
         if (position.y + this.hitRadius >= Constants.WORLD_HEIGHT) position.y = Constants.WORLD_HEIGHT - this.hitRadius;
 
-        // Handle shooting bullets
+        // Handle shooting Bullets
         if (Gdx.input.isKeyPressed(Input.Keys.Z))
             bulletPattern.shoot();
+
+        // Handle shooting Bombs
+        if (Gdx.input.isKeyPressed(Input.Keys.Z))
+        {
+            if (this.bombs > 0)
+            {
+                this.bombs--;
+                // TODO: Shoot bomb here
+            }
+        }
 
         /*
             Update skeleton and animation data

@@ -29,6 +29,9 @@ public class Constants
     public static final float PLAYER_SHOT_SPEED = WORLD_WIDTH * 2.0f;
     public static final float PLAYER_SHOT_DAMAGE = 2.0f;
 
+    public static final float PLAYER_SHOT_DEFAULT_POWER_LEVEL = 1.0f;
+    public static final float PLAYER_SHOT_MAX_POWER_LEVEL = 5.0f;
+    public static final float PLAYER_SHOT_DEGREE_ROTATION = 4.0f;
 
     public static Vector2 PLAYER_DEFAULT_SPAWN_POSITION = new Vector2(
             Constants.WORLD_WIDTH / 2.0f,
@@ -62,8 +65,14 @@ public class Constants
     // Dew values - midboss
     public static final float BOSS_DEW_RADIUS = WORLD_WIDTH / 25.0f;
 
+    public static final float [] BOSS_DEW_PATTERN_HEALTH = new float [] { 450f, 200f, 300f };
+    public static final String [] BOSS_DEW_PATTERN_TAGS = new String [] { "dp1", "dp2", "dp3" };
+
     // Mwap values - main boss
     public static final float BOSS_MWAP_RADIUS = WORLD_WIDTH / 50.0f;
+
+    public static final float [] BOSS_MWAP_PATTERN_HEALTH = new float [] { 500f, 250f, 300f, 200f, 400f };
+    public static final String [] BOSS_MWAP_PATTERN_TAGS = new String [] { "mp1", "mp2", "mp3", "mp4", "mp5" };
 
     /*
     Bullet values
