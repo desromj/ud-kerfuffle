@@ -23,4 +23,7 @@ public class Score
         if (score > topScore)
             topScore = score;
     }
+
+    public int getScore() { return this.score; }
+    public int getTopScore() { return this.topScore; }
 }

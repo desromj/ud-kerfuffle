@@ -45,11 +45,13 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
 
     Enums.Difficulty difficulty = Enums.Difficulty.EASY;
     Level level;
+    GameScreenHUD hud;
 
     private GameScreen()
     {
         Assets.instance.init();
         viewport = new ExtendViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
+        hud = new GameScreenHUD(viewport);
         Gdx.input.setInputProcessor(this);
     }
 
@@ -65,6 +67,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     public void render(float delta)
     {
         level.render(delta, renderer, batch);
+        hud.render();
     }
 
     @Override
@@ -117,6 +120,9 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     {
         return level.getPlayerPosition();
     }
+
+    public int getPlayerLivesLeft() { return level.getPlayer().getLives(); }
+    public int getPlayerBombsLeft() { return level.getPlayer().getBombs(); }
 
     public Vector2 getMiddleOfScreen()
     {
