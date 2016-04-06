@@ -119,7 +119,7 @@ public class Player extends Shooter
             bulletPattern.shoot();
 
         // Handle shooting Bombs
-        if (Gdx.input.isKeyPressed(Input.Keys.Z))
+        if (Gdx.input.isKeyPressed(Input.Keys.X))
         {
             if (this.bombs > 0)
             {
