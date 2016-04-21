@@ -36,6 +36,10 @@ public class Constants
     public static final float PLAYER_SHOT_MAX_POWER_LEVEL = 5.0f;
     public static final float PLAYER_SHOT_DEGREE_ROTATION = 4.0f;
 
+    public static final float PLAYER_BOMB_RADIUS = WORLD_WIDTH / 1.6f;
+    public static final float PLAYER_BOMB_DAMAGE_PER_SECOND = 16.0f;
+    public static final float PLAYER_BOMB_COLORS_PER_SECOND = 8.0f;
+
     public static Vector2 PLAYER_DEFAULT_SPAWN_POSITION = new Vector2(
             Constants.WORLD_WIDTH / 2.0f,
             Constants.WORLD_HEIGHT / 8.0f);

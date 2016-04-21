@@ -43,7 +43,7 @@ public abstract class Bullet extends Spawnable
                 || (this.position.y - this.shotRadius > Constants.WORLD_HEIGHT);
     }
 
-    public final float getDamage() { return this.damage; }
+    public float getDamage() { return this.damage; }
 
     public final float getShotRadius() { return this.shotRadius; }
 }
