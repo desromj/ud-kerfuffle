@@ -38,6 +38,29 @@ public class Enums
             return EnemyType.MITE;
         }
     }
+
+    public enum BossType
+    {
+        DEW("dew"),
+        MWAP("mwap");
+
+        private String tag;
+
+        private BossType(String tag)
+        {
+            this.tag = tag;
+        }
+
+        public static BossType getType(String tag)
+        {
+            for (BossType type: BossType.values())
+                if (type.tag.equalsIgnoreCase(tag))
+                    return type;
+
+            return BossType.DEW;
+        }
+    }
+
     /**
      * Types of Bullets which can be spawned
      */

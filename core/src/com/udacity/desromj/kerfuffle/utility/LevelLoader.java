@@ -5,7 +5,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.desromj.kerfuffle.enemy.DewBoss;
+import com.udacity.desromj.kerfuffle.enemy.FlyEnemy;
+import com.udacity.desromj.kerfuffle.enemy.MantisEnemy;
 import com.udacity.desromj.kerfuffle.enemy.MiteEnemy;
+import com.udacity.desromj.kerfuffle.enemy.MwapBoss;
 import com.udacity.desromj.kerfuffle.entity.Boss;
 import com.udacity.desromj.kerfuffle.entity.Enemy;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
@@ -60,7 +63,7 @@ public class LevelLoader
         {
             levelJson = (JSONObject) parser.parse(Gdx.files.internal(path).readString());
 
-            // Load images and 9patchs from the JSON file
+            // Load enemies, bosses, and positions from JASON
             JSONObject comp = Utils.castJSON(levelJson, "composite");
             JSONArray objects = Utils.castJSON(comp, "sImages");
 
@@ -70,48 +73,9 @@ public class LevelLoader
 
                 // Add enemy
                 if (item.get("imageName").equals(Constants.ENEMY_ID_TAG))
-                {
-                    float width = Utils.castJSONFloat(item, "originX");
-                    float height = Utils.castJSONFloat(item, "originY");
-
-                    Vector2 itemXYPos = Utils.castJSONVector2(item);
-
-                    itemXYPos.x += width + Constants.WORLD_WIDTH / 2.0f;
-                    itemXYPos.y += height;
-
-                    Map<String, Object> customs = Utils.readJSONCustomVars(item);
-
-                    float heightRatio = new Float(customs.get("heightRatio").toString());
-                    String enemyTypeString = new String(customs.get("enemyType").toString());
-                    Enums.EnemyType enemyType = Enums.EnemyType.getType(enemyTypeString);
-                    String patternTag = new String(customs.get("patternTag").toString());
-
-                    Enemy add;
-
-                    switch (enemyType)
-                    {
-                        case MITE:
-                            add = new MiteEnemy(
-                                    itemXYPos,
-                                    heightRatio
-                            );
-
-                            break;
-
-                        default:
-                            continue;
-                    }
-
-                    add.setPatterns(
-                            LevelPatterns.LevelNumber.makePattern(
-                                    GameScreen.instance.getCurrentLevelNum(),
-                                    add,
-                                    patternTag
-                            )
-                    );
-
-                    level.addShooter(add);
-                }
+                    addEnemy(item, level);
+                if (item.get("imageName").equals(Constants.BOSS_ID_TAG))
+                    addBoss(item, level);
             }
         }
         catch (ParseException ex)
@@ -119,74 +83,90 @@ public class LevelLoader
             Gdx.app.error(TAG, "Could not parse JSON correctly. Message: " + ex.getMessage());
         }
 
-        /*
-        Enemy enemy;
-
-        // Add first set of enemies
-
-        // First spiral
-        enemy = new MiteEnemy(
-                new Vector2(
-                        Constants.WORLD_WIDTH / 4.0f,
-                        Constants.WORLD_HEIGHT),
-                0.75f);
-
-        enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "rsg"));
-
-        level.addShooter(enemy);
-
-        // Second spiral
-        enemy = new MiteEnemy(
-                new Vector2(
-                        Constants.WORLD_WIDTH * 3.0f / 4.0f,
-                        Constants.WORLD_HEIGHT),
-                0.75f);
-
-        enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "rsg"));
-
-        level.addShooter(enemy);
-
-        // Random bursting
-        enemy = new MiteEnemy(new Vector2(
-                Constants.WORLD_WIDTH / 2.0f,
-                Constants.WORLD_HEIGHT * 1.5f),
-                0.625f);
-
-        enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "yb"));
-
-        level.addShooter(enemy);
-
-        // Add a Boss
-
-        Boss midBoss = new DewBoss(new Vector2(
-                Constants.WORLD_WIDTH / 2.0f,
-                Constants.WORLD_HEIGHT * 2.5f),
-                0.75f);
-
-        level.addBoss(midBoss);
-
-        // More shooters above the Boss
-
-        // First burst
-        enemy = new MiteEnemy(new Vector2(
-                Constants.WORLD_WIDTH * 3.0f / 4.0f,
-                Constants.WORLD_HEIGHT * 4.0f),
-                0.625f);
-
-        enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "yb"));
-
-        // Second burst
-        level.addShooter(enemy);
-        enemy = new MiteEnemy(new Vector2(
-                Constants.WORLD_WIDTH / 4.0f,
-                Constants.WORLD_HEIGHT * 4.0f),
-                0.625f);
-
-        enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "yb"));
-
-        level.addShooter(enemy);
-        */
-
         return level;
+    }
+
+    private static void addBoss(JSONObject item, Level level)
+    {
+        Vector2 itemXYPos = Utils.castJSONVector2(item);
+
+        // Add image origins to x and y coords to get origin for game object
+        float width = Utils.castJSONFloat(item, "originX");
+        float height = Utils.castJSONFloat(item, "originY");
+        itemXYPos.x += width + Constants.WORLD_WIDTH / 2.0f;
+        itemXYPos.y += height;
+
+        // Read custom vars from JASON
+        Map<String, Object> customs = Utils.readJSONCustomVars(item);
+
+        float heightRatio = new Float(customs.get("heightRatio").toString());
+        String bossTypeString = new String(customs.get("bossType").toString());
+        Enums.BossType bossType = Enums.BossType.getType(bossTypeString);
+
+        // Determine the type of enemy to add
+        Boss boss;
+
+        switch (bossType)
+        {
+            case MWAP:
+                boss = new MwapBoss(itemXYPos, heightRatio);
+                break;
+
+            case DEW:
+            default:
+                boss = new DewBoss(itemXYPos, heightRatio);
+                break;
+        }
+
+        level.addBoss(boss);
+    }
+
+    private static void addEnemy(JSONObject item, Level level)
+    {
+        Vector2 itemXYPos = Utils.castJSONVector2(item);
+
+        // Add image origins to x and y coords to get origin for game object
+        float width = Utils.castJSONFloat(item, "originX");
+        float height = Utils.castJSONFloat(item, "originY");
+        itemXYPos.x += width + Constants.WORLD_WIDTH / 2.0f;
+        itemXYPos.y += height;
+
+        // Read custom vars from JASON
+        Map<String, Object> customs = Utils.readJSONCustomVars(item);
+
+        float heightRatio = new Float(customs.get("heightRatio").toString());
+        String enemyTypeString = new String(customs.get("enemyType").toString());
+        Enums.EnemyType enemyType = Enums.EnemyType.getType(enemyTypeString);
+        String patternTag = new String(customs.get("patternTag").toString());
+
+        // Determine the type of enemy to add
+        Enemy add;
+
+        switch (enemyType)
+        {
+            case DRAGONFLY:
+                add = new FlyEnemy(itemXYPos, heightRatio);
+                break;
+
+            case MANTIS:
+                add = new MantisEnemy(itemXYPos, heightRatio);
+                break;
+
+            case MITE:
+            default:
+                add = new MiteEnemy(itemXYPos, heightRatio);
+                break;
+        }
+
+        // Set patterns based on the current level and pattern tag defined from JASON
+        add.setPatterns(
+                LevelPatterns.LevelNumber.makePattern(
+                        GameScreen.instance.getCurrentLevelNum(),
+                        add,
+                        patternTag
+                )
+        );
+
+        level.addShooter(add);
     }
 }

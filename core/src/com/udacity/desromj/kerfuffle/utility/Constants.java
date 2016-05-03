@@ -15,10 +15,9 @@ public class Constants
     public static final float HUD_SCALE = 1.5f;
 
     public static final String GAME_TITLE = "A-Pollen";
+
     public static final String ENEMY_ID_TAG = "enemy";
-    public static final String ENEMY_ID_MITE = "mite";
-    public static final String ENEMY_ID_DRAGONFLY = "dragonfly";
-    public static final String ENEMY_ID_MANTIS = "mantis";
+    public static final String BOSS_ID_TAG = "boss";
 
     public static final float PLAYER_HEALTH = 1.0f;
     public static final float PLAYER_RADIUS = WORLD_WIDTH / 130.0f;

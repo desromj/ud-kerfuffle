@@ -22,11 +22,11 @@ public abstract class Boss extends Shooter
      * Phases of the Boss fight instead
      *
      * @param position
-     * @param screenActivationHeight
+     * @param heightRatio
      */
-    protected Boss(Vector2 position, float screenActivationHeight) {
+    protected Boss(Vector2 position, float heightRatio) {
         super(position);
-        this.screenActivationHeight = screenActivationHeight;
+        this.screenActivationHeight = heightRatio * Constants.WORLD_HEIGHT;
         this.phases = this.loadPhases();
         this.currentPhase = phases.peek();
     }
