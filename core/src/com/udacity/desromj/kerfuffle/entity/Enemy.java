@@ -11,17 +11,17 @@ public abstract class Enemy extends Shooter
     protected float screenActivationHeight;
     protected Pattern [] patterns;
 
-    public Enemy(Vector2 position, float screenActivationHeight)
+    public Enemy(Vector2 position, float heightRatio)
     {
         super(position);
-        this.screenActivationHeight = screenActivationHeight;
+        this.screenActivationHeight = heightRatio * Constants.WORLD_HEIGHT;
     }
 
-    public Enemy(Vector2 position, float screenActivationHeight, Pattern [] patterns)
+    public Enemy(Vector2 position, float heightRatio, Pattern [] patterns)
     {
         super(position);
         setPatterns(patterns);
-        this.screenActivationHeight = screenActivationHeight;
+        this.screenActivationHeight = heightRatio * Constants.WORLD_HEIGHT;
     }
 
     public final void setPatterns(Pattern [] patterns)

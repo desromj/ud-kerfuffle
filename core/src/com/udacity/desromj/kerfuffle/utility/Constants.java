@@ -14,10 +14,6 @@ public class Constants
     public static final float HUD_WORLD_MARGIN = WORLD_WIDTH / 20.0f;
     public static final float HUD_SCALE = 1.5f;
 
-    public static final float ACTIVATION_HEIGHT_HIGH = WORLD_HEIGHT * 3.0f / 4.0f;
-    public static final float ACTIVATION_HEIGHT_MEDIUM = WORLD_HEIGHT * 5.0f / 8.0f;
-    public static final float ACTIVATION_HEIGHT_LOW = WORLD_HEIGHT / 2.0f;
-
     public static final String GAME_TITLE = "A-Pollen";
 
     public static final float PLAYER_HEALTH = 1.0f;

@@ -24,6 +24,17 @@ public class LevelLoader
 
     private LevelLoader() {}
 
+    /**
+     * Enemies loaded require the following tags:
+     *      - x/y coordinates (included by default in JSONObject)
+     *          - should add 1/2 the width and height of the sprite used to place it
+     *      - activationHeight (passed as a ratio 0.0 - 1.0
+     *      - pattern tag (see LevelPatterns enum classes)
+     *
+     * @param path
+     * @param viewport
+     * @return
+     */
     public static Level load(String path, Viewport viewport)
     {
         Level level = new Level(viewport);
@@ -42,7 +53,7 @@ public class LevelLoader
                 new Vector2(
                         Constants.WORLD_WIDTH / 4.0f,
                         Constants.WORLD_HEIGHT),
-                Constants.ACTIVATION_HEIGHT_HIGH);
+                0.75f);
 
         enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "rsg"));
 
@@ -53,7 +64,7 @@ public class LevelLoader
                 new Vector2(
                         Constants.WORLD_WIDTH * 3.0f / 4.0f,
                         Constants.WORLD_HEIGHT),
-                Constants.ACTIVATION_HEIGHT_HIGH);
+                0.75f);
 
         enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "rsg"));
 
@@ -63,7 +74,7 @@ public class LevelLoader
         enemy = new MiteEnemy(new Vector2(
                 Constants.WORLD_WIDTH / 2.0f,
                 Constants.WORLD_HEIGHT * 1.5f),
-                Constants.ACTIVATION_HEIGHT_MEDIUM);
+                0.625f);
 
         enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "yb"));
 
@@ -76,7 +87,7 @@ public class LevelLoader
         Boss midBoss = new DewBoss(new Vector2(
                 Constants.WORLD_WIDTH / 2.0f,
                 Constants.WORLD_HEIGHT * 2.5f),
-                Constants.ACTIVATION_HEIGHT_HIGH);
+                0.75f);
 
         level.addBoss(midBoss);
 
@@ -88,7 +99,7 @@ public class LevelLoader
         enemy = new MiteEnemy(new Vector2(
                 Constants.WORLD_WIDTH * 3.0f / 4.0f,
                 Constants.WORLD_HEIGHT * 4.0f),
-                Constants.ACTIVATION_HEIGHT_MEDIUM);
+                0.625f);
 
         enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "yb"));
 
@@ -97,7 +108,7 @@ public class LevelLoader
         enemy = new MiteEnemy(new Vector2(
                 Constants.WORLD_WIDTH / 4.0f,
                 Constants.WORLD_HEIGHT * 4.0f),
-                Constants.ACTIVATION_HEIGHT_MEDIUM);
+                0.625f);
 
         enemy.setPatterns(LevelPatterns.LevelNumber.makePattern(1, enemy, "yb"));
 
