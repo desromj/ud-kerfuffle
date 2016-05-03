@@ -38,6 +38,7 @@ import com.udacity.desromj.kerfuffle.utility.LevelLoader;
 public class GameScreen extends ScreenAdapter implements InputProcessor
 {
     public static final GameScreen instance = new GameScreen();
+    private static int currentLevelNum;
 
     Viewport viewport;
     SpriteBatch batch;
@@ -52,6 +53,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         Assets.instance.init();
         viewport = new ExtendViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
         hud = new GameScreenHUD(viewport);
+        currentLevelNum = 1;
         Gdx.input.setInputProcessor(this);
     }
 
@@ -60,7 +62,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         renderer = new ShapeRenderer();
         batch = new SpriteBatch();
 
-        level = LevelLoader.load("", viewport);
+        level = LevelLoader.load("levels/level-one.json", viewport);
     }
 
     @Override
@@ -140,6 +142,11 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     public void setDifficulty(Enums.Difficulty difficulty)
     {
         this.difficulty = difficulty;
+    }
+
+    public static int getCurrentLevelNum()
+    {
+        return GameScreen.currentLevelNum;
     }
 
     /*

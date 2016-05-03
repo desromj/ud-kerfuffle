@@ -8,6 +8,9 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 import org.json.simple.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Mike on 2016-03-01.
  *
@@ -111,5 +114,27 @@ public class Utils
         if (object.containsKey("y")) y = castJSONFloat(object, "y");
 
         return new Vector2(x, y);
+    }
+
+    /**
+     * Extracts all custom variables from a JSON Object into a Key/Value Map.
+     *
+     * K/V pairs are separated by semicolons, and Keys-Values themselves are separated by colons
+     *
+     * @param object
+     * @return
+     */
+    public static Map<String, Object> readJSONCustomVars(JSONObject object)
+    {
+        String line = Utils.castJSON(object, "customVars");
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        for (String pair: line.split("\\;"))
+            map.put(
+                    pair.split("\\:")[0],
+                    pair.split("\\:")[1]
+            );
+
+        return map;
     }
 }

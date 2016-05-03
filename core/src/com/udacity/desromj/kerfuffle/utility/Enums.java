@@ -16,6 +16,28 @@ public class Enums
         INSANE
     }
 
+    public enum EnemyType
+    {
+        MITE("mite"),
+        DRAGONFLY("dragonfly"),
+        MANTIS("mantis");
+
+        private String tag;
+
+        private EnemyType(String tag)
+        {
+            this.tag = tag;
+        }
+
+        public static EnemyType getType(String tag)
+        {
+            for (EnemyType type: EnemyType.values())
+                if (type.tag.equalsIgnoreCase(tag))
+                    return type;
+
+            return EnemyType.MITE;
+        }
+    }
     /**
      * Types of Bullets which can be spawned
      */
