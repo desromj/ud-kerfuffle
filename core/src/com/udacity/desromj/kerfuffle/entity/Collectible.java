@@ -9,10 +9,9 @@ import com.udacity.desromj.kerfuffle.utility.Utils;
 /**
  * Created by Quiv on 2016-05-03.
  */
-public abstract class Collectible
+public abstract class Collectible extends Spawnable
 {
     private float hitRadius;
-    private Vector2 position, velocity;
 
     public Collectible(float x, float y)
     {
@@ -21,21 +20,24 @@ public abstract class Collectible
 
     private Collectible(Vector2 position)
     {
+        super(
+                null,
+                position,
+                new Vector2(0.0f, Constants.COLLECTIBLE_INIT_Y_VELOCITY)
+        );
+
         this.hitRadius = Constants.COLLECTIBLE_HIT_RADIUS;
-        this.position = position;
-        this.velocity = new Vector2(0.0f, Constants.COLLECTIBLE_INIT_Y_VELOCITY);
     }
 
     public void update(float delta)
     {
         this.velocity.y += Constants.COLLECTIBLE_ACCEL_DUE_TO_GRAVITY;
-        this.position.y += this.velocity.y;
+        super.update(delta);
     }
 
-    public boolean isOnScreen()
+    @Override
+    public boolean isOffScreen()
     {
-        return Utils.isOnScreen(this.position, this.hitRadius);
+        return !Utils.isOnScreen(this.position, this.hitRadius);
     }
-
-    public abstract void render(ShapeRenderer renderer, SpriteBatch batch);
 }

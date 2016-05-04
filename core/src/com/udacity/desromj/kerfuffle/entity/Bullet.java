@@ -3,6 +3,7 @@ package com.udacity.desromj.kerfuffle.entity;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.udacity.desromj.kerfuffle.utility.Constants;
+import com.udacity.desromj.kerfuffle.utility.Utils;
 
 /**
  * Created by Mike on 2016-01-27.
@@ -37,10 +38,7 @@ public abstract class Bullet extends Spawnable
     @Override
     public boolean isOffScreen()
     {
-        return (this.position.x + this.shotRadius < 0.0f)
-                || (this.position.x - this.shotRadius > Constants.WORLD_WIDTH)
-                || (this.position.y + this.shotRadius < 0.0f)
-                || (this.position.y - this.shotRadius > Constants.WORLD_HEIGHT);
+        return !Utils.isOnScreen(this.position, this.shotRadius);
     }
 
     public float getDamage() { return this.damage; }
