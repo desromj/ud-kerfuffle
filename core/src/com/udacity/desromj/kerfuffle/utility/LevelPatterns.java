@@ -251,7 +251,7 @@ public class LevelPatterns
                     }
 
                     break;
-                
+
                 case RED_SPIRAL:
 
                     switch (difficulty)
