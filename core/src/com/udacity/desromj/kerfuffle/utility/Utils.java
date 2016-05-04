@@ -117,6 +117,21 @@ public class Utils
     }
 
     /**
+     * Util to tell if an object with a given hit radius is currently onscreen.
+     * Does not account for moving camera. If camera needs to move in this game,
+     * this method will need to be adjusted to take a viewport.
+     *
+     * @param position
+     * @param hitRadius
+     * @return
+     */
+    public static boolean isOnScreen(Vector2 position, float hitRadius)
+    {
+        return (position.x >= 0.0f - hitRadius) && (position.x <= Constants.WORLD_WIDTH + hitRadius)
+                && (position.y >= 0.0f - hitRadius) && (position.y <= Constants.WORLD_HEIGHT + hitRadius);
+    }
+
+    /**
      * Extracts all custom variables from a JSON Object into a Key/Value Map.
      *
      * K/V pairs are separated by semicolons, and Keys-Values themselves are separated by colons
