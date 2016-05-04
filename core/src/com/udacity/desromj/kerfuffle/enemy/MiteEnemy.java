@@ -80,17 +80,16 @@ public class MiteEnemy extends Enemy
     public void dropCollectibles()
     {
         float rand = Utils.randomFloat();
-        Collectible add;
 
         // 75% chance to drop powerup, 25% chance to drop points
         if (rand < 0.75f) {
-            add = new SmallPowerCollectible(this.getPosition().x, this.getPosition().y);
+            GameScreen.instance.addCollectible
+                    (new SmallPowerCollectible(this.getPosition().x, this.getPosition().y));
         } else {
             // TODO: Add point values here when ready
-            add = new SmallPowerCollectible(this.getPosition().x, this.getPosition().y);
+            GameScreen.instance.addCollectible
+                    (new SmallPowerCollectible(this.getPosition().x, this.getPosition().y));
         }
-
-        GameScreen.instance.addCollectible(add);
     }
 
     @Override
