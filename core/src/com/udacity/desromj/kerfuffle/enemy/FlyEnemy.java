@@ -34,6 +34,12 @@ public class FlyEnemy extends Enemy
     }
 
     @Override
+    public void dropCollectibles()
+    {
+        // TODO: Implement powerup drops here, using GameScreen.instance.addCollectibles()
+    }
+
+    @Override
     public void render(SpriteBatch batch)
     {
 

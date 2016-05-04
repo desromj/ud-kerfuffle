@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.desromj.kerfuffle.enemy.MiteEnemy;
 import com.udacity.desromj.kerfuffle.entity.Boss;
 import com.udacity.desromj.kerfuffle.entity.Bullet;
+import com.udacity.desromj.kerfuffle.entity.Collectible;
 import com.udacity.desromj.kerfuffle.entity.Enemy;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.PatternProperties;
@@ -35,6 +36,7 @@ public class Level
     Array<Shooter> shooters;
     Array<Boss> bosses;
     Array<Spawnable> spawnables;
+    Array<Collectible> collectibles;
 
     Player player;
 
@@ -49,6 +51,7 @@ public class Level
         spawnables = new DelayedRemovalArray<Spawnable>();
         shooters = new DelayedRemovalArray<Shooter>();
         bosses = new DelayedRemovalArray<Boss>();
+        collectibles = new DelayedRemovalArray<Collectible>();
     }
 
     /**
@@ -72,6 +75,15 @@ public class Level
 
         // Update the player
         player.update(delta);
+
+        // Update all collectibles, remove if offscreen
+        for (int i = 0; i < collectibles.size; i++)
+        {
+            collectibles.get(i).update(delta);
+
+            if (collectibles.get(i).isOffScreen())
+                collectibles.removeIndex(i);
+        }
 
         // Update all Bullets and Patterns onscreen, and remove if offscreen
         for (int i = 0; i < spawnables.size; i++)
@@ -162,6 +174,11 @@ public class Level
             }
         });
 
+        // Render Collectibles
+        for (Collectible c: collectibles)
+            c.render(renderer);
+
+        // Render Bullets and Patterns
         for (Spawnable sp: spawnables)
             sp.render(renderer);
 
@@ -191,6 +208,7 @@ public class Level
     {
         boolean playerHit = false;
 
+        // For each bullet and pattern
         for (int j = 0; j < spawnables.size; j++)
         {
             // Check collision for every bullet
@@ -249,6 +267,18 @@ public class Level
                 }
             }
         }
+
+        // Handle each collectible, if the player has picked it up
+        for (int i = 0; i < collectibles.size; i++)
+        {
+            Collectible collectible = collectibles.get(i);
+
+            if (collectible.isColliding(player))
+            {
+                collectible.collectEffect(player);
+                collectibles.removeIndex(i);
+            }
+        }
     }
 
     /**
@@ -283,6 +313,17 @@ public class Level
     {
         for (Spawnable spawnable: spawnables)
             this.spawnables.add(spawnable);
+    }
+
+    public void addCollectible(Collectible collectible)
+    {
+        this.collectibles.add(collectible);
+    }
+
+    public void addCollectibles(Array<Collectible> collectibles)
+    {
+        for (Collectible collectible: collectibles)
+            this.collectibles.add(collectible);
     }
 
     public Vector2 getPlayerPosition()

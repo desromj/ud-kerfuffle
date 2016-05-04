@@ -24,6 +24,12 @@ public class MantisEnemy extends Enemy
     }
 
     @Override
+    public void dropCollectibles()
+    {
+        // TODO: Implement powerup drops here, using GameScreen.instance.addCollectibles()
+    }
+
+    @Override
     public void loadDefaultPattern() {
 
     }

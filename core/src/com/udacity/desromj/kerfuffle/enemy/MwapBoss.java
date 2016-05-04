@@ -19,6 +19,12 @@ public class MwapBoss extends Boss
     }
 
     @Override
+    public void dropCollectibles()
+    {
+        // TODO: Implement powerup drops here, using GameScreen.instance.addCollectibles()
+    }
+
+    @Override
     public Array<Phase> loadPhases()
     {
         // TODO: Load Phases based on the difficulty here

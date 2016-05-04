@@ -51,6 +51,12 @@ public class DewBoss extends Boss
     }
 
     @Override
+    public void dropCollectibles()
+    {
+        // TODO: Implement powerup drops here, using GameScreen.instance.addCollectibles()
+    }
+
+    @Override
     public Array<Phase> loadPhases()
     {
         Array<Phase> phases = new DelayedRemovalArray<Phase>();

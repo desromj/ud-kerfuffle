@@ -43,6 +43,16 @@ public abstract class Collectible extends Spawnable
         return !Utils.isOnScreen(this.position, this.hitRadius);
     }
 
+    public boolean isColliding(Player player)
+    {
+        float dist = Vector2.dst(this.position.x, this.position.y, player.getPosition().x, player.getPosition().y);
+
+        if (dist < this.hitRadius + player.hitRadius)
+            return true;
+
+        return false;
+    }
+
     /**
      * Affect the player as necessary for this collectible
      *

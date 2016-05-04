@@ -2,14 +2,18 @@ package com.udacity.desromj.kerfuffle.enemy;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.udacity.desromj.kerfuffle.collectible.SmallPowerCollectible;
+import com.udacity.desromj.kerfuffle.entity.Collectible;
 import com.udacity.desromj.kerfuffle.entity.Enemy;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.pattern.SpiralPattern;
+import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 import com.udacity.desromj.kerfuffle.utility.Enums;
 import com.udacity.desromj.kerfuffle.utility.LevelPatterns;
+import com.udacity.desromj.kerfuffle.utility.Utils;
 
 /**
  * Created by Quiv on 2016-01-31.
@@ -70,6 +74,23 @@ public class MiteEnemy extends Enemy
     public void render(SpriteBatch batch)
     {
         this.assets.render(batch);
+    }
+
+    @Override
+    public void dropCollectibles()
+    {
+        float rand = Utils.randomFloat();
+        Collectible add;
+
+        // 75% chance to drop powerup, 25% chance to drop points
+        if (rand < 0.75f) {
+            add = new SmallPowerCollectible(this.getPosition().x, this.getPosition().y);
+        } else {
+            // TODO: Add point values here when ready
+            add = new SmallPowerCollectible(this.getPosition().x, this.getPosition().y);
+        }
+
+        GameScreen.instance.addCollectible(add);
     }
 
     @Override

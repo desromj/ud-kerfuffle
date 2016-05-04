@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by Mike on 2016-03-01.
@@ -18,6 +19,8 @@ import java.util.Map;
  */
 public class Utils
 {
+    private static final Random RANDOM = new Random();
+
     private Utils() {}
 
     /**
@@ -129,6 +132,11 @@ public class Utils
     {
         return (position.x >= 0.0f - hitRadius) && (position.x <= Constants.WORLD_WIDTH + hitRadius)
                 && (position.y >= 0.0f - hitRadius) && (position.y <= Constants.WORLD_HEIGHT + hitRadius);
+    }
+
+    public static float randomFloat()
+    {
+        return RANDOM.nextFloat();
     }
 
     /**

@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.desromj.kerfuffle.enemy.MiteEnemy;
 import com.udacity.desromj.kerfuffle.entity.Boss;
 import com.udacity.desromj.kerfuffle.entity.Bullet;
+import com.udacity.desromj.kerfuffle.entity.Collectible;
 import com.udacity.desromj.kerfuffle.entity.Enemy;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.PatternProperties;
@@ -99,11 +100,13 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     {
         level.addSpawnable(spawnable);
     }
-
     public void addSpawnables(Array<Spawnable> spawnables)
     {
         level.addSpawnables(spawnables);
     }
+
+    public void addCollectible(Collectible collectible) { level.addCollectible(collectible); }
+    public void addCollectibles(Array<Collectible> collectibles) { level.addCollectibles(collectibles); }
 
     public void destroyBoss(Boss boss)
     {
