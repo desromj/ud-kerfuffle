@@ -2,6 +2,7 @@ package com.udacity.desromj.kerfuffle.enemy;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.udacity.desromj.kerfuffle.collectible.SmallPointCollectible;
 import com.udacity.desromj.kerfuffle.collectible.SmallPowerCollectible;
 import com.udacity.desromj.kerfuffle.entity.Collectible;
 import com.udacity.desromj.kerfuffle.entity.Enemy;
@@ -79,16 +80,21 @@ public class MiteEnemy extends Enemy
     @Override
     public void dropCollectibles()
     {
-        float rand = Utils.randomFloat();
-
         // 75% chance to drop powerup, 25% chance to drop points
-        if (rand < 0.75f) {
-            GameScreen.instance.addCollectible
-                    (new SmallPowerCollectible(this.getPosition().x, this.getPosition().y));
-        } else {
-            // TODO: Add point values here when ready
-            GameScreen.instance.addCollectible
-                    (new SmallPowerCollectible(this.getPosition().x, this.getPosition().y));
+        float half = Constants.ENEMY_MITE_DROP_RADIUS / 2.0f;
+
+        for (int i = 0; i < Constants.ENEMY_MITE_POWERUP_DROPS; i++) {
+            if (Utils.randomFloat() < 0.75f) {
+                GameScreen.instance.addCollectible
+                        (new SmallPowerCollectible(
+                                this.getPosition().x + (Constants.ENEMY_MITE_DROP_RADIUS * Utils.randomFloat() - half),
+                                this.getPosition().y + (Constants.ENEMY_MITE_DROP_RADIUS * Utils.randomFloat() - half)));
+            } else {
+                GameScreen.instance.addCollectible
+                        (new SmallPointCollectible(
+                                this.getPosition().x + (Constants.ENEMY_MITE_DROP_RADIUS * Utils.randomFloat() - half),
+                                this.getPosition().y + (Constants.ENEMY_MITE_DROP_RADIUS * Utils.randomFloat() - half)));
+            }
         }
     }
 

@@ -278,6 +278,10 @@ public class Level
                 collectible.collectEffect(player);
                 collectibles.removeIndex(i);
             }
+            else if (collectible.isWithinPickupRadius(player))
+            {
+                collectible.changeVelocityTowardPlayer(player);
+            }
         }
     }
 

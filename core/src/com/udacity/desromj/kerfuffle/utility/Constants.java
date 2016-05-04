@@ -21,6 +21,7 @@ public class Constants
 
     public static final float PLAYER_HEALTH = 1.0f;
     public static final float PLAYER_RADIUS = WORLD_WIDTH / 130.0f;
+    public static final float PLAYER_PICKUP_RADIUS = PLAYER_RADIUS * 16.0f;
     public static final float PLAYER_SPEED = WORLD_WIDTH * 0.6f;
     public static final float PLAYER_FOCUS_SPEED = PLAYER_SPEED / 2.0f;
 
@@ -59,6 +60,8 @@ public class Constants
     // Mite values - weak enemy
     public static final float ENEMY_MITE_HEALTH = 80.0f;
     public static final float ENEMY_MITE_RADIUS = WORLD_WIDTH / 30.0f;
+    public static final int ENEMY_MITE_POWERUP_DROPS = 4;
+    public static final float ENEMY_MITE_DROP_RADIUS = WORLD_WIDTH / 8.0f;
 
     // Fly values - medium enemy
     public static final float ENEMY_FLY_HEALTH = 240.0f;
@@ -119,9 +122,10 @@ public class Constants
 
     public static final float COLLECTIBLE_SMALL_POWER_AMOUNT = 0.075f;
     public static final float COLLECTIBLE_LARGE_POWER_AMOUNT = 1.0f;
-    public static final float COLLECTIBLE_SMALL_POINT_AMOUNT = 5.0f;
-    public static final float COLLECTIBLE_LARGE_POINT_AMOUNT = 100.0f;
-    public static final float COLLECTIBLE_HUGE_POINT_AMOUNT = 2500.0f;
+
+    public static final int COLLECTIBLE_SMALL_POINT_AMOUNT = 5;
+    public static final int COLLECTIBLE_LARGE_POINT_AMOUNT = 100;
+    public static final int COLLECTIBLE_HUGE_POINT_AMOUNT = 2500;
 
     private Constants() {}
 }
