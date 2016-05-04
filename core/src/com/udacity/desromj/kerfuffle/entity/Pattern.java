@@ -108,7 +108,7 @@ public abstract class Pattern extends Spawnable
      * @param renderer
      */
     @Override
-    public void render(ShapeRenderer renderer, SpriteBatch batch) {
+    public void render(ShapeRenderer renderer) {
         renderer.setAutoShapeType(true);
         renderer.setColor(Constants.PATTERN_DEBUG_COLOR);
 
