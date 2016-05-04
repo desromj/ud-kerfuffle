@@ -135,6 +135,9 @@ public class Player extends Shooter
     }
 
     @Override
+    public final void dropCollectibles() {}
+
+    @Override
     public void render(SpriteBatch batch)
     {
         Assets.instance.bloomAssets.render(batch);

@@ -52,10 +52,10 @@ public class LevelLoader
     {
         Level level = new Level(viewport);
 
-        // TODO: Load level data from JSON files
+        // Start by adding the player at default spawn position
         level.addPlayer(Constants.PLAYER_DEFAULT_SPAWN_POSITION);
 
-        // TODO: Load enemies from JSON
+        // Load enemies and bosses from JSON
         JSONParser parser = new JSONParser();
         JSONObject levelJson;
 
@@ -71,7 +71,6 @@ public class LevelLoader
             {
                 JSONObject item = (JSONObject) o;
 
-                // Add enemy
                 if (item.get("imageName").equals(Constants.ENEMY_ID_TAG))
                     addEnemy(item, level);
                 if (item.get("imageName").equals(Constants.BOSS_ID_TAG))

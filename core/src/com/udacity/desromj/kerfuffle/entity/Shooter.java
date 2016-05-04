@@ -36,6 +36,12 @@ public abstract class Shooter
     public abstract void update(float delta);
     public abstract void render(SpriteBatch batch);
 
+    /**
+     * Enemies and Bosses should know to drop Collectibles (points, powerups) usually on defeat
+     * Players do not need to implement this
+     */
+    public abstract void dropCollectibles();
+
     /*
     Functional Methods
      */
