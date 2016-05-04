@@ -51,6 +51,8 @@ public class LevelPatterns
     {
         DEFAULT("d"),
 
+        RED_DIRECT_SHOT("rds"),
+        YELLOW_DIRECT_SHOT("yds"),
         RED_SPIRAL("rs"),
         DOUBLE_RED_SPIRAL("drs"),
         RED_SHOTGUN("rsg"),
@@ -96,6 +98,160 @@ public class LevelPatterns
 
                     break;
 
+                case RED_DIRECT_SHOT:
+
+                    switch (difficulty)
+                    {
+                        case EASY:
+
+                            patterns = new Pattern [] {
+                                    new DirectShotPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .targetted(false)
+                                                    .arms(1)
+                                                    .shotsPerArm(1)
+                                                    .speed(60.0f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps())
+                            };
+
+                            break;
+
+                        case MEDIUM:
+
+                            patterns = new Pattern [] {
+                                    new DirectShotPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .targetted(false)
+                                                    .arms(2)
+                                                    .shotsPerArm(2)
+                                                    .armAngleOffsetDegrees(25.0f)
+                                                    .armSpeedModifier(0.9f)
+                                                    .speed(90.0f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps())
+                            };
+
+                            break;
+
+                        case HARD:
+
+                            patterns = new Pattern [] {
+                                    new DirectShotPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .targetted(true)
+                                                    .arms(3)
+                                                    .shotsPerArm(3)
+                                                    .armAngleOffsetDegrees(20.0f)
+                                                    .armSpeedModifier(0.85f)
+                                                    .speed(110.0f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps())
+                            };
+
+                            break;
+
+                        case INSANE:
+
+                            patterns = new Pattern [] {
+                                    new DirectShotPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .targetted(true)
+                                                    .arms(5)
+                                                    .shotsPerArm(7)
+                                                    .armAngleOffsetDegrees(16.0f)
+                                                    .armSpeedModifier(0.8f)
+                                                    .speed(160.0f)
+                                                    .mainShotType(Enums.BulletType.SMALL_RED_PELLET)
+                                                    .createProps())
+                            };
+
+                            break;
+                    }
+
+                    break;
+
+                case YELLOW_DIRECT_SHOT:
+
+                    switch (difficulty)
+                    {
+                        case EASY:
+
+                            patterns = new Pattern [] {
+                                    new DirectShotPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .targetted(false)
+                                                    .arms(1)
+                                                    .shotsPerArm(1)
+                                                    .speed(60.0f)
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .createProps())
+                            };
+
+                            break;
+
+                        case MEDIUM:
+
+                            patterns = new Pattern [] {
+                                    new DirectShotPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .targetted(false)
+                                                    .arms(2)
+                                                    .shotsPerArm(2)
+                                                    .armAngleOffsetDegrees(25.0f)
+                                                    .armSpeedModifier(0.9f)
+                                                    .speed(90.0f)
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .createProps())
+                            };
+
+                            break;
+
+                        case HARD:
+
+                            patterns = new Pattern [] {
+                                    new DirectShotPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .targetted(true)
+                                                    .arms(3)
+                                                    .shotsPerArm(3)
+                                                    .armAngleOffsetDegrees(20.0f)
+                                                    .armSpeedModifier(0.85f)
+                                                    .speed(110.0f)
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .createProps())
+                            };
+
+                            break;
+
+                        case INSANE:
+
+                            patterns = new Pattern [] {
+                                    new DirectShotPattern(
+                                            parent,
+                                            new PatternProperties.Builder()
+                                                    .targetted(true)
+                                                    .arms(5)
+                                                    .shotsPerArm(7)
+                                                    .armAngleOffsetDegrees(16.0f)
+                                                    .armSpeedModifier(0.8f)
+                                                    .speed(160.0f)
+                                                    .mainShotType(Enums.BulletType.LARGE_YELLOW_BALL)
+                                                    .createProps())
+                            };
+
+                            break;
+                    }
+
+                    break;
+                
                 case RED_SPIRAL:
 
                     switch (difficulty)
