@@ -105,9 +105,23 @@ public class Constants
     /*
         Collectibles and everything else
      */
-    public static final float COLLECTIBLE_HIT_RADIUS = WORLD_WIDTH / 10.0f;
+    public static final float COLLECTIBLE_HIT_RADIUS_SMALL = WORLD_WIDTH / 16.0f;
+    public static final float COLLECTIBLE_HIT_RADIUS_LARGE = WORLD_WIDTH / 12.0f;
+    public static final float COLLECTIBLE_HIT_RADIUS_HUGE = WORLD_WIDTH / 8.0f;
+
     public static final float COLLECTIBLE_ACCEL_DUE_TO_GRAVITY = WORLD_WIDTH / 100.0f * -1;
     public static final float COLLECTIBLE_INIT_Y_VELOCITY = WORLD_WIDTH / 50.0f;
+
+    public static final Color COLLECTIBLE_BORDER_COLOR = Color.BLACK;
+    public static final float COLLECTIBLE_BORDER_MARGIN = WORLD_WIDTH / 200.0f;
+    public static final Color COLLECTIBLE_POWERUP_COLOR = Color.SCARLET;
+    public static final Color COLLECTIBLE_POINT_COLOR = Color.BLUE;
+
+    public static final float COLLECTIBLE_SMALL_POWER_AMOUNT = 0.075f;
+    public static final float COLLECTIBLE_LARGE_POWER_AMOUNT = 1.0f;
+    public static final float COLLECTIBLE_SMALL_POINT_AMOUNT = 5.0f;
+    public static final float COLLECTIBLE_LARGE_POINT_AMOUNT = 100.0f;
+    public static final float COLLECTIBLE_HUGE_POINT_AMOUNT = 2500.0f;
 
     private Constants() {}
 }

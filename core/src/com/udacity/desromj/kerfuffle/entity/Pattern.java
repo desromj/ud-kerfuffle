@@ -1,6 +1,7 @@
 package com.udacity.desromj.kerfuffle.entity;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -107,7 +108,7 @@ public abstract class Pattern extends Spawnable
      * @param renderer
      */
     @Override
-    public void render(ShapeRenderer renderer) {
+    public void render(ShapeRenderer renderer, SpriteBatch batch) {
         renderer.setAutoShapeType(true);
         renderer.setColor(Constants.PATTERN_DEBUG_COLOR);
 

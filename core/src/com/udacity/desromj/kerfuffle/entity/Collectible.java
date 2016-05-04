@@ -11,7 +11,7 @@ import com.udacity.desromj.kerfuffle.utility.Utils;
  */
 public abstract class Collectible extends Spawnable
 {
-    private float hitRadius;
+    protected float hitRadius;
 
     public Collectible(float x, float y)
     {
@@ -26,8 +26,10 @@ public abstract class Collectible extends Spawnable
                 new Vector2(0.0f, Constants.COLLECTIBLE_INIT_Y_VELOCITY)
         );
 
-        this.hitRadius = Constants.COLLECTIBLE_HIT_RADIUS;
+        setHitRadius();
     }
+
+    protected abstract void setHitRadius();
 
     public void update(float delta)
     {
@@ -40,4 +42,11 @@ public abstract class Collectible extends Spawnable
     {
         return !Utils.isOnScreen(this.position, this.hitRadius);
     }
+
+    /**
+     * Affect the player as necessary for this collectible
+     *
+     * @param player
+     */
+    public abstract void collectEffect(Player player);
 }
