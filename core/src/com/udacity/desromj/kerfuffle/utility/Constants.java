@@ -102,6 +102,12 @@ public class Constants
     public static final float BULLET_LARGE_YELLOW_BALL_MARGIN = WORLD_WIDTH / 125.0f;
     public static final float BULLET_LARGE_YELLOW_BALL_DAMAGE = 4.0f;
 
+    /*
+        Collectibles and everything else
+     */
+    public static final float COLLECTIBLE_HIT_RADIUS = WORLD_WIDTH / 10.0f;
+    public static final float COLLECTIBLE_ACCEL_DUE_TO_GRAVITY = WORLD_WIDTH / 100.0f * -1;
+    public static final float COLLECTIBLE_INIT_Y_VELOCITY = WORLD_WIDTH / 50.0f;
 
     private Constants() {}
 }

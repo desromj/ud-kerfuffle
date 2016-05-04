@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Constants;
+import com.udacity.desromj.kerfuffle.utility.Utils;
 
 /**
  * Created by Quiv on 2016-01-31.
@@ -47,8 +48,7 @@ public abstract class Shooter
      */
     public final boolean isOnScreen()
     {
-        return (this.position.x >= 0.0f - this.hitRadius) && (this.position.x <= Constants.WORLD_WIDTH + this.hitRadius)
-                && (this.position.y >= 0.0f - this.hitRadius) && (this.position.y <= Constants.WORLD_HEIGHT + this.hitRadius);
+        return Utils.isOnScreen(this.position, this.hitRadius);
     }
 
     public final boolean isShooting()

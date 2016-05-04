@@ -219,8 +219,10 @@ public class Level
                             // Reduce the shooter's health when hit, and remove it if dead
                             shooters.get(i).reduceHealth(bullet);
 
-                            if (shooters.get(i).isDead())
+                            if (shooters.get(i).isDead()) {
+                                shooters.get(i).dropCollectibles();
                                 shooters.removeIndex(i);
+                            }
 
                             // Remove the bullet when it hits an enemy
                             spawnables.removeIndex(j);
@@ -235,8 +237,10 @@ public class Level
                             // Reduce the shooter's health when hit, and remove it if dead
                             bosses.get(i).reduceHealth(bullet);
 
-                            if (bosses.get(i).isDead())
+                            if (bosses.get(i).isDead()) {
+                                bosses.get(i).dropCollectibles();
                                 bosses.removeIndex(i);
+                            }
 
                             // Remove the bullet when it hits a Boss
                             spawnables.removeIndex(j);
