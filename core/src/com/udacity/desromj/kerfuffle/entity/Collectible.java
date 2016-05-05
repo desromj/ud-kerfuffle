@@ -95,7 +95,8 @@ public abstract class Collectible extends Spawnable
                 player.position.x - this.position.x,
                 player.position.y - this.position.y);
 
-        this.velocity = target.nor().scl(magnitude);
+        // Multiply by player speed so player never outruns the collectibles
+        this.velocity = target.nor().scl(Constants.PLAYER_SPEED * 1.5f);
     }
 
     /**

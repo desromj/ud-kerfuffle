@@ -26,4 +26,9 @@ public class Score
 
     public int getScore() { return this.score; }
     public int getTopScore() { return this.topScore; }
+
+    public void restart()
+    {
+        this.score = 0;
+    }
 }

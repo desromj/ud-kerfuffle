@@ -3,6 +3,7 @@ package com.udacity.desromj.kerfuffle.entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.udacity.desromj.kerfuffle.bullet.SpawnFactory;
@@ -101,7 +102,7 @@ public class Player extends Shooter
     public void update(float delta)
     {
         // Keyboard Controls
-        this.magnitude = ((Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) ? Constants.PLAYER_FOCUS_SPEED : Constants.PLAYER_SPEED) * delta;
+        this.magnitude = (this.isFocussed() ? Constants.PLAYER_FOCUS_SPEED : Constants.PLAYER_SPEED) * delta;
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) position.x -= magnitude;
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) position.x += magnitude;
@@ -134,6 +135,11 @@ public class Player extends Shooter
         Assets.instance.bloomAssets.skeleton.setPosition(position.x, position.y);
     }
 
+    public final boolean isFocussed()
+    {
+        return Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT);
+    }
+
     @Override
     public final void dropCollectibles() {}
 
@@ -141,5 +147,14 @@ public class Player extends Shooter
     public void render(SpriteBatch batch)
     {
         Assets.instance.bloomAssets.render(batch);
+    }
+
+    public void renderShapes(ShapeRenderer renderer)
+    {
+        renderer.setColor(Constants.PLAYER_HITBOX_BORDER_COLOR);
+        renderer.circle(this.position.x, this.position.y, Constants.PLAYER_RADIUS * 2.0f);
+
+        renderer.setColor(Constants.PLAYER_HITBOX_COLOR);
+        renderer.circle(this.position.x, this.position.y, (Constants.PLAYER_RADIUS - Constants.PLAYER_HITBOX_BORDER) * 2.0f);
     }
 }

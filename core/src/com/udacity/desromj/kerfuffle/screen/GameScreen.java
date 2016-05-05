@@ -23,6 +23,7 @@ import com.udacity.desromj.kerfuffle.entity.Enemy;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Player;
+import com.udacity.desromj.kerfuffle.entity.Score;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.level.Level;
@@ -62,6 +63,8 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     {
         renderer = new ShapeRenderer();
         batch = new SpriteBatch();
+
+        Score.instance.restart();
 
         level = LevelLoader.load("levels/level-one.json", viewport);
     }
@@ -160,8 +163,9 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     public boolean keyDown(int keycode)
     {
         // TODO: remove debug control - Press 'R' to reset the level
-        if (keycode == Input.Keys.R)
+        if (keycode == Input.Keys.R) {
             instance.init();
+        }
 
         // TODO: remove debug control - Press 'E' to increase player shot power level
         if (keycode == Input.Keys.E)

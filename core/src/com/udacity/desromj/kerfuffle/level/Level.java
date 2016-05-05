@@ -134,13 +134,13 @@ public class Level
         handleCollisions();
 
         // Handle all rendering logic
-        doShapeRender(renderer);
+        renderBackground(renderer);
         doSpriteBatchRender(batch);
+        doShapeRender(renderer);
     }
 
-    private void doShapeRender(ShapeRenderer renderer)
+    private void renderBackground(ShapeRenderer renderer)
     {
-        // ShapeRenderer - background, and Spawnables if applicible
         renderer.begin(ShapeRenderer.ShapeType.Filled);
         renderer.setColor(Constants.BACKGROUND_COLOR);
         renderer.rect(
@@ -149,6 +149,13 @@ public class Level
                 Constants.WORLD_WIDTH,
                 Constants.WORLD_HEIGHT
         );
+        renderer.end();
+    }
+
+    private void doShapeRender(ShapeRenderer renderer)
+    {
+        // ShapeRenderer - background, and Spawnables if applicible
+        renderer.begin(ShapeRenderer.ShapeType.Filled);
 
         /*
          Attempt to sort the bullets so the render from largest to smallest
@@ -181,6 +188,10 @@ public class Level
         // Render Bullets and Patterns
         for (Spawnable sp: spawnables)
             sp.render(renderer);
+
+        // Render player hitbox, if present
+        if (player.isFocussed())
+            player.renderShapes(renderer);
 
         renderer.end();
     }

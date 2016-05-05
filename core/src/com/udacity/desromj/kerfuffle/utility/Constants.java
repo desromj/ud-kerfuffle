@@ -25,6 +25,10 @@ public class Constants
     public static final float PLAYER_SPEED = WORLD_WIDTH * 0.6f;
     public static final float PLAYER_FOCUS_SPEED = PLAYER_SPEED / 2.0f;
 
+    public static final float PLAYER_HITBOX_BORDER = PLAYER_RADIUS / 3.0f;
+    public static final Color PLAYER_HITBOX_COLOR = Color.RED;
+    public static final Color PLAYER_HITBOX_BORDER_COLOR = Color.WHITE;
+
     public static final float PLAYER_SHOTS_PER_SECOND = 12.0f;
     public static final Color PLAYER_SHOT_COLOR = Color.YELLOW;
     public static final float PLAYER_SHOT_RADIUS = PLAYER_RADIUS;
@@ -121,7 +125,7 @@ public class Constants
     public static final Color COLLECTIBLE_POINT_COLOR = Color.BLUE;
 
     public static final float COLLECTIBLE_SMALL_POWER_AMOUNT = 0.075f;
-    public static final float COLLECTIBLE_LARGE_POWER_AMOUNT = 1.0f;
+    public static final float COLLECTIBLE_LARGE_POWER_AMOUNT = 0.5f;
 
     public static final int COLLECTIBLE_SMALL_POINT_AMOUNT = 5;
     public static final int COLLECTIBLE_LARGE_POINT_AMOUNT = 100;
