@@ -62,24 +62,31 @@ public class Constants
     public static final float ENEMY_WORLD_SCROLL_SPEED = WORLD_WIDTH * 0.16f;
 
     // Mite values - weak enemy
-    public static final float ENEMY_MITE_HEALTH = 80.0f;
+    public static final float ENEMY_MITE_HEALTH = 120.0f;
     public static final float ENEMY_MITE_RADIUS = WORLD_WIDTH / 30.0f;
     public static final int ENEMY_MITE_POWERUP_DROPS = 5;
     public static final float ENEMY_MITE_DROP_RADIUS = WORLD_WIDTH / 6.0f;
 
     // Fly values - medium enemy
-    public static final float ENEMY_FLY_HEALTH = 240.0f;
+    public static final float ENEMY_FLY_HEALTH = 250.0f;
     public static final float ENEMY_FLY_RADIUS = WORLD_WIDTH / 40.0f;
 
     // Mantis values - tough enemy
     public static final float ENEMY_MANTIS_HEALTH = 600.0f;
     public static final float ENEMY_MANTIS_RADIUS = WORLD_WIDTH / 35.0f;
 
+    // General Boss values
+    public static final float BOSS_DROP_RADIUS = WORLD_WIDTH / 2.0f;
+
     // Dew values - midboss
     public static final float BOSS_DEW_RADIUS = WORLD_WIDTH / 25.0f;
 
-    public static final float [] BOSS_DEW_PATTERN_HEALTH = new float [] { 450f, 200f, 300f };
+    public static final float [] BOSS_DEW_PATTERN_HEALTH = new float [] { 750f, 300f, 500f };
     public static final String [] BOSS_DEW_PATTERN_TAGS = new String [] { "dp1", "dp2", "dp3" };
+
+    public static final int BOSS_DEW_DROPS_HUGE_POINT = 3;
+    public static final int BOSS_DEW_DROPS_LARGE_POINT = 9;
+    public static final int BOSS_DEW_DROPS_SMALL_POINT = 27;
 
     // Mwap values - main boss
     public static final float BOSS_MWAP_RADIUS = WORLD_WIDTH / 50.0f;

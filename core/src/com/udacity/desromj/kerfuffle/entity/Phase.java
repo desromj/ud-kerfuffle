@@ -62,7 +62,7 @@ public class Phase
      */
     public float percentHitPointsLeft()
     {
-        if (this.hitPoints <= 0.01f)
+        if (this.hitPoints <= 0.001f)
             return 0.0f;
         else
             return this.hitPoints / this.maxHitPoints;

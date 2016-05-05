@@ -112,7 +112,13 @@ public class PlayerBulletPattern extends Pattern
                 spawns.add(getBullet(
                         new Vector2(
                                 origin.x,
-                                (isFocussed) ? origin.y + Constants.PLAYER_SHOT_SEPARATION * 2.5f : origin.y + Constants.PLAYER_SHOT_SEPARATION * 5.0f)));
+                                (isFocussed) ? origin.y + Constants.PLAYER_SHOT_SEPARATION * 2.5f : origin.y + Constants.PLAYER_SHOT_SEPARATION * 5.0f),
+                        Constants.PLAYER_SHOT_DEGREE_ROTATION / 7.5f));
+                spawns.add(getBullet(
+                        new Vector2(
+                                origin.x,
+                                (isFocussed) ? origin.y + Constants.PLAYER_SHOT_SEPARATION * 2.5f : origin.y + Constants.PLAYER_SHOT_SEPARATION * 5.0f),
+                        -Constants.PLAYER_SHOT_DEGREE_ROTATION / 7.5f));
 
                 break;
         }
