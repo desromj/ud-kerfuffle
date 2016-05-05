@@ -60,8 +60,8 @@ public class Constants
     // Mite values - weak enemy
     public static final float ENEMY_MITE_HEALTH = 80.0f;
     public static final float ENEMY_MITE_RADIUS = WORLD_WIDTH / 30.0f;
-    public static final int ENEMY_MITE_POWERUP_DROPS = 4;
-    public static final float ENEMY_MITE_DROP_RADIUS = WORLD_WIDTH / 8.0f;
+    public static final int ENEMY_MITE_POWERUP_DROPS = 5;
+    public static final float ENEMY_MITE_DROP_RADIUS = WORLD_WIDTH / 6.0f;
 
     // Fly values - medium enemy
     public static final float ENEMY_FLY_HEALTH = 240.0f;

@@ -2,6 +2,8 @@ package com.udacity.desromj.kerfuffle.enemy;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.udacity.desromj.kerfuffle.collectible.LargePointCollectible;
+import com.udacity.desromj.kerfuffle.collectible.LargePowerCollectible;
 import com.udacity.desromj.kerfuffle.collectible.SmallPointCollectible;
 import com.udacity.desromj.kerfuffle.collectible.SmallPowerCollectible;
 import com.udacity.desromj.kerfuffle.entity.Collectible;
@@ -83,15 +85,33 @@ public class MiteEnemy extends Enemy
         // 75% chance to drop powerup, 25% chance to drop points
         float half = Constants.ENEMY_MITE_DROP_RADIUS / 2.0f;
 
-        for (int i = 0; i < Constants.ENEMY_MITE_POWERUP_DROPS; i++) {
-            if (Utils.randomFloat() < 0.75f) {
+        for (int i = 0; i < Constants.ENEMY_MITE_POWERUP_DROPS; i++)
+        {
+            /*
+                Mite Powerup Drops:
+                    60% chance for small power
+                    25% chance for small point
+                    10% chance for large power
+                    5% chance for large point
+             */
+            if (Utils.randomFloat() < 0.6f) {
                 GameScreen.instance.addCollectible
                         (new SmallPowerCollectible(
                                 this.getPosition().x + (Constants.ENEMY_MITE_DROP_RADIUS * Utils.randomFloat() - half),
                                 this.getPosition().y + (Constants.ENEMY_MITE_DROP_RADIUS * Utils.randomFloat() - half)));
-            } else {
+            } else if (Utils.randomFloat() < 0.85f) {
                 GameScreen.instance.addCollectible
                         (new SmallPointCollectible(
+                                this.getPosition().x + (Constants.ENEMY_MITE_DROP_RADIUS * Utils.randomFloat() - half),
+                                this.getPosition().y + (Constants.ENEMY_MITE_DROP_RADIUS * Utils.randomFloat() - half)));
+            } else if (Utils.randomFloat() < 0.95f) {
+                GameScreen.instance.addCollectible
+                        (new LargePowerCollectible(
+                                this.getPosition().x + (Constants.ENEMY_MITE_DROP_RADIUS * Utils.randomFloat() - half),
+                                this.getPosition().y + (Constants.ENEMY_MITE_DROP_RADIUS * Utils.randomFloat() - half)));
+            } else {
+                GameScreen.instance.addCollectible
+                        (new LargePointCollectible(
                                 this.getPosition().x + (Constants.ENEMY_MITE_DROP_RADIUS * Utils.randomFloat() - half),
                                 this.getPosition().y + (Constants.ENEMY_MITE_DROP_RADIUS * Utils.randomFloat() - half)));
             }
