@@ -7,10 +7,14 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.udacity.desromj.kerfuffle.bullet.SpawnFactory;
+import com.udacity.desromj.kerfuffle.collectible.LargePowerCollectible;
+import com.udacity.desromj.kerfuffle.collectible.SmallPowerCollectible;
 import com.udacity.desromj.kerfuffle.pattern.PlayerBulletPattern;
+import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 import com.udacity.desromj.kerfuffle.utility.Enums;
+import com.udacity.desromj.kerfuffle.utility.Utils;
 
 /**
  * Created by Mike on 2016-01-27.
@@ -141,7 +145,49 @@ public class Player extends Shooter
     }
 
     @Override
-    public final void dropCollectibles() {}
+    public final void dropCollectibles()
+    {
+        /*
+            Player drops their current power minus 1 in large powerups
+                (ex: 4.7 power takes 4.7 - 1.0 rounded down (3.0) then divides by large powerup worth, rounding down)
+                    (powerup worth of 0.5 will drop 6 large powerups)
+            and the remaining small powerups (1.7) divided by the small powerup value
+          */
+        float half = Constants.COLLECTIBLE_PLAYER_SPAWN_RADIUS / 2.0f;
+        float ignoreAmt = 1.0f + Constants.COLLECTIBLE_LARGE_POWER_AMOUNT;
+        float workingPower = this.shotPowerLevel - ignoreAmt;
+
+        int numLarge = (int) (workingPower / Constants.COLLECTIBLE_LARGE_POWER_AMOUNT);
+        int numSmall = 0;
+
+        // Only spawn small ones if large ones exist - to prevent death abuse
+        if (numLarge > 0)
+            numSmall = (int) ((workingPower - numLarge * Constants.COLLECTIBLE_LARGE_POWER_AMOUNT) / Constants.COLLECTIBLE_SMALL_POWER_AMOUNT);
+
+        // Spawn Large Power Collectibles
+        for (int i = 0; i < numLarge; i++)
+        {
+            Collectible coll = new LargePowerCollectible(
+                    this.getPosition().x + (Constants.COLLECTIBLE_PLAYER_SPAWN_RADIUS * Utils.randomFloat() - half),
+                    this.getPosition().y + (Constants.COLLECTIBLE_PLAYER_SPAWN_RADIUS * Utils.randomFloat() - half),
+                    0.0f,
+                    Constants.COLLECTIBLE_PLAYER_INIT_Y_VELOCITY);
+            coll.setGravity(Constants.COLLECTIBLE_PLAYER_ACCEL_DUE_TO_GRAVITY);
+            GameScreen.instance.addCollectible(coll);
+        }
+
+        // Spawn Small Power Collectibles
+        for (int i = 0; i < numSmall; i++)
+        {
+            Collectible coll = new SmallPowerCollectible(
+                    this.getPosition().x + (Constants.COLLECTIBLE_PLAYER_SPAWN_RADIUS * Utils.randomFloat() - half),
+                    this.getPosition().y + (Constants.COLLECTIBLE_PLAYER_SPAWN_RADIUS * Utils.randomFloat() - half),
+                    0.0f,
+                    Constants.COLLECTIBLE_PLAYER_INIT_Y_VELOCITY);
+            coll.setGravity(Constants.COLLECTIBLE_PLAYER_ACCEL_DUE_TO_GRAVITY);
+            GameScreen.instance.addCollectible(coll);
+        }
+    }
 
     @Override
     public void render(SpriteBatch batch)
@@ -149,6 +195,7 @@ public class Player extends Shooter
         Assets.instance.bloomAssets.render(batch);
     }
 
+    // Hitbox Rendering - specific to the player
     public void renderShapes(ShapeRenderer renderer)
     {
         renderer.setColor(Constants.PLAYER_HITBOX_BORDER_COLOR);

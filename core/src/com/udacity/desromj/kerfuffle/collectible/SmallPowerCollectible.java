@@ -15,6 +15,10 @@ public class SmallPowerCollectible extends Collectible
         super(x, y);
     }
 
+    public SmallPowerCollectible(float posX, float posY, float velX, float velY) {
+        super(posX, posY, velX, velY);
+    }
+
     @Override
     protected void setHitRadius()
     {

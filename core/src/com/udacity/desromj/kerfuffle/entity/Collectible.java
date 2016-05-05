@@ -12,24 +12,35 @@ import com.udacity.desromj.kerfuffle.utility.Utils;
  */
 public abstract class Collectible extends Spawnable
 {
+    protected float gravity;
     protected float hitRadius;
     protected Color mainColor;
 
     public Collectible(float x, float y)
     {
-        this(new Vector2(x, y));
+        this(
+                new Vector2(x, y),
+                new Vector2(0.0f, Constants.COLLECTIBLE_INIT_Y_VELOCITY));
     }
 
-    private Collectible(Vector2 position)
+    public Collectible(float posX, float posY, float velX, float velY)
+    {
+        this(
+                new Vector2(posX, posY),
+                new Vector2(velX, velY));
+    }
+
+    private Collectible(Vector2 position, Vector2 velocity)
     {
         super(
                 null,
                 position,
-                new Vector2(0.0f, Constants.COLLECTIBLE_INIT_Y_VELOCITY)
+                new Vector2(velocity.x, velocity.y)
         );
 
         setHitRadius();
         setMainColor();
+        this.gravity = Constants.COLLECTIBLE_ACCEL_DUE_TO_GRAVITY;
     }
 
     protected abstract void setHitRadius();
@@ -57,8 +68,13 @@ public abstract class Collectible extends Spawnable
 
     public void update(float delta)
     {
-        this.velocity.y += Constants.COLLECTIBLE_ACCEL_DUE_TO_GRAVITY;
+        this.velocity.y += this.gravity;
         super.update(delta);
+    }
+
+    public void setGravity(float gravity)
+    {
+        this.gravity = gravity;
     }
 
     @Override
@@ -89,8 +105,6 @@ public abstract class Collectible extends Spawnable
 
     public void changeVelocityTowardPlayer(Player player)
     {
-        float magnitude = this.velocity.len();
-
         Vector2 target = new Vector2(
                 player.position.x - this.position.x,
                 player.position.y - this.position.y);

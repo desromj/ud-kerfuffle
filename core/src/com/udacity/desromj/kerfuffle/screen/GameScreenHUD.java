@@ -41,7 +41,8 @@ public class GameScreenHUD
         font.draw(
                 batch,
                 "Lives: " + GameScreen.instance.getPlayerLivesLeft() + "\n" +
-                    "Bombs: " + GameScreen.instance.getPlayerBombsLeft(),
+                        "Bombs: " + GameScreen.instance.getPlayerBombsLeft() + "\n" +
+                        "Power Level: " + String.format("%.2f", GameScreen.instance.getPlayerPowerLevel()),
                 Constants.HUD_WORLD_MARGIN,
                 Constants.WORLD_HEIGHT - Constants.HUD_WORLD_MARGIN,
                 0.0f,

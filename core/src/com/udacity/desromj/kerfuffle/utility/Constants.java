@@ -119,6 +119,10 @@ public class Constants
     public static final float COLLECTIBLE_ACCEL_DUE_TO_GRAVITY = WORLD_WIDTH / -150.0f;
     public static final float COLLECTIBLE_INIT_Y_VELOCITY = WORLD_WIDTH / 20.0f;
 
+    public static final float COLLECTIBLE_PLAYER_ACCEL_DUE_TO_GRAVITY = WORLD_WIDTH / -300.0f;
+    public static final float COLLECTIBLE_PLAYER_INIT_Y_VELOCITY = WORLD_WIDTH / 3.0f;
+    public static final float COLLECTIBLE_PLAYER_SPAWN_RADIUS = WORLD_WIDTH / 3.0f;
+
     public static final Color COLLECTIBLE_BORDER_COLOR = Color.BLACK;
     public static final float COLLECTIBLE_BORDER_MARGIN = WORLD_WIDTH / 200.0f;
     public static final Color COLLECTIBLE_POWERUP_COLOR = Color.SCARLET;

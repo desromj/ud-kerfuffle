@@ -13,6 +13,10 @@ public class LargePowerCollectible extends Collectible
         super(x, y);
     }
 
+    public LargePowerCollectible(float posX, float posY, float velX, float velY) {
+        super(posX, posY, velX, velY);
+    }
+
     @Override
     protected void setHitRadius() {
         this.hitRadius = Constants.COLLECTIBLE_HIT_RADIUS_LARGE;

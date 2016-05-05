@@ -131,6 +131,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
 
     public int getPlayerLivesLeft() { return level.getPlayer().getLives(); }
     public int getPlayerBombsLeft() { return level.getPlayer().getBombs(); }
+    public float getPlayerPowerLevel() { return level.getPlayer().getShotPowerLevel(); }
 
     public Vector2 getMiddleOfScreen()
     {
