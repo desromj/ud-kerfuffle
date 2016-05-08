@@ -38,8 +38,8 @@ public abstract class Shooter
     public abstract void render(SpriteBatch batch);
 
     /**
-     * Enemies and Bosses should know to drop Collectibles (points, powerups) usually on defeat
-     * Players do not need to implement this
+     * Enemies and Bosses should know to drop Collectibles (points, powerups) usually on defeat.
+     * Player drops their old powerups on defeat, which they must re-collect to gain power.
      */
     public abstract void dropCollectibles();
 

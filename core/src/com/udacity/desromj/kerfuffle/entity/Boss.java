@@ -49,17 +49,15 @@ public abstract class Boss extends Shooter
                 return;
         }
 
-        // Scroll the boss down the screen with the rest of the level
-        if (!this.shooting)
-            this.position.y -= Constants.ENEMY_WORLD_SCROLL_SPEED * delta;
-
         // check whether or not we need to activate our shooter
         if (this.position.y <= this.screenActivationHeight)
             shooting = true;
 
-        // Shoot our Patterns in the current Phase if we are active
+        // Shoot patterns if shooting, Scroll the boss down the screen with the rest of the level if not
         if (this.shooting)
             this.currentPhase.shootPatterns();
+        else
+            this.position.y -= Constants.ENEMY_WORLD_SCROLL_SPEED * delta;
     }
 
     /**
@@ -91,10 +89,4 @@ public abstract class Boss extends Shooter
      * For each Boss, load in Phases appropriate with the Difficulty of the game
      */
     public abstract Array<Phase> loadPhases();
-
-    /**
-     * Bosses will need to render themselves in some fashion
-     * @param batch
-     */
-    public abstract void render(SpriteBatch batch);
 }
