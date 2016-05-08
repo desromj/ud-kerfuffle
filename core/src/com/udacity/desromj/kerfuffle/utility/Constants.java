@@ -124,6 +124,7 @@ public class Constants
     public static final float COLLECTIBLE_HIT_RADIUS_HUGE = WORLD_WIDTH / 16.0f;
 
     public static final float COLLECTIBLE_ACCEL_DUE_TO_GRAVITY = WORLD_WIDTH / -150.0f;
+    public static final float COLLECTIBLE_ACCEL_DUE_TO_GRAVITY_SLOW = WORLD_WIDTH / -360.0f;
     public static final float COLLECTIBLE_INIT_Y_VELOCITY = WORLD_WIDTH / 20.0f;
 
     public static final float COLLECTIBLE_PLAYER_ACCEL_DUE_TO_GRAVITY = WORLD_WIDTH / -300.0f;

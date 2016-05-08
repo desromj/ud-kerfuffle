@@ -10,6 +10,7 @@ import com.udacity.desromj.kerfuffle.collectible.LargePointCollectible;
 import com.udacity.desromj.kerfuffle.collectible.SmallPointCollectible;
 import com.udacity.desromj.kerfuffle.collectible.SmallPowerCollectible;
 import com.udacity.desromj.kerfuffle.entity.Boss;
+import com.udacity.desromj.kerfuffle.entity.Collectible;
 import com.udacity.desromj.kerfuffle.entity.Pattern;
 import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Phase;
@@ -61,24 +62,28 @@ public class DewBoss extends Boss
     public void dropCollectibles()
     {
         float half = Constants.BOSS_DROP_RADIUS / 2.0f;
+        Collectible coll;
 
         for (int i = 0; i < Constants.BOSS_DEW_DROPS_HUGE_POINT; i++) {
-            GameScreen.instance.addCollectible(
-                    new HugePointCollectible(
-                            this.getPosition().x + (Constants.BOSS_DROP_RADIUS * Utils.randomFloat() - half),
-                            this.getPosition().y + (Constants.BOSS_DROP_RADIUS * Utils.randomFloat() - half)));
+            coll = new HugePointCollectible(
+                    this.getPosition().x + (Constants.BOSS_DROP_RADIUS * Utils.randomFloat() - half),
+                    this.getPosition().y + (Constants.BOSS_DROP_RADIUS * Utils.randomFloat() - half));
+            coll.setGravity(Constants.COLLECTIBLE_ACCEL_DUE_TO_GRAVITY_SLOW);
+            GameScreen.instance.addCollectible(coll);
         }
         for (int i = 0; i < Constants.BOSS_DEW_DROPS_LARGE_POINT; i++) {
-            GameScreen.instance.addCollectible(
-                    new LargePointCollectible(
-                            this.getPosition().x + (Constants.BOSS_DROP_RADIUS * Utils.randomFloat() - half),
-                            this.getPosition().y + (Constants.BOSS_DROP_RADIUS * Utils.randomFloat() - half)));
+            coll = new LargePointCollectible(
+                    this.getPosition().x + (Constants.BOSS_DROP_RADIUS * Utils.randomFloat() - half),
+                    this.getPosition().y + (Constants.BOSS_DROP_RADIUS * Utils.randomFloat() - half));
+            coll.setGravity(Constants.COLLECTIBLE_ACCEL_DUE_TO_GRAVITY_SLOW);
+            GameScreen.instance.addCollectible(coll);
         }
         for (int i = 0; i < Constants.BOSS_DEW_DROPS_SMALL_POINT; i++) {
-            GameScreen.instance.addCollectible(
-                    new SmallPointCollectible(
-                            this.getPosition().x + (Constants.BOSS_DROP_RADIUS * Utils.randomFloat() - half),
-                            this.getPosition().y + (Constants.BOSS_DROP_RADIUS * Utils.randomFloat() - half)));
+            coll = new SmallPointCollectible(
+                    this.getPosition().x + (Constants.BOSS_DROP_RADIUS * Utils.randomFloat() - half),
+                    this.getPosition().y + (Constants.BOSS_DROP_RADIUS * Utils.randomFloat() - half));
+            coll.setGravity(Constants.COLLECTIBLE_ACCEL_DUE_TO_GRAVITY_SLOW);
+            GameScreen.instance.addCollectible(coll);
         }
     }
 
