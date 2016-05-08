@@ -111,12 +111,8 @@ public class Level
           */
 
         // Bosses
-        for (int i = 0; i < bosses.size; i++) {
+        for (int i = 0; i < bosses.size; i++)
             bosses.get(i).update(delta);
-
-            if (bosses.get(i).isDead())
-                bosses.removeIndex(i);
-        }
 
         // Enemies - If boss is onscreen, only update onscreen enemies. Otherwise, update all
         for (int i = 0; i < shooters.size; i++) {
@@ -379,8 +375,10 @@ public class Level
         {
             Boss chk = bosses.get(i);
 
-            if (chk == boss)
+            if (chk == boss) {
+                chk.dropCollectibles();
                 bosses.removeIndex(i);
+            }
         }
     }
 }
