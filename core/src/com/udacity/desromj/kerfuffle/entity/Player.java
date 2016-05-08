@@ -189,6 +189,11 @@ public class Player extends Shooter
         }
     }
 
+    public boolean isAtMaxPower()
+    {
+        return this.shotPowerLevel >= Constants.PLAYER_SHOT_MAX_POWER_LEVEL;
+    }
+
     @Override
     public void render(SpriteBatch batch)
     {

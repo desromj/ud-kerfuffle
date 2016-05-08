@@ -2,6 +2,7 @@ package com.udacity.desromj.kerfuffle.collectible;
 
 import com.udacity.desromj.kerfuffle.entity.Collectible;
 import com.udacity.desromj.kerfuffle.entity.Player;
+import com.udacity.desromj.kerfuffle.entity.Score;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
 /**
@@ -28,7 +29,11 @@ public class LargePowerCollectible extends Collectible
     }
 
     @Override
-    public void collectEffect(Player player) {
-        player.addShotPower(Constants.COLLECTIBLE_LARGE_POWER_AMOUNT);
+    public void collectEffect(Player player)
+    {
+        if (player.isAtMaxPower())
+            Score.instance.addPoints(Constants.COLLECTIBLE_LARGE_POWER_POINT_AMOUNT);
+        else
+            player.addShotPower(Constants.COLLECTIBLE_LARGE_POWER_AMOUNT);
     }
 }

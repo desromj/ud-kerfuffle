@@ -3,6 +3,7 @@ package com.udacity.desromj.kerfuffle.collectible;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.udacity.desromj.kerfuffle.entity.Collectible;
 import com.udacity.desromj.kerfuffle.entity.Player;
+import com.udacity.desromj.kerfuffle.entity.Score;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
 /**
@@ -33,7 +34,10 @@ public class SmallPowerCollectible extends Collectible
     @Override
     public void collectEffect(Player player)
     {
-        player.addShotPower(Constants.COLLECTIBLE_SMALL_POWER_AMOUNT);
+        if (player.isAtMaxPower())
+            Score.instance.addPoints(Constants.COLLECTIBLE_SMALL_POWER_POINT_AMOUNT);
+        else
+            player.addShotPower(Constants.COLLECTIBLE_SMALL_POWER_AMOUNT);
     }
 
 }

@@ -136,7 +136,9 @@ public class Constants
     public static final Color COLLECTIBLE_POINT_COLOR = Color.BLUE;
 
     public static final float COLLECTIBLE_SMALL_POWER_AMOUNT = 0.075f;
+    public static final int COLLECTIBLE_SMALL_POWER_POINT_AMOUNT = 2;
     public static final float COLLECTIBLE_LARGE_POWER_AMOUNT = 0.5f;
+    public static final int COLLECTIBLE_LARGE_POWER_POINT_AMOUNT = 25;
 
     public static final int COLLECTIBLE_SMALL_POINT_AMOUNT = 5;
     public static final int COLLECTIBLE_LARGE_POINT_AMOUNT = 100;
