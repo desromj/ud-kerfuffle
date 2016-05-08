@@ -13,6 +13,7 @@ import com.udacity.desromj.kerfuffle.utility.Utils;
 public abstract class Bullet extends Spawnable
 {
     protected float shotRadius, damage;
+    private boolean grazed = false;
 
     public Bullet(Shooter parent, Vector2 position, Vector2 velocity)
     {
@@ -24,6 +25,32 @@ public abstract class Bullet extends Spawnable
     /** Set radius for hitBoxes for each Bullet */
     protected abstract void setShotRadius();
     protected abstract void setDamage();
+
+    public final boolean isGrazing(Shooter shooter)
+    {
+        float dist = Vector2.dst(this.position.x, this.position.y, shooter.getPosition().x, shooter.getPosition().y);
+
+        if (dist < this.shotRadius + shooter.hitRadius + Constants.BULLET_GRAZE_RADIUS)
+            return true;
+
+        return false;
+    }
+
+    /**
+     * Player gets points for grazing bullets. One point increase per bullet
+     */
+    public final void graze()
+    {
+        if (!this.grazed)
+            Score.instance.addPoints(Constants.BULLET_GRAZE_POINTS);
+
+        this.grazed = true;
+    }
+
+    public final boolean isGrazed()
+    {
+        return this.grazed;
+    }
 
     public final boolean isColliding(Shooter shooter)
     {

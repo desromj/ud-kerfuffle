@@ -125,7 +125,7 @@ public class LevelPatterns
                                             parent,
                                             new PatternProperties.Builder()
                                                     .targetted(false)
-                                                    .arms(2)
+                                                    .arms(1)
                                                     .shotsPerArm(2)
                                                     .armAngleOffsetDegrees(25.0f)
                                                     .armSpeedModifier(0.9f)

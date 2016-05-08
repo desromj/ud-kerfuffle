@@ -223,9 +223,12 @@ public class Level
             {
                 Bullet bullet = (Bullet) spawnables.get(j);
 
+                // Check for bullets grazing the player
+                if (!bullet.isGrazed() && bullet.isGrazing(player))
+                    bullet.graze();
+
                 // Check for bullets hitting the player
-                if (!playerHit && bullet.isColliding(player))
-                {
+                if (!playerHit && bullet.isColliding(player)) {
                     playerHit = true;
                     player.dropCollectibles();
                     player.respawn(Constants.PLAYER_DEFAULT_SPAWN_POSITION);

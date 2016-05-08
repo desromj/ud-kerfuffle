@@ -11,6 +11,7 @@ import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
+import com.udacity.desromj.kerfuffle.utility.Constants;
 
 /**
  * Created by Mike on 2016-02-09.
@@ -89,7 +90,7 @@ public class DirectShotPattern extends Pattern
                 spawns.add(generateBullet(origin, j, workingAngleLeft, firstArm));
 
                 // Don't spawn duplicate bullets in the same position
-                if (workingAngleRight != workingAngleLeft)
+                if (workingAngleRight - workingAngleLeft > Constants.BULLET_MINIMUM_ANGLE_DIFFERENCE_RADS)
                     spawns.add(generateBullet(origin, j, workingAngleRight, firstArm));
             }
         }
