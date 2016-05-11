@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
+import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
 /**
@@ -12,6 +13,8 @@ import com.udacity.desromj.kerfuffle.utility.Constants;
  */
 public abstract class Boss extends Shooter
 {
+    Assets.SpineAnimationAsset asset;
+
     public Array<Phase> phases;
     protected float screenActivationHeight;
 
@@ -29,6 +32,7 @@ public abstract class Boss extends Shooter
         this.screenActivationHeight = heightRatio * Constants.WORLD_HEIGHT;
         this.phases = this.loadPhases();
         this.currentPhase = phases.peek();
+        asset = Assets.instance.makeAsset(this);
     }
 
     @Override
@@ -58,6 +62,9 @@ public abstract class Boss extends Shooter
             this.currentPhase.shootPatterns();
         else
             this.position.y -= Constants.ENEMY_WORLD_SCROLL_SPEED * delta;
+
+        // Cling the skeleton position to this boss position
+        this.asset.skeleton.setPosition(this.getPosition().x, this.getPosition().y);
     }
 
     /**
@@ -83,6 +90,12 @@ public abstract class Boss extends Shooter
     public void reduceHealth(Bullet hitBy)
     {
         this.currentPhase.damageHitPoints(hitBy.damage);
+    }
+
+    @Override
+    public void render(SpriteBatch batch)
+    {
+        this.asset.render(batch);
     }
 
     /**

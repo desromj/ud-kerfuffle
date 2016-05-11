@@ -31,24 +31,8 @@ import com.udacity.desromj.kerfuffle.utility.Utils;
  */
 public class DewBoss extends Boss
 {
-    Assets.SpineAnimationAsset asset;
-
     public DewBoss(Vector2 position, float screenActivationHeight) {
         super(position, screenActivationHeight);
-        asset = Assets.instance.makeAsset(this);
-    }
-
-    @Override
-    public void update(float delta)
-    {
-        super.update(delta);
-        this.asset.skeleton.setPosition(this.getPosition().x, this.getPosition().y);
-    }
-
-    @Override
-    public void render(SpriteBatch batch)
-    {
-        this.asset.render(batch);
     }
 
     @Override
