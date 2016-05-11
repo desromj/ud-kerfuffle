@@ -60,7 +60,14 @@ public class LevelPatterns
 
         DEW_PHASE_1("dp1"),
         DEW_PHASE_2("dp2"),
-        DEW_PHASE_3("dp3");
+        DEW_PHASE_3("dp3"),
+
+        // TODO: These all must be created
+        MWAP_PHASE_1("mp1"),
+        MWAP_PHASE_2("mp2"),
+        MWAP_PHASE_3("mp3"),
+        MWAP_PHASE_4("mp4"),
+        MWAP_PHASE_5("mp5");
 
         private String tag;
 

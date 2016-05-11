@@ -101,6 +101,10 @@ public class Constants
     public static final float [] BOSS_MWAP_PATTERN_HEALTH = new float [] { 500f, 250f, 300f, 200f, 400f };
     public static final String [] BOSS_MWAP_PATTERN_TAGS = new String [] { "mp1", "mp2", "mp3", "mp4", "mp5" };
 
+    public static final int BOSS_MWAP_DROPS_HUGE_POINT = 6;
+    public static final int BOSS_MWAP_DROPS_LARGE_POINT = 30;
+    public static final int BOSS_MWAP_DROPS_SMALL_POINT = 50;
+
     /*
     Bullet values
      */
