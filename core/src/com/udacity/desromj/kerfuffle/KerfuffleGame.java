@@ -8,12 +8,25 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.udacity.desromj.kerfuffle.entity.Score;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
+import com.udacity.desromj.kerfuffle.screen.StartScreen;
+import com.udacity.desromj.kerfuffle.utility.Enums;
 
 public class KerfuffleGame extends Game
 {
 	@Override
 	public void create ()
 	{
+		setScreen(GameScreen.instance);
+	}
+
+	public void showStartScreen()
+	{
+		setScreen(new StartScreen(this));
+	}
+
+	public void showGameScreen(Enums.Difficulty difficulty)
+	{
+		GameScreen.instance.init(difficulty);
 		setScreen(GameScreen.instance);
 	}
 }
