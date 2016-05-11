@@ -204,9 +204,9 @@ public class Player extends Shooter
     public void renderShapes(ShapeRenderer renderer)
     {
         renderer.setColor(Constants.PLAYER_HITBOX_BORDER_COLOR);
-        renderer.circle(this.position.x, this.position.y, Constants.PLAYER_RADIUS * 2.0f);
+        renderer.circle(this.position.x, this.position.y, Constants.PLAYER_RADIUS * Constants.PLAYER_HITBOX_BUFFER_RATIO);
 
         renderer.setColor(Constants.PLAYER_HITBOX_COLOR);
-        renderer.circle(this.position.x, this.position.y, (Constants.PLAYER_RADIUS - Constants.PLAYER_HITBOX_BORDER) * 2.0f);
+        renderer.circle(this.position.x, this.position.y, (Constants.PLAYER_RADIUS - Constants.PLAYER_HITBOX_BORDER) * Constants.PLAYER_HITBOX_BUFFER_RATIO);
     }
 }
