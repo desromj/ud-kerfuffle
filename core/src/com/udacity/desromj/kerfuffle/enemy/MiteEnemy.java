@@ -24,8 +24,6 @@ import com.udacity.desromj.kerfuffle.utility.Utils;
 
 public class MiteEnemy extends Enemy
 {
-    Assets.SpineAnimationAsset asset;
-
     /**
      * Loads a default set of Patterns. Recommended to use the other constructor
      *
@@ -35,21 +33,11 @@ public class MiteEnemy extends Enemy
     public MiteEnemy(Vector2 position, float screenActivationHeight)
     {
         super(position, screenActivationHeight);
-        asset = Assets.instance.makeAsset(this);
     }
 
     public MiteEnemy(Vector2 position, float screenActivationHeight, Pattern[] patterns)
     {
         super(position, screenActivationHeight, patterns);
-        asset = Assets.instance.makeAsset(this);
-    }
-
-    /*
-        TODO: implement movement behaviour here, when it is better understood
-     */
-    public void move(float delta)
-    {
-        // this.getPosition().x += Constants.ENEMY_WORLD_SCROLL_SPEED * delta;
     }
 
     @Override
@@ -60,22 +48,6 @@ public class MiteEnemy extends Enemy
     @Override
     protected void setHitRadius() {
         this.hitRadius = Constants.ENEMY_MITE_RADIUS;
-    }
-
-    public void update(float delta)
-    {
-        super.update(delta);
-
-        this.asset.skeleton.setPosition(this.getPosition().x, this.getPosition().y);
-
-        if (this.isShooting())
-            move(delta);
-    }
-
-    @Override
-    public void render(SpriteBatch batch)
-    {
-        this.asset.render(batch);
     }
 
     @Override

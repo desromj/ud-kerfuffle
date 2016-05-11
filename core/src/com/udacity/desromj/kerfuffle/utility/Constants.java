@@ -73,10 +73,14 @@ public class Constants
     // Fly values - medium enemy
     public static final float ENEMY_FLY_HEALTH = 250.0f;
     public static final float ENEMY_FLY_RADIUS = WORLD_WIDTH / 40.0f;
+    public static final int ENEMY_FLY_POWERUP_DROPS = 9;
+    public static final float ENEMY_FLY_DROP_RADIUS = WORLD_WIDTH / 5.0f;
 
     // Mantis values - tough enemy
     public static final float ENEMY_MANTIS_HEALTH = 600.0f;
     public static final float ENEMY_MANTIS_RADIUS = WORLD_WIDTH / 35.0f;
+    public static final int ENEMY_MANTIS_POWERUP_DROPS = 16;
+    public static final float ENEMY_MANTIS_DROP_RADIUS = WORLD_WIDTH / 4.0f;
 
     // General Boss values
     public static final float BOSS_DROP_RADIUS = WORLD_WIDTH / 2.0f;

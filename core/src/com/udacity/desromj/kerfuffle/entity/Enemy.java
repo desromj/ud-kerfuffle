@@ -1,6 +1,8 @@
 package com.udacity.desromj.kerfuffle.entity;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
 /**
@@ -8,6 +10,8 @@ import com.udacity.desromj.kerfuffle.utility.Constants;
  */
 public abstract class Enemy extends Shooter
 {
+    protected Assets.SpineAnimationAsset asset;
+
     protected float screenActivationHeight;
     protected Pattern [] patterns;
 
@@ -15,6 +19,7 @@ public abstract class Enemy extends Shooter
     {
         super(position);
         this.screenActivationHeight = heightRatio * Constants.WORLD_HEIGHT;
+        asset = Assets.instance.makeAsset(this);
     }
 
     public Enemy(Vector2 position, float heightRatio, Pattern [] patterns)
@@ -22,6 +27,7 @@ public abstract class Enemy extends Shooter
         super(position);
         setPatterns(patterns);
         this.screenActivationHeight = heightRatio * Constants.WORLD_HEIGHT;
+        asset = Assets.instance.makeAsset(this);
     }
 
     public final void setPatterns(Pattern [] patterns)
@@ -53,5 +59,26 @@ public abstract class Enemy extends Shooter
             for (Pattern pattern : patterns)
                 pattern.shoot();
         }
+
+        // Update the skeleton position to track this enemy position
+        this.asset.skeleton.setPosition(this.getPosition().x, this.getPosition().y);
+
+        if (this.isShooting())
+            move(delta);
     }
+
+    /*
+        TODO: implement movement behaviour here, when it is better understood
+     */
+    public void move(float delta)
+    {
+        // this.getPosition().x += Constants.ENEMY_WORLD_SCROLL_SPEED * delta;
+    }
+
+    @Override
+    public void render(SpriteBatch batch)
+    {
+        this.asset.render(batch);
+    }
+
 }
