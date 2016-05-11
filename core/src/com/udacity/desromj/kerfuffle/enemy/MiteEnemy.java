@@ -24,7 +24,7 @@ import com.udacity.desromj.kerfuffle.utility.Utils;
 
 public class MiteEnemy extends Enemy
 {
-    Assets.MiteAssets assets;
+    Assets.SpineAnimationAsset asset;
 
     /**
      * Loads a default set of Patterns. Recommended to use the other constructor
@@ -35,13 +35,13 @@ public class MiteEnemy extends Enemy
     public MiteEnemy(Vector2 position, float screenActivationHeight)
     {
         super(position, screenActivationHeight);
-        assets = Assets.instance.makeMiteAssets();
+        asset = Assets.instance.makeAsset(this);
     }
 
     public MiteEnemy(Vector2 position, float screenActivationHeight, Pattern[] patterns)
     {
         super(position, screenActivationHeight, patterns);
-        assets = Assets.instance.makeMiteAssets();
+        asset = Assets.instance.makeAsset(this);
     }
 
     /*
@@ -66,7 +66,7 @@ public class MiteEnemy extends Enemy
     {
         super.update(delta);
 
-        this.assets.skeleton.setPosition(this.getPosition().x, this.getPosition().y);
+        this.asset.skeleton.setPosition(this.getPosition().x, this.getPosition().y);
 
         if (this.isShooting())
             move(delta);
@@ -75,7 +75,7 @@ public class MiteEnemy extends Enemy
     @Override
     public void render(SpriteBatch batch)
     {
-        this.assets.render(batch);
+        this.asset.render(batch);
     }
 
     @Override

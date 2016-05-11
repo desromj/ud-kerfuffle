@@ -21,9 +21,10 @@ import com.udacity.desromj.kerfuffle.utility.Utils;
  */
 public class Player extends Shooter
 {
-    private float magnitude;
+    private Assets.SpineAnimationAsset asset;
 
     Pattern bulletPattern;
+    private float magnitude;
     int lives, bombs;
     float shotPowerLevel;
 
@@ -31,7 +32,7 @@ public class Player extends Shooter
     {
         super(position);
 
-        this.magnitude = 0.0f;
+        this.asset = Assets.instance.makeAsset(this);
         this.bulletPattern = SpawnFactory.makePattern(
                 Enums.PatternType.PLAYER_BULLET_PATTERN,
                 this,
@@ -42,6 +43,7 @@ public class Player extends Shooter
                         .createProps()
         );
 
+        this.magnitude = 0.0f;
         this.lives = Constants.PLAYER_STARTING_LIVES;
         this.bombs = Constants.PLAYER_STARTING_BOMBS;
 
@@ -136,7 +138,7 @@ public class Player extends Shooter
         /*
             Update skeleton and animation data
          */
-        Assets.instance.bloomAssets.skeleton.setPosition(position.x, position.y);
+        this.asset.skeleton.setPosition(position.x, position.y);
     }
 
     public final boolean isFocussed()
@@ -197,7 +199,7 @@ public class Player extends Shooter
     @Override
     public void render(SpriteBatch batch)
     {
-        Assets.instance.bloomAssets.render(batch);
+        this.asset.render(batch);
     }
 
     // Hitbox Rendering - specific to the player

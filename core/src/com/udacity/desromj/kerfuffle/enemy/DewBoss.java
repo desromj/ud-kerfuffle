@@ -31,25 +31,24 @@ import com.udacity.desromj.kerfuffle.utility.Utils;
  */
 public class DewBoss extends Boss
 {
-    // TODO: Replace with DewAssets
-    Assets.MiteAssets assets;
+    Assets.SpineAnimationAsset asset;
 
     public DewBoss(Vector2 position, float screenActivationHeight) {
         super(position, screenActivationHeight);
-        assets = Assets.instance.makeMiteAssets();
+        asset = Assets.instance.makeAsset(this);
     }
 
     @Override
     public void update(float delta)
     {
         super.update(delta);
-        this.assets.skeleton.setPosition(this.getPosition().x, this.getPosition().y);
+        this.asset.skeleton.setPosition(this.getPosition().x, this.getPosition().y);
     }
 
     @Override
     public void render(SpriteBatch batch)
     {
-        this.assets.render(batch);
+        this.asset.render(batch);
     }
 
     @Override
