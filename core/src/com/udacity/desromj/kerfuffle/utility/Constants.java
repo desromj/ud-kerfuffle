@@ -98,7 +98,7 @@ public class Constants
     // Mwap values - main boss
     public static final float BOSS_MWAP_RADIUS = WORLD_WIDTH / 50.0f;
 
-    public static final float [] BOSS_MWAP_PATTERN_HEALTH = new float [] { 500f, 250f, 300f, 200f, 400f };
+    public static final float [] BOSS_MWAP_PATTERN_HEALTH = new float [] { 1500f, 400f, 300f, 600f, 900f };
     public static final String [] BOSS_MWAP_PATTERN_TAGS = new String [] { "mp1", "mp2", "mp3", "mp4", "mp5" };
 
     public static final int BOSS_MWAP_DROPS_HUGE_POINT = 6;

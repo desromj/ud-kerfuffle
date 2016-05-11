@@ -58,9 +58,10 @@ public class Assets implements Disposable, AssetErrorListener
     {
         SpineAnimationAsset asset;
 
-        // TODO: The remaining enemies need their own handdrawn assets. Replace everything here when they are made
         if (shooter instanceof Player)              asset = new BloomAssets();
         else if (shooter instanceof MiteEnemy)      asset = new MiteAssets();
+
+        // TODO: The remaining enemies need their own handdrawn assets. Replace everything here when they are made
         else if (shooter instanceof FlyEnemy)       asset = new MiteAssets();
         else if (shooter instanceof MantisEnemy)    asset = new MiteAssets();
         else if (shooter instanceof DewBoss)        asset = new MiteAssets();
@@ -76,11 +77,12 @@ public class Assets implements Disposable, AssetErrorListener
         protected SkeletonRenderer skeletonRenderer;
         protected SkeletonRendererDebug skeletonRendererDebug;
         protected TextureAtlas atlas;
-        protected AnimationState animationState;
 
-        // Skeleton is public since it will need to be updated via game logic
+        // Skeleton and animationState are public since they will need to be updated via game logic
+        public AnimationState animationState;
         public Skeleton skeleton;
 
+        // All subclasses must initialize all required Spine classes above
         public abstract void initSpine();
 
         public SpineAnimationAsset()

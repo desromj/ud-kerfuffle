@@ -18,6 +18,7 @@ public abstract class Enemy extends Shooter
     public Enemy(Vector2 position, float heightRatio)
     {
         super(position);
+        this.loadDefaultPattern();
         this.screenActivationHeight = heightRatio * Constants.WORLD_HEIGHT;
         asset = Assets.instance.makeAsset(this);
     }
@@ -69,11 +70,9 @@ public abstract class Enemy extends Shooter
 
     /*
         TODO: implement movement behaviour here, when it is better understood
+        Can always be overridden by child classes
      */
-    public void move(float delta)
-    {
-        // this.getPosition().x += Constants.ENEMY_WORLD_SCROLL_SPEED * delta;
-    }
+    public void move(float delta) {}
 
     @Override
     public void render(SpriteBatch batch)
