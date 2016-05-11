@@ -27,10 +27,23 @@ import org.json.simple.parser.ParseException;
 
 import java.util.Map;
 
-public class LevelLoader
 /**
  * Created by Mike on 2016-03-17.
+ *
+ * LevelLoader loads JSON files which contain enemies, bosses, shot types,
+ * activation heights, and enemy/boss types.
+ *
+ * Placeholder Enemy and Boss images at 48x48 resultion are used. The Player
+ * start position is 0, 0 in Overlap 2D, with the world ranging from -210 to +210.
+ * As well, to keep the editor useable, Y values are compressed by a factor of 10.
+ *
+ * Therefore, adding assets through the LevelLoader should do the following to x/y values:
+ *
+ * X: add Constants.WORLD_WIDTH * 0.5
+ * Y: multiply by 10
+ *
  */
+public class LevelLoader
 {
     public static final String TAG = LevelLoader.class.getName();
 
@@ -89,11 +102,15 @@ public class LevelLoader
     {
         Vector2 itemXYPos = Utils.castJSONVector2(item);
 
-        // Add image origins to x and y coords to get origin for game object
+        /*
+            Add image origins to x and y coords to get origin for game object.
+            This changes the position from the bottom-left corner to the origin
+          */
         float width = Utils.castJSONFloat(item, "originX");
         float height = Utils.castJSONFloat(item, "originY");
-        itemXYPos.x += width + Constants.WORLD_WIDTH / 2.0f;
-        itemXYPos.y += height;
+
+        itemXYPos.x = itemXYPos.x + width + Constants.WORLD_WIDTH / 2.0f;
+        itemXYPos.y = itemXYPos.y * Constants.WORLD_Y_LEVEL_EDITOR_SCALE + height;
 
         // Read custom vars from JASON
         Map<String, Object> customs = Utils.readJSONCustomVars(item);
@@ -127,8 +144,9 @@ public class LevelLoader
         // Add image origins to x and y coords to get origin for game object
         float width = Utils.castJSONFloat(item, "originX");
         float height = Utils.castJSONFloat(item, "originY");
-        itemXYPos.x += width + Constants.WORLD_WIDTH / 2.0f;
-        itemXYPos.y += height;
+
+        itemXYPos.x = itemXYPos.x + width + Constants.WORLD_WIDTH / 2.0f;
+        itemXYPos.y = itemXYPos.y * Constants.WORLD_Y_LEVEL_EDITOR_SCALE + height;
 
         // Read custom vars from JASON
         Map<String, Object> customs = Utils.readJSONCustomVars(item);

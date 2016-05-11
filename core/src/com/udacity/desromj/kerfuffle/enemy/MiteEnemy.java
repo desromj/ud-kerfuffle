@@ -28,7 +28,6 @@ public class MiteEnemy extends Enemy
 
     /**
      * Loads a default set of Patterns. Recommended to use the other constructor
-     * TODO: remove this or ensure there is a way to set Patterns through the level designer
      *
      * @param position
      * @param screenActivationHeight

@@ -152,5 +152,12 @@ public class Constants
     public static final int COLLECTIBLE_LARGE_POINT_AMOUNT = 75;
     public static final int COLLECTIBLE_HUGE_POINT_AMOUNT = 1000;
 
+    /*
+        Misc
+      */
+    public static final float WORLD_Y_LEVEL_EDITOR_SCALE = 10.0f;
+
+
+
     private Constants() {}
 }
