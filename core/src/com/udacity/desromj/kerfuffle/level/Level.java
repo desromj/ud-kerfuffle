@@ -74,7 +74,8 @@ public class Level
           */
 
         // Update the player
-        player.update(delta);
+        if (!loseCondition())
+            player.update(delta);
 
         // Update all collectibles, remove if offscreen
         for (int i = 0; i < collectibles.size; i++)
@@ -203,7 +204,8 @@ public class Level
         for (Boss boss: bosses)
             boss.render(batch);
 
-        player.render(batch);
+        if (!loseCondition())
+            player.render(batch);
 
         batch.end();
     }
@@ -297,13 +299,13 @@ public class Level
     }
 
     /**
-     * We win when there are no Bosses remaining in the level
+     * We win when there are no Bosses remaining in the level, and all collectibles have been picked up
      *
      * @return
      */
     public boolean winCondition()
     {
-        return bosses.size <= 0;
+        return bosses.size <= 0 && collectibles.size <= 0;
     }
 
     /**

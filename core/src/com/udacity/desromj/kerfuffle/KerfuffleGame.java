@@ -16,7 +16,7 @@ public class KerfuffleGame extends Game
 	@Override
 	public void create ()
 	{
-		setScreen(GameScreen.instance);
+		showGameScreen(Enums.Difficulty.HARD);
 	}
 
 	public void showStartScreen()
@@ -26,7 +26,7 @@ public class KerfuffleGame extends Game
 
 	public void showGameScreen(Enums.Difficulty difficulty)
 	{
-		GameScreen.instance.init(difficulty);
+		GameScreen.instance.init(this, difficulty);
 		setScreen(GameScreen.instance);
 	}
 }

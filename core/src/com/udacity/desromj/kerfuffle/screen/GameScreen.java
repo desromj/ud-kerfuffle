@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.udacity.desromj.kerfuffle.KerfuffleGame;
 import com.udacity.desromj.kerfuffle.enemy.MiteEnemy;
 import com.udacity.desromj.kerfuffle.entity.Boss;
 import com.udacity.desromj.kerfuffle.entity.Bullet;
@@ -39,30 +40,34 @@ import com.udacity.desromj.kerfuffle.utility.LevelLoader;
  */
 public class GameScreen extends ScreenAdapter implements InputProcessor
 {
-    public static final GameScreen instance = new GameScreen();
+    public static GameScreen instance = new GameScreen();
+
+    private KerfuffleGame game;
     private static int currentLevelNum;
 
     Viewport viewport;
     SpriteBatch batch;
     ShapeRenderer renderer;
 
-    Enums.Difficulty difficulty = Enums.Difficulty.MEDIUM;
+    Enums.Difficulty difficulty;
     Level level;
     GameScreenHUD hud;
 
     private GameScreen()
     {
         Assets.instance.init();
+    }
+
+    public void init(KerfuffleGame game, Enums.Difficulty difficulty)
+    {
+        instance.game = game;
+        instance.difficulty = difficulty;
+        Score.instance.restart();
+
         viewport = new ExtendViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
         hud = new GameScreenHUD(viewport);
         currentLevelNum = 1;
         Gdx.input.setInputProcessor(this);
-    }
-
-    public void init(Enums.Difficulty difficulty)
-    {
-        instance.difficulty = difficulty;
-        Score.instance.restart();
 
         renderer = new ShapeRenderer();
         batch = new SpriteBatch();
@@ -72,6 +77,11 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     @Override
     public void render(float delta)
     {
+        if (level.winCondition())
+            ; // TODO: Show Win screen/HUD Overlay
+        else if (level.loseCondition())
+            ; // TODO: Show lose screen/HUD overlay
+
         level.render(delta, renderer, batch);
         hud.render();
     }
@@ -85,7 +95,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     @Override
     public void show()
     {
-        init(instance.difficulty);
+        init(instance.game, instance.difficulty);
     }
 
     @Override
@@ -165,7 +175,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     {
         // TODO: remove debug control - Press 'R' to reset the level
         if (keycode == Input.Keys.R) {
-            instance.init(instance.difficulty);
+            instance.init(instance.game, instance.difficulty);
         }
 
         // TODO: remove debug control - Press 'E' to increase player shot power level

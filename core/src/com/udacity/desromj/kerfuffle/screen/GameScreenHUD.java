@@ -44,7 +44,7 @@ public class GameScreenHUD
                         "Bombs: " + GameScreen.instance.getPlayerBombsLeft() + "\n" +
                         "Power Level: " +
                             ((GameScreen.instance.getPlayerPowerLevel() >= Constants.PLAYER_SHOT_MAX_POWER_LEVEL) ?
-                                "MAX POWER" :
+                                "MAX" :
                                 String.format("%.2f", GameScreen.instance.getPlayerPowerLevel())),
                 Constants.HUD_WORLD_MARGIN,
                 Constants.WORLD_HEIGHT - Constants.HUD_WORLD_MARGIN,
