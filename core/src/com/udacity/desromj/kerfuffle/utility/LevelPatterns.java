@@ -910,6 +910,91 @@ public class LevelPatterns
                     }
 
                     break;
+
+                case MWAP_PHASE_1:
+
+                    // TODO: fill phase patterns
+                    switch (difficulty)
+                    {
+                        case EASY:
+                            break;
+                        case MEDIUM:
+                            break;
+                        case HARD:
+                            break;
+                        case INSANE:
+                            break;
+                    }
+
+                    break;
+
+                case MWAP_PHASE_2:
+
+                    // TODO: fill phase patterns
+                    switch (difficulty)
+                    {
+                        case EASY:
+                            break;
+                        case MEDIUM:
+                            break;
+                        case HARD:
+                            break;
+                        case INSANE:
+                            break;
+                    }
+
+                    break;
+
+                case MWAP_PHASE_3:
+
+                    // TODO: fill phase patterns
+                    switch (difficulty)
+                    {
+                        case EASY:
+                            break;
+                        case MEDIUM:
+                            break;
+                        case HARD:
+                            break;
+                        case INSANE:
+                            break;
+                    }
+
+                    break;
+
+                case MWAP_PHASE_4:
+
+                    // TODO: fill phase patterns
+                    switch (difficulty)
+                    {
+                        case EASY:
+                            break;
+                        case MEDIUM:
+                            break;
+                        case HARD:
+                            break;
+                        case INSANE:
+                            break;
+                    }
+
+                    break;
+
+                case MWAP_PHASE_5:
+
+                    // TODO: fill phase patterns
+                    switch (difficulty)
+                    {
+                        case EASY:
+                            break;
+                        case MEDIUM:
+                            break;
+                        case HARD:
+                            break;
+                        case INSANE:
+                            break;
+                    }
+
+                    break;
             }
 
             return patterns;

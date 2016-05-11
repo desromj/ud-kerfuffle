@@ -42,7 +42,10 @@ public class GameScreenHUD
                 batch,
                 "Lives: " + GameScreen.instance.getPlayerLivesLeft() + "\n" +
                         "Bombs: " + GameScreen.instance.getPlayerBombsLeft() + "\n" +
-                        "Power Level: " + String.format("%.2f", GameScreen.instance.getPlayerPowerLevel()),
+                        "Power Level: " +
+                            ((GameScreen.instance.getPlayerPowerLevel() >= Constants.PLAYER_SHOT_MAX_POWER_LEVEL) ?
+                                "MAX POWER" :
+                                String.format("%.2f", GameScreen.instance.getPlayerPowerLevel())),
                 Constants.HUD_WORLD_MARGIN,
                 Constants.WORLD_HEIGHT - Constants.HUD_WORLD_MARGIN,
                 0.0f,

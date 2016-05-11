@@ -59,13 +59,13 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         Gdx.input.setInputProcessor(this);
     }
 
-    public void init()
+    public void init(Enums.Difficulty difficulty)
     {
-        renderer = new ShapeRenderer();
-        batch = new SpriteBatch();
-
+        instance.difficulty = difficulty;
         Score.instance.restart();
 
+        renderer = new ShapeRenderer();
+        batch = new SpriteBatch();
         level = LevelLoader.load("levels/level-one.json", viewport);
     }
 
@@ -85,7 +85,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     @Override
     public void show()
     {
-        init();
+        init(instance.difficulty);
     }
 
     @Override
@@ -165,7 +165,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     {
         // TODO: remove debug control - Press 'R' to reset the level
         if (keycode == Input.Keys.R) {
-            instance.init();
+            instance.init(instance.difficulty);
         }
 
         // TODO: remove debug control - Press 'E' to increase player shot power level
