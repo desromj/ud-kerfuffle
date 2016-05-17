@@ -55,7 +55,8 @@ public class GameScreenHUD
         // Draw the score - top-right of screen
         font.draw(
                 batch,
-                "Score: " + Score.instance.getScore() + "\n" +
+                "Difficulty: " + GameScreen.instance.getDifficulty().getLabel() + "\n" +
+                        "Score: " + Score.instance.getScore() + "\n" +
                         "Top Score: " + Score.instance.getTopScore(),
                 Constants.WORLD_WIDTH - Constants.HUD_WORLD_MARGIN,
                 Constants.WORLD_HEIGHT - Constants.HUD_WORLD_MARGIN,

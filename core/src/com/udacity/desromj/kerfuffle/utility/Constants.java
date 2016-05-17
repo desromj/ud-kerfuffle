@@ -8,13 +8,14 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Constants
 {
+    /*
+        Gameplay Constants
+     */
     public static final float WORLD_WIDTH = 420.0f;
     public static final float WORLD_HEIGHT = WORLD_WIDTH * 16.0f / 9.0f;
 
     public static final float HUD_WORLD_MARGIN = WORLD_WIDTH / 20.0f;
     public static final float HUD_SCALE = 1.5f;
-
-    public static final String GAME_TITLE = "A-Pollen";
 
     public static final String ENEMY_ID_TAG = "enemy";
     public static final String BOSS_ID_TAG = "boss";
@@ -159,6 +160,24 @@ public class Constants
     public static final int COLLECTIBLE_SMALL_POINT_AMOUNT = 5;
     public static final int COLLECTIBLE_LARGE_POINT_AMOUNT = 75;
     public static final int COLLECTIBLE_HUGE_POINT_AMOUNT = 1000;
+
+    /*
+        Start Screen Labels and Values
+    */
+    public static final String GAME_TITLE = "A-Pollen";
+    public static final String TITLE_BACKGROUND_IMAGE = "bg/yellow-flower-bg.jpeg";
+
+    public static final float TITLE_SCALE = 4.0f;
+    public static final float DIFFICULTY_LABEL_SCALE = WORLD_WIDTH / 200.0f;
+
+    public static final String DIFFICULTY_CURSOR_LABEL = "-->";
+    public static final float DIFFICULTY_CURSOR_OFFSET = WORLD_WIDTH / -20.0f;
+
+    public static final float TITLE_HEIGHT_RATIO = 0.75f;
+    public static final float DIFFICULTY_LABEL_EASY_HEIGHT_RATIO = 0.4f;
+    public static final float DIFFICULTY_LABEL_MEDIUM_HEIGHT_RATIO = 0.35f;
+    public static final float DIFFICULTY_LABEL_HARD_HEIGHT_RATIO = 0.3f;
+    public static final float DIFFICULTY_LABEL_INSANE_HEIGHT_RATIO = 0.25f;
 
     /*
         Misc

@@ -175,7 +175,7 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     {
         // TODO: remove debug control - Press 'R' to reset the level
         if (keycode == Input.Keys.R) {
-            instance.init(instance.game, instance.difficulty);
+            game.playGame(this.difficulty);
         }
 
         // TODO: remove debug control - Press 'E' to increase player shot power level

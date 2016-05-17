@@ -10,10 +10,38 @@ public class Enums
      */
     public enum Difficulty
     {
-        EASY,
-        MEDIUM,
-        HARD,
-        INSANE
+        EASY("Easy"),
+        MEDIUM("Medium"),
+        HARD("Hard"),
+        INSANE("Insane");
+
+        private String label;
+
+        private Difficulty(String label)
+        {
+            this.label = label;
+        }
+
+        public String getLabel()
+        {
+            return this.label;
+        }
+
+        public Difficulty next()
+        {
+            if (this == Difficulty.values()[Difficulty.values().length - 1])
+                return Difficulty.values()[0];
+
+            return Difficulty.values()[this.ordinal() + 1];
+        }
+
+        public Difficulty last()
+        {
+            if (this == Difficulty.values()[0])
+                return Difficulty.values()[Difficulty.values().length - 1];
+
+            return Difficulty.values()[this.ordinal() - 1];
+        }
     }
 
     public enum EnemyType
