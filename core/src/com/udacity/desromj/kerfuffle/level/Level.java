@@ -8,20 +8,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.udacity.desromj.kerfuffle.enemy.MiteEnemy;
 import com.udacity.desromj.kerfuffle.entity.Boss;
 import com.udacity.desromj.kerfuffle.entity.Bullet;
 import com.udacity.desromj.kerfuffle.entity.Collectible;
-import com.udacity.desromj.kerfuffle.entity.Enemy;
-import com.udacity.desromj.kerfuffle.entity.Pattern;
-import com.udacity.desromj.kerfuffle.entity.PatternProperties;
 import com.udacity.desromj.kerfuffle.entity.Player;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
-import com.udacity.desromj.kerfuffle.pattern.RandomBurstPattern;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Constants;
-import com.udacity.desromj.kerfuffle.utility.Enums;
 
 import java.util.Comparator;
 
@@ -132,8 +126,10 @@ public class Level
 
         // Handle all rendering logic
         renderBackground(renderer);
-        doSpriteBatchRender(batch);
+        renderSpriteBackground(batch);
+
         doShapeRender(renderer);
+        doSpriteRender(batch);
     }
 
     private void renderBackground(ShapeRenderer renderer)
@@ -193,9 +189,21 @@ public class Level
         renderer.end();
     }
 
-    private void doSpriteBatchRender(SpriteBatch batch)
+    private void renderSpriteBackground(SpriteBatch batch)
     {
-        // Sprites - Player, Shooters, Bosses
+        // Sprites - Player comes under boolets to check collision easier
+        batch.getProjectionMatrix().set(GameScreen.instance.getCamera().combined);
+        batch.begin();
+
+        if (!loseCondition())
+            player.render(batch);
+
+        batch.end();
+    }
+
+    private void doSpriteRender(SpriteBatch batch)
+    {
+        // Sprites - Shooters, Bosses come in front of boolets
         batch.getProjectionMatrix().set(GameScreen.instance.getCamera().combined);
         batch.begin();
 
@@ -204,12 +212,8 @@ public class Level
         for (Boss boss: bosses)
             boss.render(batch);
 
-        if (!loseCondition())
-            player.render(batch);
-
         batch.end();
     }
-
     /**
      * Collision logic for game objects
      */
