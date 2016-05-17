@@ -94,10 +94,22 @@ public class Enums
      */
     public enum BulletType
     {
-        PLAYER_BULLET,
+        PLAYER_BULLET(1),
 
-        SMALL_RED_PELLET,
-        LARGE_YELLOW_BALL
+        SMALL_RED_PELLET(6),
+        LARGE_YELLOW_BALL(4);
+
+        private int drawOrder;
+
+        private BulletType(int drawOrder)
+        {
+            this.drawOrder = drawOrder;
+        }
+
+        public int getDrawOrder()
+        {
+            return this.drawOrder;
+        }
     }
 
     /**

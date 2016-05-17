@@ -36,6 +36,8 @@ public class PatternProperties
     private Enums.BulletType mainShotType;          // Shot type for majority of the Bullets
     private Enums.BulletType secondaryShotType;     // Shot type for secondary Bullets
 
+    private int drawOrder;                          // order the bullet gets drawn in
+
     private PatternProperties(
             boolean active,
             float cannotShootFor,
@@ -52,7 +54,8 @@ public class PatternProperties
             int shotsPerWave,
             int shotsLeftInWave,
             Enums.BulletType mainShotType,
-            Enums.BulletType secondaryShotType
+            Enums.BulletType secondaryShotType,
+            int drawOrder
     )
     {
         this.active = active;
@@ -71,6 +74,7 @@ public class PatternProperties
         this.shotsLeftInWave = shotsLeftInWave;
         this.mainShotType = mainShotType;
         this.secondaryShotType = secondaryShotType;
+        this.drawOrder = drawOrder;
     }
 
     /*
@@ -98,6 +102,8 @@ public class PatternProperties
         private Enums.BulletType mainShotType = Constants.DEFAULT_SHOT_TYPE;          // Shot type for majority of the Bullets
         private Enums.BulletType secondaryShotType = Constants.DEFAULT_SHOT_TYPE;     // Shot type for secondary Bullets
 
+        private int drawOrder = mainShotType.getDrawOrder();
+
         public PatternProperties createProps()
         {
             return new PatternProperties(
@@ -116,7 +122,8 @@ public class PatternProperties
                     shotsPerWave,
                     shotsLeftInWave,
                     mainShotType,
-                    secondaryShotType
+                    secondaryShotType,
+                    drawOrder
             );
         }
 
@@ -207,7 +214,8 @@ public class PatternProperties
                     props.shotsPerWave,
                     props.shotsLeftInWave,
                     props.mainShotType,
-                    props.secondaryShotType
+                    props.secondaryShotType,
+                    props.drawOrder
             );
         }
 
@@ -288,6 +296,11 @@ public class PatternProperties
 
         public Builder secondaryShotType(Enums.BulletType secondaryShotType) {
             this.secondaryShotType = secondaryShotType;
+            return this;
+        }
+
+        public Builder drawOrder(int drawOrder) {
+            this.drawOrder = drawOrder;
             return this;
         }
     }
