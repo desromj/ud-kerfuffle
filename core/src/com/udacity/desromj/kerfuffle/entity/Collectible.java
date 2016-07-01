@@ -1,5 +1,7 @@
 package com.udacity.desromj.kerfuffle.entity;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -12,6 +14,8 @@ import com.udacity.desromj.kerfuffle.utility.Utils;
  */
 public abstract class Collectible extends Spawnable
 {
+    private Sound collectSound;
+
     protected float gravity;
     protected float hitRadius;
     protected Color mainColor;
@@ -38,6 +42,7 @@ public abstract class Collectible extends Spawnable
                 new Vector2(velocity.x, velocity.y)
         );
 
+        this.collectSound = Gdx.audio.newSound(Gdx.files.internal("sounds/point-collect.wav"));
         setHitRadius();
         setMainColor();
         this.gravity = Constants.COLLECTIBLE_ACCEL_DUE_TO_GRAVITY;
@@ -111,6 +116,11 @@ public abstract class Collectible extends Spawnable
 
         // Multiply by player speed so player never outruns the collectibles
         this.velocity = target.nor().scl(Constants.PLAYER_SPEED * 1.5f);
+    }
+
+    public void playSound()
+    {
+        this.collectSound.play(Constants.COLLECT_POINT_VOLUME);
     }
 
     /**

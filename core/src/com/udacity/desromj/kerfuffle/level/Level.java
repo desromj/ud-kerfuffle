@@ -313,6 +313,7 @@ public class Level
 
             if (collectible.isColliding(player))
             {
+                collectible.playSound();
                 collectible.collectEffect(player);
                 collectibles.removeIndex(i);
             }

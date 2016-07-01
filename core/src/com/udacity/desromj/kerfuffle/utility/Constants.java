@@ -145,6 +145,7 @@ public class Constants
      */
     public static final float GRAZE_TICK_VOLUME = 0.12f;
     public static final float DEATH_POOF_VOLUME = 0.6f;
+    public static final float COLLECT_POINT_VOLUME = 0.4f;
 
     /*
         Collectibles and everything else
