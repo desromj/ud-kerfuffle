@@ -66,10 +66,22 @@ public class Level
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        /*
-         Update logic
-          */
+        // Update logic
+        preRenderUpdate(delta);
 
+        // Check for Collisions with the player and enemies
+        handleCollisions();
+
+        // Handle all rendering logic
+        renderBackground(renderer);
+        renderSpriteBackground(batch);
+
+        doShapeRender(renderer);
+        doSpriteRender(batch);
+    }
+
+    private void preRenderUpdate(float delta)
+    {
         // Update the player
         if (!loseCondition())
             player.update(delta);
@@ -117,9 +129,13 @@ public class Level
             with Enemy waves as normal
           */
 
-        // Bosses
-        for (int i = 0; i < bosses.size; i++)
+        // Bosses - If boss is onscreen, only update the boss onscreen and no other bosses
+        for (int i = 0; i < bosses.size; i++) {
+            if (bossOnScreen && !bosses.get(i).isOnScreen())
+                continue;
+
             bosses.get(i).update(delta);
+        }
 
         // Enemies - If boss is onscreen, only update onscreen enemies. Otherwise, update all
         for (int i = 0; i < shooters.size; i++) {
@@ -132,16 +148,6 @@ public class Level
             if (shooters.get(i).enemyShouldBeDisposed())
                 shooters.removeIndex(i);
         }
-
-        // Check for Collisions with the player and enemies
-        handleCollisions();
-
-        // Handle all rendering logic
-        renderBackground(renderer);
-        renderSpriteBackground(batch);
-
-        doShapeRender(renderer);
-        doSpriteRender(batch);
     }
 
     private void renderBackground(ShapeRenderer renderer)
