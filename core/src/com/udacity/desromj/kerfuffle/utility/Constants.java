@@ -132,7 +132,7 @@ public class Constants
     public static final float BULLET_LARGE_YELLOW_BALL_DAMAGE = 4.0f;
 
     public static final float BULLET_MINIMUM_ANGLE_DIFFERENCE_RADS = 0.01f;
-    public static final float BULLET_GRAZE_RADIUS = WORLD_WIDTH / 54.0f;
+    public static final float BULLET_GRAZE_RADIUS = WORLD_WIDTH / 30.0f;
     public static final int BULLET_GRAZE_POINTS = 1;
 
     /*
