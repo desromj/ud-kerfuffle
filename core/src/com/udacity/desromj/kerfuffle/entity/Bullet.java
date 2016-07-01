@@ -25,7 +25,7 @@ public abstract class Bullet extends Spawnable
         super(parent, position, velocity);
         setShotRadius();
         setDamage();
-        this.grazeSound = Gdx.audio.newSound(Gdx.files.internal("sounds/graze-tick.wav"));
+        this.grazeSound = Gdx.audio.newSound(Gdx.files.internal(Constants.SOUND_GRAZE_TICK));
     }
 
     /** Set radius for hitBoxes for each Bullet */

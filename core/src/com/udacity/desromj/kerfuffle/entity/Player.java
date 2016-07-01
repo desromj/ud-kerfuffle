@@ -37,7 +37,7 @@ public class Player extends Shooter
 
         this.asset = Assets.instance.makeAsset(this);
 
-        this.deathSound = Gdx.audio.newSound(Gdx.files.internal("sounds/death-poof.wav"));
+        this.deathSound = Gdx.audio.newSound(Gdx.files.internal(Constants.SOUND_DEATH_POOF));
         this.bulletPattern = SpawnFactory.makePattern(
                 Enums.PatternType.PLAYER_BULLET_PATTERN,
                 this,

@@ -1,5 +1,7 @@
 package com.udacity.desromj.kerfuffle.utility;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 
@@ -143,6 +145,10 @@ public class Constants
     /*
         Sound Values
      */
+    public static final String SOUND_POINT_COLLECT = "sounds/point-collect.wav";
+    public static final String SOUND_DEATH_POOF = "sounds/death-poof.wav";
+    public static final String SOUND_GRAZE_TICK = "sounds/graze-tick.wav";
+
     public static final float GRAZE_TICK_VOLUME = 0.12f;
     public static final float DEATH_POOF_VOLUME = 0.6f;
     public static final float COLLECT_POINT_VOLUME = 0.4f;

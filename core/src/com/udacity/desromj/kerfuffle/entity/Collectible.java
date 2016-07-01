@@ -42,7 +42,7 @@ public abstract class Collectible extends Spawnable
                 new Vector2(velocity.x, velocity.y)
         );
 
-        this.collectSound = Gdx.audio.newSound(Gdx.files.internal("sounds/point-collect.wav"));
+        this.collectSound = Gdx.audio.newSound(Gdx.files.internal(Constants.SOUND_POINT_COLLECT));
         setHitRadius();
         setMainColor();
         this.gravity = Constants.COLLECTIBLE_ACCEL_DUE_TO_GRAVITY;
