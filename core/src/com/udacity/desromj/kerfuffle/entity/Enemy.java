@@ -2,6 +2,7 @@ package com.udacity.desromj.kerfuffle.entity;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.udacity.desromj.kerfuffle.ai.MoveBehaviour;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
@@ -13,12 +14,14 @@ public abstract class Enemy extends Shooter
     protected Assets.SpineAnimationAsset asset;
 
     protected float screenActivationHeight;
+    protected MoveBehaviour moveBehaviour;
     protected Pattern [] patterns;
 
     public Enemy(Vector2 position, float heightRatio)
     {
         super(position);
         this.loadDefaultPattern();
+        this.setMoveBehaviour();
         this.screenActivationHeight = heightRatio * Constants.WORLD_HEIGHT;
         asset = Assets.instance.makeAsset(this);
     }
@@ -27,6 +30,7 @@ public abstract class Enemy extends Shooter
     {
         super(position);
         setPatterns(patterns);
+        this.setMoveBehaviour();
         this.screenActivationHeight = heightRatio * Constants.WORLD_HEIGHT;
         asset = Assets.instance.makeAsset(this);
     }
@@ -37,6 +41,7 @@ public abstract class Enemy extends Shooter
     }
 
     public abstract void loadDefaultPattern();
+    public abstract void setMoveBehaviour();
 
     @Override
     public void update(float delta)
@@ -65,14 +70,8 @@ public abstract class Enemy extends Shooter
         this.asset.skeleton.setPosition(this.getPosition().x, this.getPosition().y);
 
         if (this.isShooting())
-            move(delta);
+            moveBehaviour.move(delta);
     }
-
-    /*
-        TODO: implement movement behaviour here, when it is better understood
-        Can always be overridden by child classes
-     */
-    public void move(float delta) {}
 
     @Override
     public void render(SpriteBatch batch)

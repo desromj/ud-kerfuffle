@@ -2,6 +2,7 @@ package com.udacity.desromj.kerfuffle.enemy;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.udacity.desromj.kerfuffle.ai.StationaryMoveBehaviour;
 import com.udacity.desromj.kerfuffle.collectible.LargePointCollectible;
 import com.udacity.desromj.kerfuffle.collectible.LargePowerCollectible;
 import com.udacity.desromj.kerfuffle.collectible.SmallPointCollectible;
@@ -36,6 +37,11 @@ public class FlyEnemy extends Enemy
     @Override
     protected void setHitRadius() {
         this.hitRadius = Constants.ENEMY_FLY_RADIUS;
+    }
+
+    @Override
+    public void setMoveBehaviour() {
+        this.moveBehaviour = new StationaryMoveBehaviour(this, 0f);
     }
 
     @Override
