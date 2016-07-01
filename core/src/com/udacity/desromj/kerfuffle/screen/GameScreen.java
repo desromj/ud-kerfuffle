@@ -7,6 +7,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -117,6 +118,8 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
     {
         level.addSpawnables(spawnables);
     }
+
+    public void addParticleEffect(ParticleEffect effect) { level.addParticleEffect(effect); }
 
     public void addCollectible(Collectible collectible) { level.addCollectible(collectible); }
     public void addCollectibles(Array<Collectible> collectibles) { level.addCollectibles(collectibles); }

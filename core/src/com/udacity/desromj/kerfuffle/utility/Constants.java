@@ -133,6 +133,11 @@ public class Constants
     public static final int BULLET_GRAZE_POINTS = 1;
 
     /*
+        Particle Effect Values
+     */
+    public static final float PARTICLE_GRAZE_SCALE = 0.6f;
+
+    /*
         Collectibles and everything else
      */
     public static final float COLLECTIBLE_HIT_RADIUS_SMALL = WORLD_WIDTH / 40.0f;

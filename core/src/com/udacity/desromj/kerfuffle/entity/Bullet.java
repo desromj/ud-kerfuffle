@@ -1,7 +1,9 @@
 package com.udacity.desromj.kerfuffle.entity;
 
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.math.Vector2;
+import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 import com.udacity.desromj.kerfuffle.utility.Utils;
 
@@ -41,8 +43,18 @@ public abstract class Bullet extends Spawnable
      */
     public final void graze()
     {
-        if (!this.grazed)
+        if (!this.grazed) {
             Score.instance.addPoints(Constants.BULLET_GRAZE_POINTS);
+
+            // Spawn a particle effect here for the graze
+            ParticleEffect effect = new ParticleEffect();
+            effect.load(Gdx.files.internal("particles/pe-graze"), Gdx.files.internal("particles"));
+            effect.setPosition(GameScreen.instance.getPlayerPosition().x, GameScreen.instance.getPlayerPosition().y);
+            effect.start();
+            effect.scaleEffect(Constants.PARTICLE_GRAZE_SCALE);
+
+            GameScreen.instance.addParticleEffect(effect);
+        }
 
         this.grazed = true;
     }

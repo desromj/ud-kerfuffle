@@ -2,6 +2,7 @@ package com.udacity.desromj.kerfuffle.level;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
@@ -31,6 +32,7 @@ public class Level
     Array<Boss> bosses;
     Array<Spawnable> spawnables;
     Array<Collectible> collectibles;
+    Array<ParticleEffect> effects;
 
     Player player;
 
@@ -46,6 +48,7 @@ public class Level
         shooters = new DelayedRemovalArray<Shooter>();
         bosses = new DelayedRemovalArray<Boss>();
         collectibles = new DelayedRemovalArray<Collectible>();
+        effects = new Array<ParticleEffect>();
     }
 
     /**
@@ -87,6 +90,15 @@ public class Level
 
             if (spawnables.get(i).isOffScreen())
                 spawnables.removeIndex(i);
+        }
+
+        // Update Particle Effects
+        for (int i = 0; i < effects.size; i++)
+        {
+            effects.get(i).update(delta);
+
+            if (effects.get(i).isComplete())
+                effects.removeIndex(i);
         }
 
         // Update shooters, aside from player. Remove if needed
@@ -212,6 +224,9 @@ public class Level
         for (Boss boss: bosses)
             boss.render(batch);
 
+        for (ParticleEffect effect: effects)
+            effect.draw(batch);
+
         batch.end();
     }
     /**
@@ -335,6 +350,8 @@ public class Level
         for (Spawnable spawnable: spawnables)
             this.spawnables.add(spawnable);
     }
+
+    public void addParticleEffect(ParticleEffect effect) { this.effects.add(effect); }
 
     public void addCollectible(Collectible collectible)
     {
