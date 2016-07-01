@@ -2,6 +2,7 @@ package com.udacity.desromj.kerfuffle.entity;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
@@ -23,7 +24,9 @@ public class Player extends Shooter
 {
     private Assets.SpineAnimationAsset asset;
 
+    private Sound deathSound;
     Pattern bulletPattern;
+
     private float magnitude;
     int lives, bombs;
     float shotPowerLevel;
@@ -33,6 +36,8 @@ public class Player extends Shooter
         super(position);
 
         this.asset = Assets.instance.makeAsset(this);
+
+        this.deathSound = Gdx.audio.newSound(Gdx.files.internal("sounds/death-poof.wav"));
         this.bulletPattern = SpawnFactory.makePattern(
                 Enums.PatternType.PLAYER_BULLET_PATTERN,
                 this,
@@ -155,6 +160,12 @@ public class Player extends Shooter
     public final boolean isFocussed()
     {
         return Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT);
+    }
+
+    public final void wasHit()
+    {
+        this.deathSound.play(Constants.DEATH_POOF_VOLUME);
+        this.dropCollectibles();
     }
 
     @Override

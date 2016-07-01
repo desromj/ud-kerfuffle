@@ -1,6 +1,7 @@
 package com.udacity.desromj.kerfuffle.entity;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.math.Vector2;
 import com.udacity.desromj.kerfuffle.screen.GameScreen;
@@ -17,11 +18,14 @@ public abstract class Bullet extends Spawnable
     protected float shotRadius, damage;
     private boolean grazed = false;
 
+    private Sound grazeSound;
+
     public Bullet(Shooter parent, Vector2 position, Vector2 velocity)
     {
         super(parent, position, velocity);
         setShotRadius();
         setDamage();
+        this.grazeSound = Gdx.audio.newSound(Gdx.files.internal("sounds/graze-tick.wav"));
     }
 
     /** Set radius for hitBoxes for each Bullet */
@@ -45,6 +49,7 @@ public abstract class Bullet extends Spawnable
     {
         if (!this.grazed) {
             Score.instance.addPoints(Constants.BULLET_GRAZE_POINTS);
+            this.grazeSound.play(Constants.GRAZE_TICK_VOLUME);
 
             // Spawn a particle effect here for the graze
             ParticleEffect effect = new ParticleEffect();

@@ -257,7 +257,7 @@ public class Level
                 // Check for bullets hitting the player
                 if (!playerHit && bullet.isColliding(player)) {
                     playerHit = true;
-                    player.dropCollectibles();
+                    player.wasHit();
                     player.respawn(Constants.PLAYER_DEFAULT_SPAWN_POSITION);
 
                     // Clear all Bullets from the screen - give Player chance to react again
