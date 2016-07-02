@@ -23,14 +23,12 @@ public class MoveFactory
         switch (type)
         {
             case CIRCLE_OFFSCREEN:
-                behaviour = new CircleOffscreenBehaviour(parent, speed, clockwise);
+                return new CircleOffscreenBehaviour(parent, speed, clockwise);
             case HOMING:
-                behaviour = new HomingMoveBehaviour(parent, speed, retargetDelay);
+                return new HomingMoveBehaviour(parent, speed, retargetDelay);
             default:
-                behaviour = new StationaryMoveBehaviour(parent, 0.0f);
+                return new StationaryMoveBehaviour(parent, 0.0f);
         }
-
-        return behaviour;
     }
 
     public static class Builder

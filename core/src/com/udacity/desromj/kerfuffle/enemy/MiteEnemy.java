@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.udacity.desromj.kerfuffle.ai.CircleOffscreenBehaviour;
 import com.udacity.desromj.kerfuffle.ai.HomingMoveBehaviour;
+import com.udacity.desromj.kerfuffle.ai.MoveFactory;
 import com.udacity.desromj.kerfuffle.collectible.LargePointCollectible;
 import com.udacity.desromj.kerfuffle.collectible.LargePowerCollectible;
 import com.udacity.desromj.kerfuffle.collectible.SmallPointCollectible;
@@ -55,7 +56,14 @@ public class MiteEnemy extends Enemy
     @Override
     public void setMoveBehaviour() {
         // this.moveBehaviour = new HomingMoveBehaviour(this, Constants.ENEMY_MITE_SPEED, Constants.ENEMY_MITE_RETARGET);
-        this.moveBehaviour = new CircleOffscreenBehaviour(this, Constants.ENEMY_MITE_SPEED, true);
+        // this.moveBehaviour = new CircleOffscreenBehaviour(this, Constants.ENEMY_MITE_SPEED, true);
+
+        this.moveBehaviour = new MoveFactory.Builder()
+                .tag("mt-circle")
+                .parent(this)
+                .speed(Constants.ENEMY_MITE_SPEED)
+                .clockwise(true)
+                .getBehaviour();
     }
 
     @Override
