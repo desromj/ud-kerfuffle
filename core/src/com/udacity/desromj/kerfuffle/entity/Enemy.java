@@ -58,6 +58,7 @@ public abstract class Enemy extends Shooter
             }
 
             shooting = true;
+            this.moveBehaviour.activate();
         }
 
         // Shoot our Patterns if active

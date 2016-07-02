@@ -12,6 +12,9 @@ public class StationaryMoveBehaviour extends MoveBehaviour
         super(parent, speed);
     }
 
+    @Override
+    public void activate() {}
+
     // Don't move at all once on screen
     @Override
     public void move(float delta) {}

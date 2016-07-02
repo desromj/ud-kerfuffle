@@ -23,6 +23,9 @@ public class HomingMoveBehaviour extends MoveBehaviour
     }
 
     @Override
+    public void activate() {}
+
+    @Override
     public void move(float delta)
     {
         // Retarget if necessary

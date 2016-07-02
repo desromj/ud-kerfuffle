@@ -17,4 +17,5 @@ public abstract class MoveBehaviour
     }
 
     public abstract void move(float delta);
+    public abstract void activate();
 }
