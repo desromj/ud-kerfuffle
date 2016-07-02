@@ -1,6 +1,5 @@
 package com.udacity.desromj.kerfuffle.ai;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
@@ -51,6 +50,7 @@ public class CircleOffscreenBehaviour extends MoveBehaviour
     @Override
     public void move(float delta)
     {
+        // Find the next angle based on the speed
         float nextAngle = currentAngle + this.radSpeed * delta;
 
         // Using the angle, generate our new position for the parent
@@ -59,6 +59,7 @@ public class CircleOffscreenBehaviour extends MoveBehaviour
                 this.origin.y + ((float) Math.sin(nextAngle) * this.radius)
         );
 
+        // Then set it as our current angle
         this.currentAngle = nextAngle;
     }
 }
