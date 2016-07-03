@@ -184,7 +184,7 @@ public class LevelLoader
 
             if (customs.containsKey("speed")) builder.speed(Float.parseFloat(customs.get("speed").toString()));
             if (customs.containsKey("clockwise")) builder.clockwise(Boolean.parseBoolean(customs.get("clockwise").toString()));
-            if (customs.containsKey("retargetDelay")) builder.speed(Float.parseFloat(customs.get("retargetDelay").toString()));
+            if (customs.containsKey("retargetDelay")) builder.retargetDelay(Float.parseFloat(customs.get("retargetDelay").toString()));
 
             MoveBehaviour behaviour = builder.getBehaviour(customs.get("move-tag").toString(), add);
             add.setMoveBehaviour(behaviour);

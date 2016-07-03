@@ -32,7 +32,7 @@ public class HomingMoveBehaviour extends MoveBehaviour
         this.retargetIn -= delta;
 
         if (this.retargetIn <= 0.0f)
-            this.retarget();
+            this.retarget(delta);
 
         // Then move towards the target
         Vector2 pos = this.parent.getPosition();
@@ -41,14 +41,15 @@ public class HomingMoveBehaviour extends MoveBehaviour
         pos.y += this.velocity.y * delta;
     }
 
-    public void retarget()
+    public void retarget(float delta)
     {
         this.velocity.set(
                 GameScreen.instance.getPlayerPosition().x - parent.getPosition().x,
                 GameScreen.instance.getPlayerPosition().y - parent.getPosition().y
         );
 
-        this.velocity.nor().scl(this.speed);
+        // Since homing velocity is based on delta updates, divide by delta to get accurate speed
+        this.velocity.nor().scl(this.speed / delta);
 
         this.retargetIn = retargetDelay;
     }
