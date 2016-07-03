@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.udacity.desromj.kerfuffle.ai.MoveBehaviour;
+import com.udacity.desromj.kerfuffle.ai.MoveFactory;
 import com.udacity.desromj.kerfuffle.enemy.DewBoss;
 import com.udacity.desromj.kerfuffle.enemy.FlyEnemy;
 import com.udacity.desromj.kerfuffle.enemy.MantisEnemy;
@@ -173,6 +175,19 @@ public class LevelLoader
             default:
                 add = new MiteEnemy(itemXYPos, heightRatio);
                 break;
+        }
+
+        // custom vars: MoveBehaviours
+        if (customs.containsKey("move-tag"))
+        {
+            MoveFactory.Builder builder = new MoveFactory.Builder();
+
+            if (customs.containsKey("speed")) builder.speed(Float.parseFloat(customs.get("speed").toString()));
+            if (customs.containsKey("clockwise")) builder.clockwise(Boolean.parseBoolean(customs.get("clockwise").toString()));
+            if (customs.containsKey("retargetDelay")) builder.speed(Float.parseFloat(customs.get("retargetDelay").toString()));
+
+            MoveBehaviour behaviour = builder.getBehaviour(customs.get("move-tag").toString(), add);
+            add.setMoveBehaviour(behaviour);
         }
 
         // Set patterns based on the current level and pattern tag defined from JASON
