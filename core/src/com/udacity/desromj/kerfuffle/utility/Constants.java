@@ -73,9 +73,6 @@ public class Constants
     public static final int ENEMY_MITE_POWERUP_DROPS = 5;
     public static final float ENEMY_MITE_DROP_RADIUS = WORLD_WIDTH / 6.0f;
 
-    public static final float ENEMY_MITE_SPEED = WORLD_WIDTH * 0.002f;
-    public static final float ENEMY_MITE_RETARGET = 0.5f;
-
     // Fly values - medium enemy
     public static final float ENEMY_FLY_HEALTH = 250.0f;
     public static final float ENEMY_FLY_RADIUS = WORLD_WIDTH / 40.0f;

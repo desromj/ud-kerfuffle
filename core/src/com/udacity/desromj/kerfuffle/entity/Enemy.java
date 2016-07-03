@@ -1,16 +1,24 @@
 package com.udacity.desromj.kerfuffle.entity;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.udacity.desromj.kerfuffle.ai.MoveBehaviour;
+import com.udacity.desromj.kerfuffle.ai.MoveFactory;
+import com.udacity.desromj.kerfuffle.ai.StationaryMoveBehaviour;
 import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 
 /**
  * Created by Mike on 2016-01-27.
+ *
+ * After instatiation, the abstract method setMoveBehaviour(MoveBehaviour behaviour)
+ * should be called. Otherwise, enemies will default to stationary movement.
  */
 public abstract class Enemy extends Shooter
 {
+    public static final String TAG = Enemy.class.getName();
+
     protected Assets.SpineAnimationAsset asset;
 
     protected float screenActivationHeight;
@@ -21,7 +29,6 @@ public abstract class Enemy extends Shooter
     {
         super(position);
         this.loadDefaultPattern();
-        this.setMoveBehaviour();
         this.screenActivationHeight = heightRatio * Constants.WORLD_HEIGHT;
         asset = Assets.instance.makeAsset(this);
     }
@@ -30,7 +37,6 @@ public abstract class Enemy extends Shooter
     {
         super(position);
         setPatterns(patterns);
-        this.setMoveBehaviour();
         this.screenActivationHeight = heightRatio * Constants.WORLD_HEIGHT;
         asset = Assets.instance.makeAsset(this);
     }
@@ -41,7 +47,7 @@ public abstract class Enemy extends Shooter
     }
 
     public abstract void loadDefaultPattern();
-    public abstract void setMoveBehaviour();
+    public abstract void setMoveBehaviour(MoveBehaviour behaviour);
 
     @Override
     public void update(float delta)
@@ -70,8 +76,15 @@ public abstract class Enemy extends Shooter
         // Update the skeleton position to track this enemy position
         this.asset.skeleton.setPosition(this.getPosition().x, this.getPosition().y);
 
-        if (this.isShooting())
-            moveBehaviour.move(delta);
+        // Attempt to move based on moveBehaviour. If not instantiated, catch the exception and don't move
+        if (this.isShooting()) {
+            try {
+                moveBehaviour.move(delta);
+            } catch (Exception ex) {
+                Gdx.app.debug(TAG, "MoveBehaviour not implemented for enemy: " + this.toString() + " - defaulting to stationary.");
+                this.moveBehaviour = new StationaryMoveBehaviour(this, 0f);
+            }
+        }
     }
 
     @Override

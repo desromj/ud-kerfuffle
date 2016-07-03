@@ -2,6 +2,7 @@ package com.udacity.desromj.kerfuffle.enemy;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.udacity.desromj.kerfuffle.ai.MoveBehaviour;
 import com.udacity.desromj.kerfuffle.ai.StationaryMoveBehaviour;
 import com.udacity.desromj.kerfuffle.collectible.LargePointCollectible;
 import com.udacity.desromj.kerfuffle.collectible.LargePowerCollectible;
@@ -40,8 +41,8 @@ public class MantisEnemy extends Enemy
     }
 
     @Override
-    public void setMoveBehaviour() {
-        this.moveBehaviour = new StationaryMoveBehaviour(this, 0f);
+    public void setMoveBehaviour(MoveBehaviour behaviour) {
+        this.moveBehaviour = behaviour;
     }
 
     @Override
