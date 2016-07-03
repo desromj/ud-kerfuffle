@@ -33,13 +33,11 @@ public class MoveFactory
 
     public static class Builder
     {
-        String tag = "mt-stationary";
-        Shooter parent = null;
         float speed = 0.0f;
         float retargetDelay = 0.5f;
         boolean clockwise = true;
 
-        public MoveBehaviour getBehaviour()
+        public MoveBehaviour getBehaviour(String tag, Shooter parent)
         {
             return MoveFactory.getBehaviour(
                     tag,
@@ -48,18 +46,6 @@ public class MoveFactory
                     retargetDelay,
                     clockwise
             );
-        }
-
-        public Builder tag(String tag)
-        {
-            this.tag = tag;
-            return this;
-        }
-
-        public Builder parent(Shooter parent)
-        {
-            this.parent = parent;
-            return this;
         }
 
         public Builder speed(float speed)

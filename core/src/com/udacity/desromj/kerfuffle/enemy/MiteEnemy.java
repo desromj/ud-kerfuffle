@@ -55,15 +55,10 @@ public class MiteEnemy extends Enemy
 
     @Override
     public void setMoveBehaviour() {
-        // this.moveBehaviour = new HomingMoveBehaviour(this, Constants.ENEMY_MITE_SPEED, Constants.ENEMY_MITE_RETARGET);
-        // this.moveBehaviour = new CircleOffscreenBehaviour(this, Constants.ENEMY_MITE_SPEED, true);
-
         this.moveBehaviour = new MoveFactory.Builder()
-                .tag("mt-circle")
-                .parent(this)
                 .speed(Constants.ENEMY_MITE_SPEED)
                 .clockwise(true)
-                .getBehaviour();
+                .getBehaviour("mt-circle", this);
     }
 
     @Override
