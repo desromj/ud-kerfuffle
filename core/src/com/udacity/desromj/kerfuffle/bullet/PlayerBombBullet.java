@@ -2,8 +2,12 @@ package com.udacity.desromj.kerfuffle.bullet;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.udacity.desromj.kerfuffle.entity.Bullet;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.utility.Constants;
@@ -15,28 +19,11 @@ import java.util.Random;
  */
 public class PlayerBombBullet extends Bullet
 {
-    private float colourChangeIn;
-    private float colourChangeInterval;
-    private Color currentColour;
+    Array<ParticleEffect> effects;
 
     public PlayerBombBullet(Shooter parent, Vector2 position, Vector2 velocity) {
         super(parent, position, velocity);
-        this.colourChangeInterval = 1.0f / Constants.PLAYER_BOMB_COLORS_PER_SECOND;
-        this.setNewRandomColor();
-    }
-
-    private void setNewRandomColor()
-    {
-        Random random = new Random();
-
-        this.currentColour = new Color(
-                random.nextFloat(),
-                random.nextFloat(),
-                random.nextFloat(),
-                1.0f
-        );
-
-        this.colourChangeIn = this.colourChangeInterval;
+        this.effects = new DelayedRemovalArray<ParticleEffect>();
     }
 
     /**
@@ -66,21 +53,35 @@ public class PlayerBombBullet extends Bullet
     public void update(float delta)
     {
         super.update(delta);
-        this.colourChangeIn -= delta;
 
-        if (this.colourChangeIn <= 0.0f)
-            this.setNewRandomColor();
+        if (effects.size > 0) {
+            float radianDifferential = 2f * (float) Math.PI / effects.size;
+
+            for (int i = 0; i < effects.size; i++) {
+                float radians = radianDifferential * i;
+
+                effects.get(i).setPosition(
+                        this.position.x + Constants.PLAYER_BOMB_RADIUS * MathUtils.cos(radians),
+                        this.position.y + Constants.PLAYER_BOMB_RADIUS * MathUtils.sin(radians));
+            }
+        }
     }
     
     @Override
     public void render(ShapeRenderer renderer)
     {
+        // TODO: Remove in production
+
+        // Line circle, to tell where the bomb is supposed to be located
         renderer.set(ShapeRenderer.ShapeType.Line);
-        renderer.setColor(this.currentColour);
+        renderer.setColor(Color.CYAN);
 
         renderer.circle(
                 this.position.x,
                 this.position.y,
                 Constants.PLAYER_BOMB_RADIUS);
+
+        // Draw the particle effects for this bomb
+
     }
 }

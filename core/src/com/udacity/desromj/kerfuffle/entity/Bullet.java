@@ -52,13 +52,12 @@ public abstract class Bullet extends Spawnable
             this.grazeSound.play(Constants.GRAZE_TICK_VOLUME);
 
             // Spawn a particle effect here for the graze
-            ParticleEffect effect = new ParticleEffect();
-            effect.load(Gdx.files.internal("particles/pe-graze"), Gdx.files.internal("particles"));
-            effect.setPosition(GameScreen.instance.getPlayerPosition().x, GameScreen.instance.getPlayerPosition().y);
-            effect.start();
-            effect.scaleEffect(Constants.PARTICLE_GRAZE_SCALE);
-
-            GameScreen.instance.addParticleEffect(effect);
+            Utils.makeParticleEffect(
+                    "particles/pe-graze",
+                    "particles",
+                    GameScreen.instance.getPlayerPosition(),
+                    Constants.PARTICLE_GRAZE_SCALE
+            );
         }
 
         this.grazed = true;

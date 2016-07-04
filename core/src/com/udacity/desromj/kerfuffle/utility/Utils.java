@@ -1,10 +1,14 @@
 package com.udacity.desromj.kerfuffle.utility;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.udacity.desromj.kerfuffle.screen.GameScreen;
 
 import org.json.simple.JSONObject;
 
@@ -22,6 +26,33 @@ public class Utils
     private static final Random RANDOM = new Random();
 
     private Utils() {}
+
+    /**
+     * Creates a ParticleEffect object given the path, imagePath, scale, and position.
+     * Also starts the particle effect and adds it to the GameScreen at the given position.
+     *
+     * @param filePath Gdx.files.internal path to the file defining the particle effect
+     * @param imagesPath Gdx.files.internal path to the images the filePath file uses
+     * @param position Where to spawn the ParticleEffect onscreen
+     * @param scale Scale to apply to the ParticleEffect
+     * @return
+     */
+    public static ParticleEffect makeParticleEffect(
+            String filePath,
+            String imagesPath,
+            Vector2 position,
+            float scale
+    )
+    {
+        ParticleEffect effect = new ParticleEffect();
+        effect.load(Gdx.files.internal(filePath), Gdx.files.internal(imagesPath));
+        effect.setPosition(position.x, position.y);
+        effect.scaleEffect(scale);
+        effect.start();
+        GameScreen.instance.addParticleEffect(effect);
+
+        return effect;
+    }
 
     /**
      * Draws a TextureRegion using an open SpriteBatch
