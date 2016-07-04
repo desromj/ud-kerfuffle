@@ -3,6 +3,7 @@ package com.udacity.desromj.kerfuffle.entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
@@ -16,6 +17,8 @@ import com.udacity.desromj.kerfuffle.utility.Assets;
 import com.udacity.desromj.kerfuffle.utility.Constants;
 import com.udacity.desromj.kerfuffle.utility.Enums;
 import com.udacity.desromj.kerfuffle.utility.Utils;
+
+import spine.SlotData;
 
 /**
  * Created by Mike on 2016-01-27.
@@ -229,6 +232,24 @@ public class Player extends Shooter
     @Override
     public void render(SpriteBatch batch)
     {
+        // Tint the sprites to flash red and normal if we are invincible
+        if (this.isInvincible())
+        {
+            Color slotColor;
+
+            if (invincibleFor % 0.1f < 0.05f)
+                slotColor = Constants.BLOOM_INVINCIBLE_COLOR;
+            else
+                slotColor = Constants.BLOOM_NORMAL_COLOR;
+
+            this.asset.skeleton.getColor().set(slotColor);
+        }
+        else
+        {
+            this.asset.skeleton.getColor().set(Constants.BLOOM_NORMAL_COLOR);
+        }
+
+        // Then render the skeleton
         this.asset.render(batch);
     }
 

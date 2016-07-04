@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Constants
 {
     /*
-        Gameplay Constants
+        Gameplay and World Constants
      */
     public static final float WORLD_WIDTH = 420.0f;
     public static final float WORLD_HEIGHT = WORLD_WIDTH * 16.0f / 9.0f;
@@ -22,6 +22,11 @@ public class Constants
     public static final String ENEMY_ID_TAG = "enemy";
     public static final String BOSS_ID_TAG = "boss";
 
+    public static final Color BACKGROUND_COLOR = Color.BLUE;
+
+    /*
+        Player values
+     */
     public static final float PLAYER_HEALTH = 1.0f;
     public static final float PLAYER_RADIUS = WORLD_WIDTH / 540.0f;
     public static final float PLAYER_PICKUP_RADIUS = WORLD_WIDTH / 6.0f;
@@ -58,12 +63,13 @@ public class Constants
     // Difficulty increases with complex Patterns, not number of bombs or lives available
     public static final int PLAYER_STARTING_LIVES = 3;
     public static final int PLAYER_STARTING_BOMBS = 2;
-    public static final float PLAYER_RESPAWN_INVINCIBILITY_SECONDS = 5.0f;
+    public static final float PLAYER_RESPAWN_INVINCIBILITY_SECONDS = 4.0f;
 
-    public static final Color BACKGROUND_COLOR = Color.BLUE;
+    public static final Color BLOOM_NORMAL_COLOR = new Color(1f, 1f, 1f, 1f);
+    public static final Color BLOOM_INVINCIBLE_COLOR = new Color(0.8f, 0.6f, 0.4f, 0.6f);
 
     /*
-    Enemy values
+        Enemy values
      */
 
     // How fast enemies scroll down the level to hit the activation zones in the viewport
@@ -111,7 +117,7 @@ public class Constants
     public static final int BOSS_MWAP_DROPS_SMALL_POINT = 50;
 
     /*
-    Bullet values
+        Bullet values
      */
     public static final Color PATTERN_DEBUG_COLOR = Color.PINK;
     public static final float PATTERN_DEBUG_OUTER_RADIUS = 25.0f;
