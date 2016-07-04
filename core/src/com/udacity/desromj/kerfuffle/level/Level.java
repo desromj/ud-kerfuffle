@@ -9,9 +9,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.udacity.desromj.kerfuffle.ai.HomingMoveBehaviour;
 import com.udacity.desromj.kerfuffle.entity.Boss;
 import com.udacity.desromj.kerfuffle.entity.Bullet;
 import com.udacity.desromj.kerfuffle.entity.Collectible;
+import com.udacity.desromj.kerfuffle.entity.Enemy;
 import com.udacity.desromj.kerfuffle.entity.Player;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
 import com.udacity.desromj.kerfuffle.entity.Spawnable;
@@ -240,6 +242,10 @@ public class Level
      */
     private void handleCollisions()
     {
+        // No necessary collision if player is dead
+        if (player.isOutOfLives())
+            return;
+
         boolean playerHit = false;
 
         // For each bullet and pattern
@@ -262,6 +268,15 @@ public class Level
 
                     // Clear all Bullets from the screen - give Player chance to react again
                     spawnables.clear();
+
+                    // Make all homing enemies not retarget so they will slowly fly offscreen
+                    for (Shooter shooter: shooters) {
+                        if (shooter instanceof Enemy) {
+                            Enemy enemy = (Enemy) shooter;
+                            if (enemy.getMoveBehaviour() instanceof HomingMoveBehaviour)
+                                ((HomingMoveBehaviour) enemy.getMoveBehaviour()).setRetargetIn(999f);
+                        }
+                    }
                 }
 
                 // Check for player bullets hitting the enemy or bosses - ONLY player bullets
@@ -307,18 +322,14 @@ public class Level
         }
 
         // Handle each collectible, if the player has picked it up
-        for (int i = 0; i < collectibles.size; i++)
-        {
+        for (int i = 0; i < collectibles.size; i++) {
             Collectible collectible = collectibles.get(i);
 
-            if (collectible.isColliding(player))
-            {
+            if (collectible.isColliding(player)) {
                 collectible.playSound();
                 collectible.collectEffect(player);
                 collectibles.removeIndex(i);
-            }
-            else if (collectible.isWithinPickupRadius(player))
-            {
+            } else if (collectible.isWithinPickupRadius(player)) {
                 collectible.changeVelocityTowardPlayer(player);
             }
         }

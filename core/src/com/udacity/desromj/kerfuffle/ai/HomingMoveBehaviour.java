@@ -22,6 +22,11 @@ public class HomingMoveBehaviour extends MoveBehaviour
         this.retargetDelay = retargetDelay;
     }
 
+    public final void setRetargetIn(float seconds)
+    {
+        this.retargetIn = seconds;
+    }
+
     @Override
     public void activate() {}
 

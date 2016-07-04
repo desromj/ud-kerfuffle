@@ -227,7 +227,10 @@ public class Player extends Shooter
         return this.shotPowerLevel >= Constants.PLAYER_SHOT_MAX_POWER_LEVEL;
     }
 
-    public boolean isInvincible() { return this.invincibleFor > 0.0f; }
+    public boolean isInvincible()
+    {
+        return (this.invincibleFor > 0.0f) || (this.isOutOfLives());
+    }
 
     @Override
     public void render(SpriteBatch batch)
@@ -256,6 +259,10 @@ public class Player extends Shooter
     // Hitbox Rendering - specific to the player
     public void renderShapes(ShapeRenderer renderer)
     {
+        // Do not render if we are dead
+        if (this.isOutOfLives())
+            return;
+
         renderer.setColor(Constants.PLAYER_HITBOX_BORDER_COLOR);
         renderer.circle(this.position.x, this.position.y, Constants.PLAYER_RADIUS * Constants.PLAYER_HITBOX_BUFFER_RATIO);
 

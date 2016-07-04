@@ -47,6 +47,7 @@ public abstract class Enemy extends Shooter
     {
         this.patterns = patterns;
     }
+    public final MoveBehaviour getMoveBehaviour() { return this.moveBehaviour; }
 
     public abstract void loadDefaultPattern();
     public abstract void setMoveBehaviour(MoveBehaviour behaviour);
