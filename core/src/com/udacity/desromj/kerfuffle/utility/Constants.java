@@ -52,11 +52,13 @@ public class Constants
 
     public static Vector2 PLAYER_DEFAULT_SPAWN_POSITION = new Vector2(
             Constants.WORLD_WIDTH / 2.0f,
-            Constants.WORLD_HEIGHT / 8.0f);
+            Constants.WORLD_HEIGHT / 8.0f
+    );
 
     // Difficulty increases with complex Patterns, not number of bombs or lives available
     public static final int PLAYER_STARTING_LIVES = 3;
     public static final int PLAYER_STARTING_BOMBS = 2;
+    public static final float PLAYER_RESPAWN_INVINCIBILITY_SECONDS = 5.0f;
 
     public static final Color BACKGROUND_COLOR = Color.BLUE;
 

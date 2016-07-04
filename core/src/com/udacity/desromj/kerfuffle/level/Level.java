@@ -254,8 +254,8 @@ public class Level
                 if (!bullet.isGrazed() && bullet.isGrazing(player))
                     bullet.graze();
 
-                // Check for bullets hitting the player
-                if (!playerHit && bullet.isColliding(player)) {
+                // Check for bullets hitting the player, if player is not invincible
+                if (!player.isInvincible() && !playerHit && bullet.isColliding(player)) {
                     playerHit = true;
                     player.wasHit();
                     player.respawn(Constants.PLAYER_DEFAULT_SPAWN_POSITION);

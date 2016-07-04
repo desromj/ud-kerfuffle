@@ -31,6 +31,8 @@ public class Player extends Shooter
     int lives, bombs;
     float shotPowerLevel;
 
+    private float invincibleFor;
+
     public Player(Vector2 position)
     {
         super(position);
@@ -51,6 +53,7 @@ public class Player extends Shooter
         this.magnitude = 0.0f;
         this.lives = Constants.PLAYER_STARTING_LIVES;
         this.bombs = Constants.PLAYER_STARTING_BOMBS;
+        this.invincibleFor = 0.0f;
 
         init(position);
     }
@@ -60,6 +63,7 @@ public class Player extends Shooter
         this.position = new Vector2(spawnPoint.x, spawnPoint.y);
         this.bombs = Constants.PLAYER_STARTING_BOMBS;
         this.shotPowerLevel = Constants.PLAYER_SHOT_DEFAULT_POWER_LEVEL;
+        this.invincibleFor = Constants.PLAYER_RESPAWN_INVINCIBILITY_SECONDS;
     }
 
     /**
@@ -123,6 +127,8 @@ public class Player extends Shooter
     @Override
     public void update(float delta)
     {
+        this.invincibleFor -= delta;
+
         // Keyboard Controls
         this.magnitude = (this.isFocussed() ? Constants.PLAYER_FOCUS_SPEED : Constants.PLAYER_SPEED) * delta;
 
@@ -217,6 +223,8 @@ public class Player extends Shooter
     {
         return this.shotPowerLevel >= Constants.PLAYER_SHOT_MAX_POWER_LEVEL;
     }
+
+    public boolean isInvincible() { return this.invincibleFor > 0.0f; }
 
     @Override
     public void render(SpriteBatch batch)
