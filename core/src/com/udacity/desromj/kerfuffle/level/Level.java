@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.udacity.desromj.kerfuffle.ai.HomingMoveBehaviour;
+import com.udacity.desromj.kerfuffle.bullet.PlayerBombBullet;
 import com.udacity.desromj.kerfuffle.entity.Boss;
 import com.udacity.desromj.kerfuffle.entity.Bullet;
 import com.udacity.desromj.kerfuffle.entity.Collectible;
@@ -261,7 +262,7 @@ public class Level
                     bullet.graze();
 
                 // Check for bullets hitting the player, if player is not invincible
-                if (!player.isInvincible() && !playerHit && bullet.isColliding(player)) {
+                if (!player.isInvincible() && !playerBombIsOnscreen() && !playerHit && bullet.isColliding(player)) {
                     playerHit = true;
                     player.wasHit();
                     player.respawn(Constants.PLAYER_DEFAULT_SPAWN_POSITION);
@@ -296,7 +297,8 @@ public class Level
                             }
 
                             // Remove the bullet when it hits an enemy
-                            spawnables.removeIndex(j);
+                            if (!(bullet instanceof PlayerBombBullet))
+                                spawnables.removeIndex(j);
                         }
                     }
 
@@ -314,7 +316,8 @@ public class Level
                             }
 
                             // Remove the bullet when it hits a Boss
-                            spawnables.removeIndex(j);
+                            if (!(bullet instanceof PlayerBombBullet))
+                                spawnables.removeIndex(j);
                         }
                     }
                 }
@@ -367,6 +370,24 @@ public class Level
     {
         for (Spawnable spawnable: spawnables)
             this.spawnables.add(spawnable);
+    }
+
+    public void removeSpawnable(Spawnable spawnable)
+    {
+        for (int i = 0; i < spawnables.size; i++) {
+            if (spawnables.get(i).equals(spawnable)) {
+                spawnables.removeIndex(i);
+                break;
+            }
+        }
+    }
+
+    public boolean playerBombIsOnscreen()
+    {
+        for (Spawnable spawnable: spawnables)
+            if (spawnable instanceof PlayerBombBullet)
+                return true;
+        return false;
     }
 
     public void addParticleEffect(ParticleEffect effect) { this.effects.add(effect); }

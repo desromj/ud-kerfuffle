@@ -97,7 +97,9 @@ public class Enums
         PLAYER_BULLET(1),
 
         SMALL_RED_PELLET(6),
-        LARGE_YELLOW_BALL(4);
+        LARGE_YELLOW_BALL(4),
+
+        PLAYER_BOMB(2);
 
         private int drawOrder;
 

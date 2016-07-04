@@ -33,6 +33,7 @@ public final class SpawnFactory
             case PLAYER_BULLET:             return new PlayerBullet(parent, position, velocity);
             case SMALL_RED_PELLET:          return new SmallRedPelletBullet(parent, position, velocity);
             case LARGE_YELLOW_BALL:         return new LargeYellowBallBullet(parent, position, velocity);
+            case PLAYER_BOMB:               return new PlayerBombBullet(parent, position, velocity);
         }
 
         return null;

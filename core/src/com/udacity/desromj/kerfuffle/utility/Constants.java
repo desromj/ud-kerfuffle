@@ -51,9 +51,12 @@ public class Constants
     public static final float PLAYER_SHOT_MAX_POWER_LEVEL = 5.0f;
     public static final float PLAYER_SHOT_DEGREE_ROTATION = 4.0f;
 
-    public static final float PLAYER_BOMB_RADIUS = WORLD_WIDTH / 1.6f;
+    public static final float PLAYER_BOMB_RADIUS = WORLD_WIDTH / 2.5f;
     public static final float PLAYER_BOMB_DAMAGE_PER_SECOND = 16.0f;
-    public static final float PLAYER_BOMB_COLORS_PER_SECOND = 8.0f;
+    public static final int PLAYER_BOMB_PARTICLE_EFFECT_COUNT = 16;
+    public static final float PLAYER_BOMB_LIFETIME = 5.0f;
+
+    public static final Vector2 PLAYER_BOMB_VELOCITY = new Vector2(0f, WORLD_WIDTH / 3.0f);
 
     public static Vector2 PLAYER_DEFAULT_SPAWN_POSITION = new Vector2(
             Constants.WORLD_WIDTH / 2.0f,
@@ -146,6 +149,7 @@ public class Constants
         Particle Effect Values
      */
     public static final float PARTICLE_GRAZE_SCALE = 0.6f;
+    public static final float PARTICLE_PLAYER_BOMB_SCALE = 0.5f;
 
     /*
         Sound Values

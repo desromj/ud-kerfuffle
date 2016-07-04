@@ -3,6 +3,7 @@ package com.udacity.desromj.kerfuffle.bullet;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -10,7 +11,9 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.udacity.desromj.kerfuffle.entity.Bullet;
 import com.udacity.desromj.kerfuffle.entity.Shooter;
+import com.udacity.desromj.kerfuffle.screen.GameScreen;
 import com.udacity.desromj.kerfuffle.utility.Constants;
+import com.udacity.desromj.kerfuffle.utility.Utils;
 
 import java.util.Random;
 
@@ -20,10 +23,28 @@ import java.util.Random;
 public class PlayerBombBullet extends Bullet
 {
     Array<ParticleEffect> effects;
+    float lifetime;
 
     public PlayerBombBullet(Shooter parent, Vector2 position, Vector2 velocity) {
         super(parent, position, velocity);
+        this.lifetime = Constants.PLAYER_BOMB_LIFETIME;
         this.effects = new DelayedRemovalArray<ParticleEffect>();
+        loadEffects();
+    }
+
+    private void loadEffects()
+    {
+        for (int i = 0; i < Constants.PLAYER_BOMB_PARTICLE_EFFECT_COUNT; i++)
+        {
+            ParticleEffect effect = Utils.makeParticleEffect(
+                    "particles/pe-leaves",
+                    "particles",
+                    this.position,
+                    Constants.PARTICLE_PLAYER_BOMB_SCALE
+            );
+
+            effects.add(effect);
+        }
     }
 
     /**
@@ -54,6 +75,15 @@ public class PlayerBombBullet extends Bullet
     {
         super.update(delta);
 
+        // Remove this spawnable from the game if it is dead
+        if (this.lifetime <= 0.0f) {
+            GameScreen.instance.removeSpawnable(this);
+
+            for (ParticleEffect effect: effects)
+                effect.dispose();
+        }
+
+        // Update position of all particle effects this spawnable controls
         if (effects.size > 0) {
             float radianDifferential = 2f * (float) Math.PI / effects.size;
 
@@ -68,20 +98,5 @@ public class PlayerBombBullet extends Bullet
     }
     
     @Override
-    public void render(ShapeRenderer renderer)
-    {
-        // TODO: Remove in production
-
-        // Line circle, to tell where the bomb is supposed to be located
-        renderer.set(ShapeRenderer.ShapeType.Line);
-        renderer.setColor(Color.CYAN);
-
-        renderer.circle(
-                this.position.x,
-                this.position.y,
-                Constants.PLAYER_BOMB_RADIUS);
-
-        // Draw the particle effects for this bomb
-
-    }
+    public void render(ShapeRenderer renderer) {}
 }

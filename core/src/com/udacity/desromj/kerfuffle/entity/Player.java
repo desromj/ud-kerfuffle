@@ -153,10 +153,18 @@ public class Player extends Shooter
         // Handle shooting Bombs
         if (Gdx.input.isKeyPressed(Input.Keys.X))
         {
-            if (this.bombs > 0)
+            if (this.bombs > 0 && !GameScreen.instance.playerBombIsOnscreen())
             {
                 this.bombs--;
+
                 // TODO: Shoot bomb here
+                Spawnable bomb = SpawnFactory.makeBullet(
+                        Enums.BulletType.PLAYER_BOMB,
+                        this,
+                        this.position,
+                        Constants.PLAYER_BOMB_VELOCITY);
+
+                GameScreen.instance.addSpawnable(bomb);
             }
         }
 

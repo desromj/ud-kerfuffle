@@ -119,6 +119,11 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
         level.addSpawnables(spawnables);
     }
 
+    public void removeSpawnable(Spawnable spawnable)
+    {
+        level.removeSpawnable(spawnable);
+    }
+
     public void addParticleEffect(ParticleEffect effect) { level.addParticleEffect(effect); }
 
     public void addCollectible(Collectible collectible) { level.addCollectible(collectible); }
@@ -153,6 +158,8 @@ public class GameScreen extends ScreenAdapter implements InputProcessor
                 viewport.getWorldHeight() / 2.0f
         );
     }
+
+    public boolean playerBombIsOnscreen() { return level.playerBombIsOnscreen(); }
 
     public Enums.Difficulty getDifficulty()
     {
