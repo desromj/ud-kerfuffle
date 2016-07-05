@@ -1,7 +1,5 @@
 package com.udacity.desromj.kerfuffle.utility;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 
@@ -52,7 +50,7 @@ public class Constants
     public static final float PLAYER_SHOT_DEGREE_ROTATION = 4.0f;
 
     public static final float PLAYER_BOMB_RADIUS = WORLD_WIDTH / 2.5f;
-    public static final float PLAYER_BOMB_DAMAGE_PER_SECOND = 16.0f;
+    public static final float PLAYER_BOMB_DAMAGE_PER_SECOND = 75.0f;
     public static final int PLAYER_BOMB_PARTICLE_EFFECT_COUNT = 16;
     public static final float PLAYER_BOMB_LIFETIME = 5.0f;
 

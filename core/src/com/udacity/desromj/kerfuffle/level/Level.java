@@ -252,9 +252,30 @@ public class Level
         // For each bullet and pattern
         for (int j = 0; j < spawnables.size; j++)
         {
-            // Check collision for every bullet
-            if (spawnables.get(j) instanceof Bullet)
+            Spawnable spawn = spawnables.get(j);
+
+            // Check collision for every bullet - bombs first, then remaining Bullets
+            if (spawn instanceof PlayerBombBullet)
             {
+                // Bombs destroy any non-player bullet within their radius
+                for (int k = 0; k < spawnables.size; k++)
+                {
+                    Spawnable other = spawnables.get(k);
+
+                    if (other == spawn || other.getParent() == player)
+                        continue;
+
+                    if (other.getPosition().dst(spawn.getPosition()) <= Constants.PLAYER_BOMB_RADIUS)
+                        spawnables.removeIndex(k);
+                }
+
+                // Check collision for enemies and bosses, without destroying the Bomb
+                checkCollision((Bullet)spawn, shooters, false);
+                checkCollision((Bullet)spawn, bosses, false);
+            }
+            else if (spawn instanceof Bullet)
+            {
+                // Normal Bullet collisions
                 Bullet bullet = (Bullet) spawnables.get(j);
 
                 // Check for bullets grazing the player
@@ -270,9 +291,9 @@ public class Level
                     // Clear all Bullets from the screen - give Player chance to react again
                     spawnables.clear();
 
-                    // Make all homing enemies not retarget so they will slowly fly offscreen
+                    // Make all homing enemies onscreen not retarget so they will slowly fly offscreen
                     for (Shooter shooter: shooters) {
-                        if (shooter instanceof Enemy) {
+                        if (shooter.isOnScreen() && shooter instanceof Enemy) {
                             Enemy enemy = (Enemy) shooter;
                             if (enemy.getMoveBehaviour() instanceof HomingMoveBehaviour)
                                 ((HomingMoveBehaviour) enemy.getMoveBehaviour()).setRetargetIn(999f);
@@ -280,46 +301,11 @@ public class Level
                     }
                 }
 
-                // Check for player bullets hitting the enemy or bosses - ONLY player bullets
+                // Check for player bullets hitting the enemy or bosses - destroy on collision
                 if (bullet.getParent() == player)
                 {
-                    // Collision with normal enemies
-                    for (int i = 0; i < shooters.size; i++)
-                    {
-                        if (bullet.isColliding(shooters.get(i)))
-                        {
-                            // Reduce the shooter's health when hit, and remove it if dead
-                            shooters.get(i).reduceHealth(bullet);
-
-                            if (shooters.get(i).isDead()) {
-                                shooters.get(i).dropCollectibles();
-                                shooters.removeIndex(i);
-                            }
-
-                            // Remove the bullet when it hits an enemy
-                            if (!(bullet instanceof PlayerBombBullet))
-                                spawnables.removeIndex(j);
-                        }
-                    }
-
-                    // Collision with Bosses
-                    for (int i = 0; i < bosses.size; i++)
-                    {
-                        if (bullet.isColliding(bosses.get(i)))
-                        {
-                            // Reduce the shooter's health when hit, and remove it if dead
-                            bosses.get(i).reduceHealth(bullet);
-
-                            if (bosses.get(i).isDead()) {
-                                bosses.get(i).dropCollectibles();
-                                bosses.removeIndex(i);
-                            }
-
-                            // Remove the bullet when it hits a Boss
-                            if (!(bullet instanceof PlayerBombBullet))
-                                spawnables.removeIndex(j);
-                        }
-                    }
+                    checkCollision(bullet, shooters, true);
+                    checkCollision(bullet, bosses, true);
                 }
             }
         }
@@ -334,6 +320,45 @@ public class Level
                 collectibles.removeIndex(i);
             } else if (collectible.isWithinPickupRadius(player)) {
                 collectible.changeVelocityTowardPlayer(player);
+            }
+        }
+    }
+
+    /**
+     * Utility collision checker to iterate through an Array of Shooter implementations, to see
+     * if the passed Bullet object is colliding with any objects in the array. If so, it
+     * reduces the health of the target, drops any collectibles if necessary, and proceeds to
+     * destroy the bullet if requested.
+     *
+     * @param bullet The bullet to check against objects in the Array
+     * @param array The array to check the bullet against all items from
+     * @param destroyBullet true to destroy the Bullet after doing collision effects. Generally
+     *                      true for normal Bullets and false for Bombs
+     */
+    private void checkCollision(Bullet bullet, Array<? extends Shooter> array, boolean destroyBullet)
+    {
+        // Collision with normal enemies
+        for (int i = 0; i < array.size; i++)
+        {
+            if (bullet.isColliding(array.get(i)))
+            {
+                // Reduce the shooter's health when hit, and remove it if dead
+                array.get(i).reduceHealth(bullet);
+
+                if (array.get(i).isDead()) {
+                    array.get(i).dropCollectibles();
+                    array.removeIndex(i);
+                }
+
+                // Remove the bullet when it hits an enemy, if requested
+                if (destroyBullet) {
+                    for (int j = 0; j < spawnables.size; j++) {
+                        if (spawnables.get(j) == bullet) {
+                            spawnables.removeIndex(j);
+                            return;
+                        }
+                    }
+                }
             }
         }
     }

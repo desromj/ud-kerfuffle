@@ -36,11 +36,11 @@ public abstract class Spawnable
     {
         return this.parent;
     }
-
     public boolean isOffScreen()
     {
         return !Utils.isOnScreen(this.position, 0.0f);
     }
+    public final Vector2 getPosition() { return this.position; }
 
     /**
      * Updates the position of this Spawnable based on its velocity.
