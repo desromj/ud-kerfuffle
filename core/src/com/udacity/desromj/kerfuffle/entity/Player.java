@@ -171,6 +171,9 @@ public class Player extends Shooter
 
     private void shootBomb()
     {
+        if (this.bombs <= 0)
+            return;
+        
         this.bombs--;
 
         // TODO: Shoot bomb here
