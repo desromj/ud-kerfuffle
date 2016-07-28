@@ -164,6 +164,7 @@ public class Constants
         Collectibles and everything else
      */
     public static final float COLLECTIBLE_HIT_RADIUS_SMALL = WORLD_WIDTH / 40.0f;
+    public static final float COLLECTIBLE_HIT_RADIUS_MEDIUM = WORLD_WIDTH / 32.0f;
     public static final float COLLECTIBLE_HIT_RADIUS_LARGE = WORLD_WIDTH / 25.0f;
     public static final float COLLECTIBLE_HIT_RADIUS_HUGE = WORLD_WIDTH / 16.0f;
 
@@ -179,6 +180,7 @@ public class Constants
     public static final float COLLECTIBLE_BORDER_MARGIN = WORLD_WIDTH / 200.0f;
     public static final Color COLLECTIBLE_POWERUP_COLOR = Color.SCARLET;
     public static final Color COLLECTIBLE_POINT_COLOR = Color.BLUE;
+    public static final Color COLLECTIBLE_EXTRA_BOMB_COLOR = Color.GREEN;
 
     public static final float COLLECTIBLE_SMALL_POWER_AMOUNT = 0.075f;
     public static final int COLLECTIBLE_SMALL_POWER_POINT_AMOUNT = 2;

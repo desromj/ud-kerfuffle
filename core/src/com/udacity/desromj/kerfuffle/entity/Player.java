@@ -230,6 +230,11 @@ public class Player extends Shooter
         }
     }
 
+    public void addBomb()
+    {
+        this.bombs++;
+    }
+
     public boolean isAtMaxPower()
     {
         return this.shotPowerLevel >= Constants.PLAYER_SHOT_MAX_POWER_LEVEL;

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
+import com.udacity.desromj.kerfuffle.collectible.ExtraBombColectible;
 import com.udacity.desromj.kerfuffle.collectible.HugePointCollectible;
 import com.udacity.desromj.kerfuffle.collectible.LargePointCollectible;
 import com.udacity.desromj.kerfuffle.collectible.SmallPointCollectible;
@@ -47,6 +48,15 @@ public class DewBoss extends Boss
         float half = Constants.BOSS_DROP_RADIUS / 2.0f;
         Collectible coll;
 
+        // one extra bomb
+        coll = new ExtraBombColectible(
+                this.getPosition().x,
+                this.getPosition().y
+        );
+        coll.setGravity(Constants.COLLECTIBLE_ACCEL_DUE_TO_GRAVITY_SLOW);
+        GameScreen.instance.addCollectible(coll);
+
+        // huge points
         for (int i = 0; i < Constants.BOSS_DEW_DROPS_HUGE_POINT; i++) {
             coll = new HugePointCollectible(
                     this.getPosition().x + (Constants.BOSS_DROP_RADIUS * Utils.randomFloat() - half),
@@ -54,6 +64,8 @@ public class DewBoss extends Boss
             coll.setGravity(Constants.COLLECTIBLE_ACCEL_DUE_TO_GRAVITY_SLOW);
             GameScreen.instance.addCollectible(coll);
         }
+
+        // large points
         for (int i = 0; i < Constants.BOSS_DEW_DROPS_LARGE_POINT; i++) {
             coll = new LargePointCollectible(
                     this.getPosition().x + (Constants.BOSS_DROP_RADIUS * Utils.randomFloat() - half),
@@ -61,6 +73,8 @@ public class DewBoss extends Boss
             coll.setGravity(Constants.COLLECTIBLE_ACCEL_DUE_TO_GRAVITY_SLOW);
             GameScreen.instance.addCollectible(coll);
         }
+
+        // small points
         for (int i = 0; i < Constants.BOSS_DEW_DROPS_SMALL_POINT; i++) {
             coll = new SmallPointCollectible(
                     this.getPosition().x + (Constants.BOSS_DROP_RADIUS * Utils.randomFloat() - half),
