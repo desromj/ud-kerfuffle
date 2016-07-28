@@ -79,54 +79,6 @@ public class Player extends Shooter
         init(spawnPoint);
     }
 
-    public final boolean isOutOfLives()
-    {
-        return this.lives <= 0;
-    }
-
-    public int getLives()
-    {
-        if (this.lives < 0)
-            return 0;
-        return this.lives;
-    }
-
-    public int getBombs()
-    {
-        if (this.bombs < 0)
-            return 0;
-        return this.bombs;
-    }
-
-    public final float getShotPowerLevel() { return this.shotPowerLevel; };
-
-    public final void addShotPower(float power)
-    {
-        this.setShotPower(this.shotPowerLevel + power);
-    }
-
-    /**
-     * Dangerous method, used for initialization. Consider using addShotPower instead
-     * @param newLevel
-     */
-    public final void setShotPower(float newLevel)
-    {
-        this.shotPowerLevel = MathUtils.clamp(newLevel, Constants.PLAYER_SHOT_DEFAULT_POWER_LEVEL, Constants.PLAYER_SHOT_MAX_POWER_LEVEL);
-    }
-
-    /**
-     * Player always dies in 1 hit
-     */
-    @Override
-    protected final void setHealth() {
-        this.health = Constants.PLAYER_HEALTH;
-    }
-
-    @Override
-    protected void setHitRadius() {
-        this.hitRadius = Constants.PLAYER_RADIUS;
-    }
-
 
 
     @Override
@@ -190,13 +142,6 @@ public class Player extends Shooter
 
 
 
-    public final boolean isFocussed()
-    {
-        return Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT);
-    }
-
-
-
     public final void wasHit()
     {
         this.deathSound.play(Constants.DEATH_POOF_VOLUME);
@@ -252,27 +197,6 @@ public class Player extends Shooter
 
 
 
-    public void addBomb()
-    {
-        this.bombs++;
-    }
-
-
-
-    public boolean isAtMaxPower()
-    {
-        return this.shotPowerLevel >= Constants.PLAYER_SHOT_MAX_POWER_LEVEL;
-    }
-
-
-
-    public boolean isInvincible()
-    {
-        return (this.invincibleFor > 0.0f) || (this.isOutOfLives());
-    }
-
-
-
     @Override
     public void render(SpriteBatch batch)
     {
@@ -311,5 +235,78 @@ public class Player extends Shooter
 
         renderer.setColor(Constants.PLAYER_HITBOX_COLOR);
         renderer.circle(this.position.x, this.position.y, (Constants.PLAYER_RADIUS - Constants.PLAYER_HITBOX_BORDER) * Constants.PLAYER_HITBOX_BUFFER_RATIO);
+    }
+
+
+
+    /*
+        Getters and Setters
+     */
+
+
+
+    public final boolean isFocussed()
+    {
+        return Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT);
+    }
+
+    public void addBomb() { this.bombs++; }
+
+    public boolean isAtMaxPower()
+    {
+        return this.shotPowerLevel >= Constants.PLAYER_SHOT_MAX_POWER_LEVEL;
+    }
+
+    public boolean isInvincible()
+    {
+        return (this.invincibleFor > 0.0f) || (this.isOutOfLives());
+    }
+
+    public final boolean isOutOfLives()
+    {
+        return this.lives <= 0;
+    }
+
+    public int getLives()
+    {
+        if (this.lives < 0)
+            return 0;
+        return this.lives;
+    }
+
+    public int getBombs()
+    {
+        if (this.bombs < 0)
+            return 0;
+        return this.bombs;
+    }
+
+    public final float getShotPowerLevel() { return this.shotPowerLevel; };
+
+    public final void addShotPower(float power)
+    {
+        this.setShotPower(this.shotPowerLevel + power);
+    }
+
+    /**
+     * Dangerous method, used for initialization. Consider using addShotPower instead
+     * @param newLevel
+     */
+    public final void setShotPower(float newLevel)
+    {
+        this.shotPowerLevel = MathUtils.clamp(newLevel, Constants.PLAYER_SHOT_DEFAULT_POWER_LEVEL, Constants.PLAYER_SHOT_MAX_POWER_LEVEL);
+    }
+
+    /**
+     * Player always dies in 1 hit
+     */
+    @Override
+    protected final void setHealth() {
+        this.health = Constants.PLAYER_HEALTH;
+    }
+
+    @Override
+    protected void setHitRadius() {
+        this.hitRadius = Constants.PLAYER_RADIUS;
     }
 }
