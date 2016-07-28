@@ -49,6 +49,7 @@ public class Constants
     public static final float PLAYER_SHOT_MAX_POWER_LEVEL = 5.0f;
     public static final float PLAYER_SHOT_DEGREE_ROTATION = 4.0f;
 
+    public static final float PLAYER_BOMB_INVINCIBILITY_SECONDS = 3.0f;
     public static final float PLAYER_BOMB_RADIUS = WORLD_WIDTH / 2.5f;
     public static final float PLAYER_BOMB_DAMAGE_PER_SECOND = 80.0f;
     public static final int PLAYER_BOMB_PARTICLE_EFFECT_COUNT = 16;

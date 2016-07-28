@@ -127,6 +127,8 @@ public class Player extends Shooter
         this.hitRadius = Constants.PLAYER_RADIUS;
     }
 
+
+
     @Override
     public void update(float delta)
     {
@@ -155,16 +157,7 @@ public class Player extends Shooter
         {
             if (this.bombs > 0 && !GameScreen.instance.playerBombIsOnscreen())
             {
-                this.bombs--;
-
-                // TODO: Shoot bomb here
-                Spawnable bomb = SpawnFactory.makeBullet(
-                        Enums.BulletType.PLAYER_BOMB,
-                        this,
-                        this.position,
-                        Constants.PLAYER_BOMB_VELOCITY);
-
-                GameScreen.instance.addSpawnable(bomb);
+                this.shootBomb();
             }
         }
 
@@ -174,16 +167,40 @@ public class Player extends Shooter
         this.asset.skeleton.setPosition(position.x, position.y);
     }
 
+
+
+    private void shootBomb()
+    {
+        this.bombs--;
+
+        // TODO: Shoot bomb here
+        Spawnable bomb = SpawnFactory.makeBullet(
+                Enums.BulletType.PLAYER_BOMB,
+                this,
+                this.position,
+                Constants.PLAYER_BOMB_VELOCITY);
+
+        GameScreen.instance.addSpawnable(bomb);
+
+        this.invincibleFor = Constants.PLAYER_BOMB_INVINCIBILITY_SECONDS;
+    }
+
+
+
     public final boolean isFocussed()
     {
         return Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT);
     }
+
+
 
     public final void wasHit()
     {
         this.deathSound.play(Constants.DEATH_POOF_VOLUME);
         this.dropCollectibles();
     }
+
+
 
     @Override
     public final void dropCollectibles()
@@ -230,20 +247,28 @@ public class Player extends Shooter
         }
     }
 
+
+
     public void addBomb()
     {
         this.bombs++;
     }
+
+
 
     public boolean isAtMaxPower()
     {
         return this.shotPowerLevel >= Constants.PLAYER_SHOT_MAX_POWER_LEVEL;
     }
 
+
+
     public boolean isInvincible()
     {
         return (this.invincibleFor > 0.0f) || (this.isOutOfLives());
     }
+
+
 
     @Override
     public void render(SpriteBatch batch)
@@ -268,6 +293,8 @@ public class Player extends Shooter
         // Then render the skeleton
         this.asset.render(batch);
     }
+
+
 
     // Hitbox Rendering - specific to the player
     public void renderShapes(ShapeRenderer renderer)
