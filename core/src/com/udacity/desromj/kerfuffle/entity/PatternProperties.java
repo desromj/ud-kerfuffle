@@ -281,6 +281,7 @@ public class PatternProperties
 
         public Builder shotsPerWave(int shotsPerWave) {
             this.shotsPerWave = shotsPerWave;
+            this.shotsLeftInWave = shotsPerWave;
             return this;
         }
 
