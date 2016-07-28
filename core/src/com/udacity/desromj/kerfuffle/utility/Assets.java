@@ -61,12 +61,13 @@ public class Assets implements Disposable, AssetErrorListener
 
         if (shooter instanceof Player)              asset = new BloomAssets();
         else if (shooter instanceof MiteEnemy)      asset = new MiteAssets();
+        else if (shooter instanceof FlyEnemy)       asset = new FlyAssets();
 
         // TODO: The remaining enemies need their own handdrawn assets. Replace everything here when they are made
-        else if (shooter instanceof FlyEnemy)       asset = new MiteAssets();
-        else if (shooter instanceof MantisEnemy)    asset = new MiteAssets();
-        else if (shooter instanceof DewBoss)        asset = new MiteAssets();
-        else if (shooter instanceof MwapBoss)       asset = new MiteAssets();
+        else if (shooter instanceof MantisEnemy)    asset = new FlyAssets();
+        else if (shooter instanceof DewBoss)        asset = new FlyAssets();
+        else if (shooter instanceof MwapBoss)       asset = new FlyAssets();
+
         else                                        throw new NotImplementedException();
 
         return asset;
@@ -129,6 +130,39 @@ public class Assets implements Disposable, AssetErrorListener
             AnimationStateData stateData = new AnimationStateData(skeletonData);
             animationState = new AnimationState(stateData);
             animationState.setAnimation(0, "animation", true);
+        }
+    }
+
+    /**
+     * Dragonflies are medium enemies
+     */
+    private final class FlyAssets extends SpineAnimationAsset
+    {
+        @Override
+        public void initSpine()
+        {
+            skeletonRenderer = new SkeletonRenderer();
+            skeletonRenderer.setPremultipliedAlpha(true);       // Alpha blending to reduce outlines
+
+            skeletonRendererDebug = new SkeletonRendererDebug();
+            skeletonRendererDebug.setBoundingBoxes(false);
+            skeletonRendererDebug.setRegionAttachments(false);
+
+            atlas = new TextureAtlas(Gdx.files.internal("enemies/dragonfly.atlas"));
+            SkeletonJson json = new SkeletonJson(atlas);        // load stateless skeleton JSON data
+            json.setScale(0.04f);                                // set skeleton scale from Spine
+
+            // Read the JSON data and create the skeleton
+            SkeletonData skeletonData = json.readSkeletonData(Gdx.files.internal("enemies/dragonfly.json"));
+            skeleton = new Skeleton(skeletonData);
+
+            // dragonfly is facing up, needs to face down
+            skeleton.setFlip(false, true);
+
+            // init animation
+            AnimationStateData stateData = new AnimationStateData(skeletonData);
+            animationState = new AnimationState(stateData);
+            animationState.setAnimation(0, "idle", true);
         }
     }
 

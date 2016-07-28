@@ -1,0 +1,90 @@
+
+dragonfly.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+abdomen-piece
+  rotate: false
+  xy: 2, 66
+  size: 79, 67
+  orig: 79, 67
+  offset: 0, 0
+  index: -1
+abdomen-tip
+  rotate: false
+  xy: 983, 752
+  size: 24, 63
+  orig: 24, 63
+  offset: 0, 0
+  index: -1
+bicep
+  rotate: false
+  xy: 904, 548
+  size: 19, 55
+  orig: 19, 55
+  offset: 0, 0
+  index: -1
+calf
+  rotate: false
+  xy: 83, 75
+  size: 24, 58
+  orig: 24, 58
+  offset: 0, 0
+  index: -1
+foot
+  rotate: false
+  xy: 2, 2
+  size: 23, 62
+  orig: 23, 62
+  offset: 0, 0
+  index: -1
+forearm
+  rotate: false
+  xy: 932, 622
+  size: 21, 52
+  orig: 21, 52
+  offset: 0, 0
+  index: -1
+hand
+  rotate: false
+  xy: 428, 169
+  size: 31, 44
+  orig: 31, 44
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 349, 153
+  size: 77, 60
+  orig: 77, 60
+  offset: 0, 0
+  index: -1
+sketch
+  rotate: false
+  xy: 2, 215
+  size: 900, 600
+  orig: 900, 600
+  offset: 0, 0
+  index: -1
+thigh
+  rotate: false
+  xy: 904, 605
+  size: 26, 69
+  orig: 26, 69
+  offset: 0, 0
+  index: -1
+torso
+  rotate: false
+  xy: 904, 676
+  size: 77, 139
+  orig: 77, 139
+  offset: 0, 0
+  index: -1
+wing
+  rotate: false
+  xy: 2, 135
+  size: 345, 78
+  orig: 345, 78
+  offset: 0, 0
+  index: -1
