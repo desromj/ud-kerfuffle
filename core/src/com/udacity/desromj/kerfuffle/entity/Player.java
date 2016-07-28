@@ -169,14 +169,14 @@ public class Player extends Shooter
 
 
 
+    // Shoot bombs, if the player still has some in stock
     private void shootBomb()
     {
         if (this.bombs <= 0)
             return;
-        
+
         this.bombs--;
 
-        // TODO: Shoot bomb here
         Spawnable bomb = SpawnFactory.makeBullet(
                 Enums.BulletType.PLAYER_BOMB,
                 this,
